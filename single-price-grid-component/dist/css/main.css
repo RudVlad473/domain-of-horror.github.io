@@ -11,7 +11,7 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-image: url("/images/milad-fakurian-E8Ufcyxz514-unsplash.jpg");
+  background-image: url("../../images/background-image1.jpg");
   height: 100vh;
   overflow: auto;
 }
