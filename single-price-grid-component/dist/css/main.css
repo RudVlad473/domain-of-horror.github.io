@@ -10,7 +10,7 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-image: url("https://domain-of-horror.github.io/single-price-grid-component/images/background-image1.jpg");
+  background-image: url("/images/background-image1.jpg");
   height: 100vh;
   overflow: auto;
 }
