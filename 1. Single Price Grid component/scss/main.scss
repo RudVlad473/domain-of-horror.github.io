@@ -1,0 +1,94 @@
+@import url('/node_modules/bootstrap/scss/mixins/_breakpoints.scss');
+
+*, *::before, *::after {
+        box-sizing: border-box;
+}
+
+html {
+    font-size: 1em;
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url("/images/milad-fakurian-E8Ufcyxz514-unsplash.jpg");
+    height: 100vh;
+    overflow: auto;
+}
+
+#first-header {
+    font-weight: 800;
+    font-size: 1.3em;
+    color:rgb(36, 123, 163)
+}
+
+#second-header, #third-header {
+    font-weight: 750;
+}
+
+.smaller-text {
+    font-weight: lighter;
+}
+
+.bold-text {
+    font-weight: 640;
+}
+
+.flex-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   
+    height: 100%;
+}
+
+
+.top-section {
+    background-color: white;
+}
+
+.bottom-left-section {
+    background-color: rgb(27, 199, 199);
+    color: ghostwhite;
+    border-bottom-left-radius: 1.3%;
+}
+
+.bottom-right-section {
+    background-color: rgb(31, 221, 221);
+    color: ghostwhite;
+    border-bottom-right-radius: 1.3%;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.big-chars {
+    font-size: 2em;
+}
+
+.muted {
+    color: rgb(176, 243, 243);
+}
+
+.btn {
+    color: white;
+    background-color: limegreen;
+}
+
+#azure-text {
+    color: rgb(71, 149, 194);
+}
+
+#green-text {
+    color: rgb(13, 175, 27);
+}
+
+#subscription {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
