@@ -1,0 +1,52 @@
+$icons-scale: 2.3;
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: ghostwhite !important;
+}
+
+h3:nth-of-type(2) {
+    letter-spacing: 0.02vw;
+}
+
+#small-text {
+    font-size: 0.9em;
+}
+
+// body, html {
+   
+// }
+
+
+header {
+    font-size: 1.2em;
+    font-weight:bolder;
+    font-family: sans-serif;
+}
+
+article {
+    font-family: sans-serif;
+}
+
+.card-wrapper {
+    min-height: 150px;
+    
+    //border-top: 4px solid red;
+    border-radius: 5px 5px 3px 3px;
+      
+}
+
+.bi {
+    transform:scale        ($icons-scale, $icons-scale);
+    -ms-transform:scale    ($icons-scale, $icons-scale); /* IE 9 */
+    -moz-transform:scale   ($icons-scale, $icons-scale); /* Firefox */
+    -webkit-transform:scale($icons-scale, $icons-scale); /* Safari and Chrome */
+    -o-transform:scale     ($icons-scale, $icons-scale); /* Opera */
+}

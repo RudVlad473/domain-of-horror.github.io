@@ -1,0 +1,40 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: ghostwhite !important;
+}
+
+h3:nth-of-type(2) {
+  letter-spacing: 0.02vw;
+}
+
+#small-text {
+  font-size: 0.9em;
+}
+
+header {
+  font-size: 1.2em;
+  font-weight: bolder;
+  font-family: sans-serif;
+}
+
+article {
+  font-family: sans-serif;
+}
+
+.card-wrapper {
+  min-height: 150px;
+  border-radius: 5px 5px 3px 3px;
+}
+
+.bi {
+  transform: scale 2.3, 2.3;
+  -ms-transform: scale 2.3, 2.3; /* IE 9 */
+  -moz-transform: scale 2.3, 2.3; /* Firefox */
+  -webkit-transform: scale(2.3, 2.3); /* Safari and Chrome */
+  -o-transform: scale 2.3, 2.3; /* Opera */
+}/*# sourceMappingURL=main.css.map */
