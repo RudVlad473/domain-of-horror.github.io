@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body { min-height: 100vh; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://images.unsplash.com/photo-1521729839347-131a32f9abcb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1197&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+       
+}
+
+footer {
+    font-size: 0.55em;
+}
+
+article {
+    font-size: 0.89em;
+}
+
+.form-control:focus {
+    border-color: purple;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 8px purple;
+}
+
+#submit-btn {
+    background-color: rgb(96, 190, 96);
+}
+
+#link-btn {
+    color: white;
+    background-color: rgb(72, 72, 187);
+}
+
+#section-text {
+    color: ghostwhite;
+}
+
+@media only screen and (min-width: 0) and (max-width: 768px) {
+    #text-section {
+        font-size: 1.5em;
+        line-height: normal;
+    }
+}
+
+
+
+
