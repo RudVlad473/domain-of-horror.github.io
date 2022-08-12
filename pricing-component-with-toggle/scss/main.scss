@@ -1,0 +1,160 @@
+$border-radius-value: .5rem;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    // background-image: url('https://images.unsplash.com/photo-1570475735025-6cd1cd5c779d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-image: url('https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    min-height: 100vh;
+
+    * {
+        font-size: 1.1rem;
+        font-family: 'Figtree';
+    }
+}
+
+p {
+    text-align: center;
+    margin: 0.5em !important;
+}
+
+hr {
+    margin: 0 !important;
+}
+
+.purple-text {
+    color: darkblue;
+}
+
+.container {
+    min-height: 100%;
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg,
+            #87CEEB 0%,
+            #6495ED 60%,
+            mediumslateblue);
+}
+
+.card-wrapper {
+    overflow: hidden;
+}
+
+.left-rounded {
+    //.5rem
+    border-radius: $border-radius-value 0 0 $border-radius-value;
+}
+
+.right-rounded {
+    border-radius: 0 $border-radius-value $border-radius-value 0;
+}
+
+.button {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}
+
+#bigger-section {
+    background-color: mediumslateblue;
+    background: linear-gradient(135deg,
+            rgb(2, 169, 224) 30%,
+            mediumslateblue);
+    color: white;
+}
+
+
+
+//switch classes
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+    .left-rounded {
+        //.5rem
+        border-radius: $border-radius-value;
+    }
+    
+    .right-rounded {
+        border-radius: $border-radius-value;
+    }
+}
