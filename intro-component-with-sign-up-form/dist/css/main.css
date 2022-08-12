@@ -20,14 +20,21 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  font-size: 1.2em;
+  font-family: "PT Sans", Calibri, Tahoma, sans-serif;
 }
 
 footer {
   font-size: 0.55em;
 }
 
-article {
+article, #link-btn, #submit-btn {
   font-size: 0.89em;
+  font-family: "Noto Sans Display";
+}
+
+input {
+  font-family: "Montserrat Alternates";
 }
 
 .form-control:focus {
@@ -46,6 +53,10 @@ article {
 
 #section-text {
   color: ghostwhite;
+}
+
+#first-header {
+  font-family: "Comfortaa" !important;
 }
 
 @media only screen and (min-width: 0) and (max-width: 768px) {
