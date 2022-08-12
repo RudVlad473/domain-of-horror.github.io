@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Comfortaa&family=Noto+Sans+Display&family=Montserrat+Alternates">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Comfortaa&family=Noto+Sans+Display&family=Montserrat+Alternates">
+    <script defer type="module" src="js/script.js"></script>
     <title>Intro component with sign-up form</title>
 </head>
 
@@ -16,7 +18,8 @@
         <div class="row p-0 m-0 mw-100 d-flex justify-content-center">
             <section id="text-section" class="col-12 col-md-6 p-0 d-flex justify-content-center align-items-center">
                 <div id="section-text" class="w-75">
-                    <header id="first-header" class="px-3 py-1 fs-1 lh-1 user-select-none">Learn to code by watching others</header>
+                    <header id="first-header" class="px-3 py-1 fs-1 lh-1 user-select-none">Learn to code by watching
+                        others</header>
                     <article class="px-3 py-1 user-select-none">
                         See how expierienced developers solve problems in real-time.<br>
                         Watching scripted tutorials is great, but understanding how developers think is invaluable.
@@ -32,32 +35,33 @@
                             it for free 7
                             days then $20/mo. thereafter</a>
                     </header>
-                    <form
+                    <form id="form" name="form"
                         class="d-flex p-4 w-100 flex-column align-items-center border-bottom border-top-0 border-start-0 border-end-0 border-dark border-opacity-75 border-bottom border-4 rounded-3 shadow-sm bg-white">
                         <div class="d-flex w-100 flex-column">
+                            <div id="error-container" class="w-100">
+                                <ul id="error-messages">
+                                </ul>
+                            </div>
                             <div class="form-floating">
                                 <input id="name" class="form-control mb-2" type="text" name="name" required />
                                 <label for="name">Name</label>
                             </div>
-
                             <div class="form-floating">
                                 <input id="last-name" class="form-control my-2" type="text" name="last-name" />
                                 <label for="last-name">Last Name</label>
                             </div>
-
                             <div class="form-floating">
                                 <input id="email" class="form-control my-2" type="email" name="email" required />
                                 <label for="email">Email</label>
                             </div>
-
                             <div class="form-floating">
                                 <input id="password" class="form-control my-2" type="password" name="password"
                                     required />
                                 <label for="password">Password</label>
                             </div>
-
                         </div>
-                        <button id="submit-btn" class="btn my-2 w-100 shrink-border" type="submit">CLAIM YOUR FREE TRIAL</button>
+                        <button id="submit-btn" class="btn my-2 w-100 shrink-border" type="submit">CLAIM YOUR FREE
+                            TRIAL</button>
                         <footer class="text-muted pb-2">
                             By clicking this button, you are agreeing to our
                             <a href="#" class="text-decoration-none text-danger">Terms and Services</a>
