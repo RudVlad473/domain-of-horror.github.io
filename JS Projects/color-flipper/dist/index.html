@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Slab&family=Silkscreen">
+    <script defer src="./js/colors.js"></script>
+    <script defer src="./js/script.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="d-flex overflow-auto bg-opacity-50 bg-white shadow fs-4">
+        
+        <p id="logo" class="w-50 d-flex flex-column justify-content-center align-items-center p-0 m-0">Color Flipper</p>
+        <div class="w-50 d-flex flex-column justify-content-center align-items-center">
+            <button id="identifier" onclick="toggleButton();" class="btn">Human</button>
+        </div>
+        
+    </nav>
+    <main class="d-flex flex-row justify-content-center align-items-center">
+        <div class="d-flex flex-column align-items-center gap-4">
+            <header class="text-white bg-black h-25 rounded-2 fs-1 p-3">
+                <span id="bg-color" class="">background color&nbsp;:&nbsp;</span>
+                <span class="d-block d-md-inline text-center" id="current-color">white</span>
+            </header>
+            <footer class="p-0 w-100 d-flex flex-row justify-content-center align-content-center">
+                <button id="swap-btn" onclick="changeBgColor()" class="btn btn-warning btn-lg">SWAP IT</button>
+            </footer>
+        </div>
+
+    </main>
+    <script src="../bootstrap-5.2.0-dist/js/bootstrap.js"></script>
+</body>
+
+</html>

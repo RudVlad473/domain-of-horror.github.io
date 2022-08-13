@@ -1,0 +1,50 @@
+:root {
+    --navbar-height: 10%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: aliceblue;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+nav {
+    height: var(--navbar-height);
+    top: 0;
+    font-family: Poppins;
+}
+
+main {
+    font-family: 'Roboto Slab';
+    height: calc(100% - var(--navbar-height));
+    padding-bottom: var(--navbar-height);
+    width: 100%;
+}
+
+footer {
+    padding-top: 10em;
+}
+
+#identifier {
+    border: 1px solid aqua;
+    background-color: white;
+    transition: all .6s;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#identifier:hover {
+    border-color: inherit;
+}
+
