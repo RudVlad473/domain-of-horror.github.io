@@ -33,5 +33,17 @@ const colorsList = {
  	yellow				:['#FFFF00',	'rgb(255,255,0)'],
  	olive				:['#808000',	'rgb(128,128,0)'],
  	greenyellow			:['#ADFF2F',	'rgb(173,255,47)'],
- 	yellowgreen			:['#9ACD32',	'rgb(154,205,50)']
+ 	yellowgreen			:['#9ACD32',	'rgb(154,205,50)'],
+	coral				:['#FF7F50',	'rgb(255,127,80)'],
+ 	tomato				:['#FF6347',	'rgb(255,99,71)'],
+ 	orangered			:['#FF4500',	'rgb(255,69,0)'],
+ 	gold				:['#FFD700',	'rgb(255,215,0)'],
+ 	orange				:['#FFA500',	'rgb(255,165,0)'],
+ 	darkorange			:['#FF8C00',	'rgb(255,140,0)'],
+	pink				:['#FFC0CB',	'rgb(255,192,203)'],
+ 	lightpink			:['#FFB6C1',	'rgb(255,182,193)'],
+ 	hotpink				:['#FF69B4',	'rgb(255,105,180)'],
+ 	deeppink			:['#FF1493',	'rgb(255,20,147)'],
+ 	palevioletred		:['#DB7093',	'rgb(219,112,147)'],
+ 	mediumvioletred		:['#C71585',	'rgb(199,21,133)']
 }
