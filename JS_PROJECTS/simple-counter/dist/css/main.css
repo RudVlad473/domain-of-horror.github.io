@@ -1,0 +1,115 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: clamp(1.8rem, 8vw, 5rem);
+  color: ivory !important;
+  background: url("https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+input {
+  display: flex;
+  align-items: center;
+  font-size: calc(clamp(1.8rem, 8vw, 5rem) / 2.5);
+}
+
+p,
+input,
+label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+svg {
+  width: 0.75em;
+  height: 0.75em;
+}
+
+.multiplier__header {
+  overflow: hidden;
+  text-align: center;
+  font-size: 0.65em;
+  font-family: Pacifico;
+}
+
+.multiplier__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 1.8em;
+       column-gap: 1.8em;
+}
+.multiplier__body__plus, .multiplier__body__minus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.multiplier__body__value {
+  border: 3px groove black;
+  text-align: center;
+  border-radius: 50%;
+  width: 2.2em;
+  height: 2.2em;
+  overflow: hidden;
+}
+
+.counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 2em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-family: Pacifico;
+}
+.counter__operations {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 1.8em;
+       column-gap: 1.8em;
+}
+.counter__operations__container {
+  -moz-column-gap: 0.75em;
+       column-gap: 0.75em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.counter__operations__container * {
+  display: flex;
+  align-items: center;
+}/*# sourceMappingURL=main.css.map */

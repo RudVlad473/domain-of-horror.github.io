@@ -1,0 +1,77 @@
+@import './resets', './mixins', './variables';
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: $responsive-fs;
+    color: ivory !important;
+    background: url('https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+input {
+    @include alignCenter;
+    font-size: calc($responsive-fs / 2.5);
+}
+
+p,
+input,
+label {
+    user-select: none;
+}
+
+svg {
+    width: $responsive-icons-size;
+    height: $responsive-icons-size;
+}
+
+.multiplier__header {
+    overflow: hidden;
+    text-align: center;
+    font-size: clamp(.5em, .65em, 1.4em);
+    font-family: Pacifico;
+}
+
+.multiplier__body {
+    @include flexCenter(row);
+    column-gap: $responsive-gap;
+
+    &__plus,
+    &__minus {
+        @include flexCenter(row);
+    }
+
+    &__value {
+        border: 3px groove black;
+        text-align: center;
+        border-radius: 50%;
+        width: 2.2em;
+        height: 2.2em;
+        overflow: hidden;
+    }
+}
+
+.counter {
+    @include flexCenter(row);
+    min-height: 2em;
+    user-select: none;
+    font-family: Pacifico;
+
+    &__operations {
+        @include flexCenter(row);
+        column-gap: $responsive-gap;
+
+        &__container {
+            column-gap: $sm-responsive-gap;
+            @include flexCenter(row);
+
+            * {
+                @include alignCenter;
+            }
+        }
+
+    }
+}
