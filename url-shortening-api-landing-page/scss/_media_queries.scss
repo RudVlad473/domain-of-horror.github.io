@@ -1,0 +1,93 @@
+@media only screen and (max-width: 768px) {
+
+    .container,
+    #features {
+        flex-wrap: wrap;
+    }
+
+    .toggle-button {
+        top: 5% !important;
+        display: flex !important;
+    }
+
+    .to-collapse {
+        overflow: hidden;
+        height: 0 !important;
+    }
+
+    .navigation {
+        align-items: flex-start !important;
+        flex-direction: column !important;
+        gap: 1em;
+
+        div {
+            width: 100%;
+        }
+
+        div:first-child {
+            flex-direction: column;
+
+            div:first-child {
+                align-items: flex-start;
+            }
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        .to-collapse {
+            justify-content: center;
+        }
+
+        .active {
+            height: auto !important;
+        }
+    }
+
+    header {
+        .container {
+            padding-right: $container-sides-padding  !important;
+        }
+    }
+
+    footer {
+        section:nth-of-type(2) {
+            .container {
+                gap: $lg-gap;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+
+
+                .links {
+                    flex-direction: column;
+                    gap: 3em;
+                    flex-wrap: nowrap;
+                    align-items: center;
+
+                    ul>li>a {
+                        color: rgb(180, 177, 177) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .input-link {
+        display: none;
+    }
+
+    .result-wrapper {
+        margin: 0 auto;
+    }
+
+    #features {
+        .card {
+            &:nth-of-type(3) {
+                margin-top: 2em;
+            }
+        }
+    }
+
+}
