@@ -364,13 +364,13 @@ a {
                         align-items: center;
 
                         &>span {
-                            flex: 6;
+                            flex: 6 !important;
                         }
 
                         &>div {
                             @include flexContainer;
                             align-items: center;
-                            flex: 4;
+                            flex: 4 !important;
                             gap: 2em;
                         }
                     }
