@@ -363,9 +363,14 @@ a {
                         justify-content: space-between;
                         align-items: center;
 
+                        &>span {
+                            flex: 6;
+                        }
+
                         &>div {
                             @include flexContainer;
                             align-items: center;
+                            flex: 4;
                             gap: 2em;
                         }
                     }
