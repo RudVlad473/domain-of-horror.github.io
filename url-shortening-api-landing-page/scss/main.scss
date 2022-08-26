@@ -1,7 +1,7 @@
-@import './resets', './variables', './mixins';
+@import "./resets", "./variables", "./mixins";
 
 body {
-    font-size: clamp(.8rem, 1.5vw, 2rem);
+    font-size: clamp(0.8rem, 1.5vw, 2rem);
     background-color: whitesmoke;
     font-family: $main-font-family;
     color: $primary-color;
@@ -50,7 +50,7 @@ footer {
     .icon {
         font-size: 150%;
 
-        transition: all .5s ease;
+        transition: all 0.5s ease;
 
         &:hover:enabled {
             color: $secondary-color;
@@ -118,7 +118,7 @@ header {
 
 nav {
     background-color: white;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
     a:hover:enabled {
         color: black;
@@ -131,7 +131,7 @@ nav {
 
 a,
 button {
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     user-select: none;
     font-family: inherit;
     font-size: inherit;
@@ -143,7 +143,7 @@ a {
     font-weight: 500;
 
     &:hover:enabled {
-        color: $secondary-color  !important;
+        color: $secondary-color !important;
     }
 }
 
@@ -161,7 +161,7 @@ a {
 .navigation {
     justify-content: space-between;
     align-items: center;
-    padding-top: $lg-padding - .5em;
+    padding-top: $lg-padding - 0.5em;
     padding-bottom: $lg-padding;
 
     * {
@@ -172,7 +172,6 @@ a {
         gap: $lg-gap;
 
         &:hover:enabled {
-
             color: black !important;
         }
     }
@@ -239,7 +238,7 @@ a {
 .logo {
     font-size: 3rem;
     font-weight: 800;
-    padding-right: .4em;
+    padding-right: 0.4em;
 }
 
 .column-list {
@@ -291,7 +290,7 @@ a {
             font-weight: inherit;
             padding: 10px;
 
-            &:hover:enabled{
+            &:hover:enabled {
                 background-color: $hover-color !important;
             }
         }
@@ -302,7 +301,7 @@ a {
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            border-radius: .5em;
+            border-radius: 0.5em;
             padding: $lg-padding;
 
             &__wrapper {
@@ -316,7 +315,7 @@ a {
                     flex: 8;
                     min-height: 3em;
                     height: 3em;
-                    border-radius: .5em;
+                    border-radius: 0.5em;
                     font-family: inherit;
                     font-size: inherit;
                     font-weight: inherit;
@@ -326,7 +325,7 @@ a {
                 button {
                     flex: 2;
                     min-height: 3em;
-                    border-radius: .5em;
+                    border-radius: 0.5em;
                 }
 
                 .link-validation {
@@ -348,26 +347,27 @@ a {
                 gap: $sm-gap;
 
                 &__link {
-                    padding-top: .7em;
-                    padding-bottom: .7em;
+                    padding-top: 0.7em;
+                    padding-bottom: 0.7em;
                     background-color: white;
-                    border-radius: .25em;
-                    transition: all .3s ease;
+                    border-radius: 0.25em;
+                    transition: all 0.3s ease;
+
                     &:hover:enabled {
                         background-color: azure;
                     }
-                    
+
                     div:first-child {
                         @include flexContainer;
                         width: 100%;
                         justify-content: space-between;
                         align-items: center;
 
-                        &>span {
+                        & > span {
                             flex: 6 !important;
                         }
 
-                        &>div {
+                        & > div {
                             @include flexContainer;
                             align-items: center;
                             flex: 4 !important;
@@ -377,8 +377,8 @@ a {
 
                     .copy-btn {
                         width: 7rem;
-                        padding: .5em;
-                        border-radius: .25em;
+                        padding: 0.5em;
+                        border-radius: 0.25em;
                     }
 
                     .result {
@@ -399,8 +399,6 @@ a {
 button {
     width: clamp(10em, 12em, 14em);
 }
-
-
 
 #socials-icons {
     @include flexContainer;
@@ -431,7 +429,7 @@ h1 {
 
         div:first-child {
             @include flexContainer(column);
-            gap: $md-gap
+            gap: $md-gap;
         }
     }
 
@@ -469,11 +467,10 @@ h1 {
 .text-center {
     text-align: center;
     margin-bottom: 1em;
-}    
-   
+}
 
 .shakeY {
-    animation: shake .3s;
+    animation: shake 0.3s;
 }
 
 @keyframes shake {
@@ -490,4 +487,4 @@ h1 {
     }
 }
 
-@import './media_queries';
+@import "./media_queries";

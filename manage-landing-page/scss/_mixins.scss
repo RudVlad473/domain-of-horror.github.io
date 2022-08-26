@@ -1,0 +1,8 @@
+@mixin orangePill {
+    background-color: $primary-color;
+    color: white;
+    transition: all 0.5s ease;
+    padding-inline: 2em;
+    padding-block: 1em;
+    border-radius: 50rem;
+}

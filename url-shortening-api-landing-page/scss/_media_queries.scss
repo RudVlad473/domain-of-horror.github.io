@@ -1,5 +1,4 @@
 @media only screen and (max-width: 768px) {
-
     .container,
     #features {
         flex-wrap: wrap;
@@ -47,7 +46,7 @@
 
     header {
         .container {
-            padding-right: $container-sides-padding  !important;
+            padding-right: $container-sides-padding !important;
         }
     }
 
@@ -59,14 +58,13 @@
                 justify-content: center;
                 text-align: center;
 
-
                 .links {
                     flex-direction: column;
                     gap: 3em;
                     flex-wrap: nowrap;
                     align-items: center;
 
-                    ul>li>a {
+                    ul > li > a {
                         color: rgb(180, 177, 177) !important;
                     }
                 }
@@ -89,5 +87,4 @@
             }
         }
     }
-
 }

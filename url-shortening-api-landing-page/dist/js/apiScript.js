@@ -1,31 +1,30 @@
 function apiCall() {
     const userInput = getUserInput()
     if (!validateUserInput(userInput)) {
-        inputField.classList.add('shakeY');
+        inputField.classList.add('shakeY')
         setTimeout(() => {
-            inputField.classList.remove('shakeY');
-        }, 300);
-        return;
+            inputField.classList.remove('shakeY')
+        }, 300)
+        return
     }
     fetch(`https://api.shrtco.de/v2/shorten?url=${userInput}`)
-        .then(res => {
+        .then((res) => {
             if (res.ok) {
                 return res.json()
-            }
-            else {
-                validationSpan.innerHTML = 'Something went wrong';
+            } else {
+                validationSpan.innerHTML = 'Something went wrong'
             }
         })
-        .then(data => {
+        .then((data) => {
             if (!data) {
-                validationSpan.innerHTML = 'Server is not responding';
-                return;
+                validationSpan.innerHTML = 'Server is not responding'
+                return
             }
 
-            buttonTimeOut();
+            buttonTimeOut()
 
-            const shortedLinkId = `shorted_link${linksCount}`;
-            const copyBtnId = `shorted_link-copybtn${linksCount}`;
+            const shortedLinkId = `shorted_link${linksCount}`
+            const copyBtnId = `shorted_link-copybtn${linksCount}`
 
             resultList.innerHTML += `
             <li class="url-result__links__link">
@@ -39,24 +38,25 @@ function apiCall() {
                     </div>
                 </div>
             </li>
-            `;
+            `
 
-            const copyBtn = document.getElementById(`${copyBtnId}`);
+            const copyBtn = document.getElementById(`${copyBtnId}`)
             copyBtn.addEventListener('click', () => {
-                copyBtn.innerHTML = 'Copied!';
-                copyBtn.style.backgroundColor = 'grey';
-                copyBtn.disabled = true;
-                
+                copyBtn.innerHTML = 'Copied!'
+                copyBtn.style.backgroundColor = 'grey'
+                copyBtn.disabled = true
             })
-            const shortedLinkCopyBtn = document.getElementById(`${copyBtnId}`);
+            const shortedLinkCopyBtn = document.getElementById(`${copyBtnId}`)
             shortedLinkCopyBtn.addEventListener('click', () => {
-                const shortenedLink = document.getElementById(`${shortedLinkId}`);
-                navigator.clipboard.writeText(shortenedLink.innerHTML);
-                alert(`Your copied link is ${shortenedLink.innerHTML}`);
+                const shortenedLink = document.getElementById(
+                    `${shortedLinkId}`
+                )
+                navigator.clipboard.writeText(shortenedLink.innerHTML)
+                alert(`Your copied link is ${shortenedLink.innerHTML}`)
             })
 
-            linksCount++;
-            validationSpan.innerHTML = inputField.value = '';
+            linksCount++
+            validationSpan.innerHTML = inputField.value = ''
         })
-        .catch(error => console.log(error))
+        .catch((error) => console.log(error))
 }

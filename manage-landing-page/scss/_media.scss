@@ -1,0 +1,15 @@
+@media only screen and (max-width: 850px) {
+    .toggle-button {
+        top: 6% !important;
+        display: flex !important;
+    }
+
+    .to-collapse {
+        overflow: hidden;
+        height: 0 !important;
+    }
+
+    .hide {
+        display: none;
+    }
+}
