@@ -11,11 +11,13 @@
         rel="stylesheet" />
     <script defer src="js/_constants.js"></script>
     <script defer src="js/carousel.js"></script>
+    <script src="js/_navbar.js"></script>
     <script defer src="https://kit.fontawesome.com/5e14922891.js" crossorigin="anonymous"></script>
     <title>Manage landing page</title>
 </head>
 
 <body>
+    <div id="overlay"></div>
     <header>
         <nav class="container smooth-transition">
             <div class="logo">
@@ -62,49 +64,43 @@
             </div>
             <div>
                 <div class="card">
-                    <div>
-                        <span class="card__index">
+                    <div class="card__header">
+                        <span class="card__header__index">
                             01
                         </span>
+                        <h4 class="card__header__text">Track company-wide progress</h4>
                     </div>
-                    <div class="card__body">
-                        <h4 class="card__body__header">Track company-wide progress</h4>
-                        <article class="card__body__desc">
-                            See how your day-to-day tasks fit into the wider vision.
-                            Go from tracking progress at the milestone level all the way done to the smallest of
-                            details. Never lose sight of the bigger picture again.
-                        </article>
-                    </div>
+                    <article class="card__body">
+                        See how your day-to-day tasks fit into the wider vision.
+                        Go from tracking progress at the milestone level all the way done to the smallest of
+                        details. Never lose sight of the bigger picture again.
+                    </article>
                 </div>
                 <div class="card">
-                    <div>
-                        <span class="card__index">
+                    <div class="card__header">
+                        <span class="card__header__index">
                             02
                         </span>
+                        <h4 class="card__header__text">Track company-wide progress</h4>
                     </div>
-                    <div class="card__body">
-                        <h4 class="card__body__header">Track company-wide progress</h4>
-                        <article class="card__body__desc">
-                            See how your day-to-day tasks fit into the wider vision.
-                            Go from tracking progress at the milestone level all the way done to the smallest of
-                            details. Never lose sight of the bigger picture again.
-                        </article>
-                    </div>
+                    <article class="card__body">
+                        See how your day-to-day tasks fit into the wider vision.
+                        Go from tracking progress at the milestone level all the way done to the smallest of
+                        details. Never lose sight of the bigger picture again.
+                    </article>
                 </div>
                 <div class="card">
-                    <div>
-                        <span class="card__index">
+                    <div class="card__header">
+                        <span class="card__header__index">
                             03
                         </span>
+                        <h4 class="card__header__text">Track company-wide progress</h4>
                     </div>
-                    <div class="card__body">
-                        <h4 class="card__body__header">Track company-wide progress</h4>
-                        <article class="card__body__desc">
-                            See how your day-to-day tasks fit into the wider vision.
-                            Go from tracking progress at the milestone level all the way done to the smallest of
-                            details. Never lose sight of the bigger picture again.
-                        </article>
-                    </div>
+                    <article class="card__body">
+                        See how your day-to-day tasks fit into the wider vision.
+                        Go from tracking progress at the milestone level all the way done to the smallest of
+                        details. Never lose sight of the bigger picture again.
+                    </article>
                 </div>
             </div>
         </section>
@@ -187,7 +183,8 @@
     </main>
     <footer class="container-bg-wrapper">
         <div class="container">
-            <div>
+            <p class="mobile-copyright">Copyright 2022. All Rights Reserved</p>
+            <div id="logo-icons">
                 <div>
                     <img src="./img/logo.svg" alt="Manage logo">
                 </div>
@@ -241,28 +238,31 @@
                     </li>
                 </ul>
             </div>
-            <div>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
+            <div id="links-group">
+                <div id="home-footer-links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div id="careers-footer-links">
+                    <ul>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <ul>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div>
+            <div id="input-copyright">
                 <div>
-                    <input type="email" name="email" id="email" placeholder="your email">
+                    <input type="email" name="email" id="email" placeholder="Updates in your inbox">
                     <button type="submit" class="get-started-btn">Go</button>
                 </div>
-                <p>Copyright 2022. All Rights Reserved</p>
+                <p class="desktop-copyright">Copyright 2022. All Rights Reserved</p>
             </div>
+            
         </div>
     </footer>
 </body>

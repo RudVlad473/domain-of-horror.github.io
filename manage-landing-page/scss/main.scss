@@ -1,11 +1,16 @@
 @import './resets', './variables', './mixins';
 
+html {
+    font-size: clamp(0.9rem, 0.5rem + 0.7vw, 2rem);
+}
+
 html * {
     font-family: $main-font-family !important;
 }
 
 body {
     color: $secondary-color;
+    overflow: hidden;
 }
 
 a {
@@ -36,7 +41,8 @@ nav {
 
     ul {
         display: flex;
-
+        margin: 0;
+        padding: 0;
         gap: 2em;
     }
 
@@ -54,6 +60,7 @@ main {
     padding-top: 4em;
     .welcome-section {
         display: flex;
+
         padding-bottom: 4em;
 
         .text-content {
@@ -116,23 +123,24 @@ main {
 
         .card {
             display: flex;
+            flex-direction: column;
             gap: 1.5em;
 
-            &__index {
-                @include orangePill;
-                padding-inline: 1.5em;
-                padding-block: 0.5em;
+            &__header {
+                display: flex;
+                align-items: center;
+                gap: 1.5em;
+                &__index {
+                    @include orangePill;
+                    padding-inline: 1.5em;
+                    padding-block: 0.5em;
+                }
             }
 
             &__body {
-                display: flex;
-                flex-direction: column;
-                gap: 1em;
-
-                &__header {
-                    font-weight: 700;
-                }
+                padding-inline-start: 5.5em;
             }
+            
         }
     }
 
@@ -161,7 +169,7 @@ main {
             user-select: none;
 
             &:hover {
-                opacity: .75;
+                opacity: 0.75;
             }
 
             img {
@@ -234,6 +242,7 @@ main {
         background-color: $primary-color;
         color: $very-pale-red;
         .container {
+            flex-wrap: wrap;
             justify-content: space-between;
 
             & > div {
@@ -255,7 +264,7 @@ main {
 
 footer {
     padding-block: 4em;
-    color: $vary-light-gray;
+    color: $muted-color;
     background-color: $very-dark-blue;
     font-size: 0.8rem !important;
 
@@ -277,13 +286,19 @@ footer {
             color: $primary-color;
         }
 
-        & > div:first-child {
+        #logo-icons {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        & > div:nth-of-type(4) {
+        #links-group {
+            display: flex;
+            justify-content: space-between;
+            min-width: 20em;
+        }
+
+        #input-copyright {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -319,6 +334,14 @@ footer {
             flex-direction: row;
             justify-content: space-between;
         }
+
+        .mobile-copyright {
+            display: none;
+        }
+    }
+
+    .icons {
+        color: white !important;
     }
 
     .bi {
@@ -369,7 +392,7 @@ footer {
 .toggle-button {
     position: absolute;
     top: 6%;
-    right: 10%;
+    right: $container-px;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -386,5 +409,21 @@ footer {
         border-radius: 10px;
     }
 }
+
+#overlay {
+    transition: all .5s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    // display: none;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
 
 @import './media';

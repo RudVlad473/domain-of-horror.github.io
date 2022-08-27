@@ -30,12 +30,17 @@ a {
   /* Optional: just make scrollbar invisible */
 }
 
+html {
+  font-size: clamp(0.9rem, 0.5rem + 0.7vw, 2rem);
+}
+
 html * {
   font-family: "Be Vietnam Pro" !important;
 }
 
 body {
   color: hsl(228deg, 39%, 23%);
+  overflow: hidden;
 }
 
 a {
@@ -68,6 +73,8 @@ nav {
 }
 nav ul {
   display: flex;
+  margin: 0;
+  padding: 0;
   gap: 2em;
 }
 nav a:hover {
@@ -134,9 +141,15 @@ main .features > div:nth-of-type(2) {
 }
 main .features .card {
   display: flex;
+  flex-direction: column;
   gap: 1.5em;
 }
-main .features .card__index {
+main .features .card__header {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+main .features .card__header__index {
   background-color: hsl(12deg, 88%, 59%);
   color: white;
   transition: all 0.5s ease;
@@ -147,12 +160,8 @@ main .features .card__index {
   padding-block: 0.5em;
 }
 main .features .card__body {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-main .features .card__body__header {
-  font-weight: 700;
+  -webkit-padding-start: 5.5em;
+          padding-inline-start: 5.5em;
 }
 main .comments {
   display: flex;
@@ -235,6 +244,7 @@ main .get-started h2 {
   font-weight: 600;
 }
 main .get-started .container {
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 main .get-started .container > div {
@@ -251,7 +261,7 @@ main .get-started .get-started-btn:hover {
 
 footer {
   padding-block: 4em;
-  color: hsl(0deg, 0%, 98%);
+  color: hsl(227deg, 12%, 61%);
   background-color: hsl(233deg, 12%, 13%);
   font-size: 0.8rem !important;
 }
@@ -270,22 +280,27 @@ footer .container ul {
 footer .container a:hover {
   color: hsl(12deg, 88%, 59%);
 }
-footer .container > div:first-child {
+footer .container #logo-icons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-footer .container > div:nth-of-type(4) {
+footer .container #links-group {
+  display: flex;
+  justify-content: space-between;
+  min-width: 20em;
+}
+footer .container #input-copyright {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 340px;
 }
-footer .container > div:nth-of-type(4) div:first-child {
+footer .container #input-copyright div:first-child {
   display: flex;
   gap: 0.5em;
 }
-footer .container > div:nth-of-type(4) div:first-child input {
+footer .container #input-copyright div:first-child input {
   flex: 8;
   -webkit-padding-end: 0.5em;
           padding-inline-end: 0.5em;
@@ -295,17 +310,23 @@ footer .container > div:nth-of-type(4) div:first-child input {
   border-radius: 50rem;
   border-color: hsl(233deg, 12%, 13%);
 }
-footer .container > div:nth-of-type(4) div:first-child input:focus {
+footer .container #input-copyright div:first-child input:focus {
   outline: none !important;
   border: 2px solid hsl(12deg, 88%, 59%);
 }
-footer .container > div:nth-of-type(4) div:first-child button {
+footer .container #input-copyright div:first-child button {
   flex: 2;
   border: 0;
 }
 footer .container .icons {
   flex-direction: row;
   justify-content: space-between;
+}
+footer .container .mobile-copyright {
+  display: none;
+}
+footer .icons {
+  color: white !important;
 }
 footer .bi {
   height: 1.25rem;
@@ -371,16 +392,127 @@ footer .bi {
   border-radius: 10px;
 }
 
+#overlay {
+  transition: all 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
 @media only screen and (max-width: 850px) {
+  .container {
+    padding-inline: 5%;
+  }
   .toggle-button {
-    top: 6% !important;
+    top: 6.5% !important;
+    right: 5%;
     display: flex !important;
   }
+  nav {
+    justify-content: initial;
+    flex-direction: column;
+  }
   .to-collapse {
-    overflow: hidden;
+    overflow: hidden !important;
     height: 0 !important;
+    border-radius: 0.5em;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+    background-color: white !important;
+    z-index: 999;
+  }
+  .to-collapse * {
+    font-weight: 900 !important;
+    font-size: 1rem;
   }
   .hide {
     display: none;
+  }
+  .active {
+    height: auto !important;
+  }
+  main h1,
+main h2 {
+    text-align: center;
+  }
+  main .welcome-section {
+    flex-wrap: wrap-reverse;
+  }
+  main .welcome-section > div {
+    align-items: center;
+  }
+  main .features {
+    padding-inline: 0;
+    flex-wrap: wrap;
+    gap: 3em;
+  }
+  main .features > div:nth-of-type(1) {
+    padding-inline: 5%;
+    align-items: center;
+  }
+  main .features > div:nth-of-type(1) article {
+    min-width: 100%;
+    text-align: center;
+  }
+  main .features > div:nth-of-type(2) .card {
+    -webkit-padding-start: 5%;
+            padding-inline-start: 5%;
+  }
+  main .features > div:nth-of-type(2) .card__header {
+    background-color: hsl(13deg, 100%, 96%);
+    border-radius: 50rem 0 0 50rem;
+  }
+  main .features > div:nth-of-type(2) .card__body {
+    -webkit-padding-start: 0;
+            padding-inline-start: 0;
+    -webkit-padding-end: 5%;
+            padding-inline-end: 5%;
+  }
+  main .get-started .container {
+    display: flex;
+    gap: 1.5em;
+    justify-content: center;
+  }
+  footer {
+    padding-bottom: 0;
+  }
+  footer .container {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    font-size: 1rem;
+    gap: 3em;
+  }
+  footer .container > div {
+    width: 75%;
+  }
+  footer .container #logo-icons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2.5em;
+  }
+  footer .container #logo-icons > div:first-child {
+    order: 1;
+    align-self: center;
+  }
+  footer .container #logo-icons .icons {
+    order: 0;
+  }
+  footer .container .mobile-copyright {
+    display: block;
+  }
+  footer .container .desktop-copyright {
+    display: none;
+  }
+  footer .container .bi {
+    width: 2rem;
+    height: 2rem;
   }
 }/*# sourceMappingURL=main.css.map */

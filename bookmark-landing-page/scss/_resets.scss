@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+
+    /*customization*/
+    font-family: $main-font-family;
+    color: $very-dark-blue;
+    /*------------*/
+}
+
+body {
+    min-height: 100vh;
+}
+
+ul {
+    list-style: none;
+
+    li {
+        display: inline;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
