@@ -84,16 +84,19 @@
         }
 
         .open {
+
             transform: translateX(-50px);
 
             background: transparent;
             box-shadow: none;
 
             &::before {
+                background-color: $light-grey;
                 transform: rotate(45deg) translate(35px, -35px);
             }
 
             &::after {
+                background-color: $light-grey;
                 transform: rotate(-45deg) translate(35px, 35px);
             }
         }

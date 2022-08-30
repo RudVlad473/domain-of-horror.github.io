@@ -34,6 +34,7 @@ img {
 
     & > div:first-of-type {
         vertical-align: middle;
+        z-index: 999;
     }
 }
 
@@ -583,6 +584,10 @@ h6 {
 
     border: 0;
     background-color: white;
+}
+
+.logo {
+    z-index: 1000;
 }
 
 .container {

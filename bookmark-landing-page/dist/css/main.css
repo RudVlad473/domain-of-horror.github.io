@@ -73,6 +73,7 @@ img {
 }
 .nav > div:first-of-type {
   vertical-align: middle;
+  z-index: 999;
 }
 
 .main {
@@ -521,6 +522,10 @@ h6 {
   background-color: white;
 }
 
+.logo {
+  z-index: 1000;
+}
+
 .container {
   padding-inline: 10%;
 }
@@ -631,9 +636,11 @@ h6 {
     box-shadow: none;
   }
   .nav .open::before {
+    background-color: #f7f7f7;
     transform: rotate(45deg) translate(35px, -35px);
   }
   .nav .open::after {
+    background-color: #f7f7f7;
     transform: rotate(-45deg) translate(35px, 35px);
   }
   .main .intro {

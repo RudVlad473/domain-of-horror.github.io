@@ -32,6 +32,7 @@ const tabsContent = {
 const toggleButton = document.querySelector('.toggle-button')
 const toggleButtonBurger = toggleButton.querySelector('.toggle-button__burger')
 const overlay = document.querySelector('#overlay')
+const navLogo = document.querySelector('.logo>g>path')
 
 
 
