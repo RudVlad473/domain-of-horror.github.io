@@ -1,0 +1,166 @@
+@media only screen and (max-width: 950px) {
+    .main {
+        .extension {
+            &__content {
+                grid-template-columns: repeat(
+                    auto-fill,
+                    minmax(280px, 1fr)
+                ) !important;
+            }
+        }
+    }
+
+    .container {
+        padding-inline: $container-mobile-px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .nav {
+        display: flex;
+        flex-direction: column;
+        gap: map-get($gutters, 'g-3');
+
+        & > div:first-of-type {
+            align-self: flex-start;
+        }
+
+        .toggle-button {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            right: $container-mobile-px;
+            top: 0.75%;
+            z-index: 999;
+
+            height: 80px;
+            width: 80px;
+
+            // transition: all 1s ease-in-out;
+
+            background-color: transparent;
+
+            &__burger {
+                width: 50px;
+                height: 6px;
+                background: #fff;
+                border-radius: 5px;
+                transition: all 0.5s ease-in-out;
+                background-color: $very-dark-blue;
+
+                &:before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 50px;
+                    height: 6px;
+                    background: #fff;
+                    border-radius: 5px;
+                    transition: all 0.5s ease-in-out !important;
+                    background-color: $very-dark-blue;
+                }
+
+                &:before {
+                    transform: translateY(-16px);
+                }
+
+                &:after {
+                    transform: translateY(16px);
+                }
+            }
+        }
+
+        .to-collapse {
+            transition: all 1s ease-in-out;
+
+            overflow: hidden !important;
+            max-height: 0 !important;
+
+            .active {
+                max-height: 400px !important;
+            }
+        }
+
+        .open {
+            transform: translateX(-50px);
+
+            background: transparent;
+            box-shadow: none;
+
+            &::before {
+                transform: rotate(45deg) translate(35px, -35px);
+            }
+
+            &::after {
+                transform: rotate(-45deg) translate(35px, 35px);
+            }
+        }
+    }
+
+    .main {
+        .intro {
+            flex-wrap: wrap-reverse;
+            gap: map-get($gutters, 'g-4');
+
+            text-align: center;
+
+            &__content {
+                justify-items: center;
+
+                & > * {
+                    padding-inline: 0;
+                }
+
+                &__btns {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .features {
+            &__content {
+                flex-wrap: wrap;
+                text-align: center;
+
+                & > * {
+                    align-items: center;
+
+                    & > * {
+                        padding-inline: 0;
+                    }
+                }
+            }
+        }
+
+        .form-wrapper {
+            .form {
+                padding-inline: $container-mobile-px;
+                width: 100%;
+            }
+        }
+    }
+
+    .footer {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: map-get($gutters, 'g-1');
+
+        &__logo-wrapper {
+            justify-content: center;
+            gap: map-get($gutters, 'g-1');
+            flex-wrap: wrap;
+        }
+    }
+
+    [class*='__image'] {
+        min-width: 100% !important;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}

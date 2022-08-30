@@ -4,8 +4,6 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-
-    
 }
 
 html {
@@ -15,11 +13,13 @@ html {
     /*customization*/
     font-family: $main-font-family;
     color: $very-dark-blue;
+    font-size: 18px;
     /*------------*/
 }
 
 body {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 ul {
