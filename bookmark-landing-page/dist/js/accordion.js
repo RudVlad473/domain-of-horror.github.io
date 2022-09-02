@@ -12,7 +12,7 @@ function openBar(bar) {
     const arrow = bar.querySelector('.bi')
 
     bar.style.setProperty('gap', '1.5rem')
-    article.style.setProperty('max-height', '20vh')
+    article.style.setProperty('max-height', '15vh')
     // article.style.setProperty('transform', 'scaleY(1)')
     arrow.style.setProperty('fill', '#fa5757')
     arrow.style.setProperty('transform', 'rotate(180deg)')
