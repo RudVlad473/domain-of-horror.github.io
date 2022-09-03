@@ -1,4 +1,2 @@
-import "./scss/main.scss"
-import "./js/navbar"
-import "../dist/bundle.css"
-// import "./assets/images"
+import "./styles/index.scss"
+import "./js/navbar.js"

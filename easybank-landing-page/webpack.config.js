@@ -3,78 +3,66 @@ if (process.env.NODE_ENV === "production") {
     mode = "production"
 }
 
+let target = "web"
+
 const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
     mode: mode,
-    entry: {
-        bundle: path.resolve(__dirname, "./src/index.js"),
-    },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name][contenthash].js",
-        clean: true,
-        assetModuleFilename: "[name][ext]",
-    },
-    devtool: "source-map",
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, "dist"),
-        },
-
-        port: 3000,
-        open: true,
-        hot: false,
-        liveReload: true,
-        compress: true,
-        historyApiFallback: true,
+        filename: "[name].js",
+        assetModuleFilename: "./images/[hash][ext][query]",
     },
     module: {
         rules: [
             {
-                test: /\.(sa|sc|c)ss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: "asset",
+            },
+            {
+                test: /\.(s[ac]|c)ss$/i,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: { publicPath: "" },
+                    },
+                    "css-loader",
+                    "postcss-loader",
+                    "sass-loader",
+                ],
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"],
-                    },
                 },
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: "asset/resource",
-            },
-            {
-                // HTML LOADER
-                test: /\.html$/,
+                test: /\.html$/i,
                 loader: "html-loader",
             },
         ],
     },
-
-    target: "web",
     plugins: [
-        new HtmlWebpackPlugin({
-            title: "Easybank landing page",
-            filename: "index.html",
-            template: "src/template.html",
-        }),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+        }),
     ],
+    devtool: "source-map",
+    devServer: {
+        static: "./dist",
+        hot: true,
+        
+        port: 3000,
+        open: true,
+        historyApiFallback: true,
+    },
+    target: target,
 }
-
-
-// use: [
-//     MiniCssExtractPlugin.loader,
-//     "style-loader",
-//     "css-loader",
-//     "sass-loader",
-// ],
