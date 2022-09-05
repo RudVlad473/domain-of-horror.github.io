@@ -59,6 +59,11 @@ module.exports = {
     devServer: {
         static: "dist",
         hot: true,
+        open: {
+            app: {
+                name: "chrome",
+            },
+        },
     },
     target: "web",
 }
