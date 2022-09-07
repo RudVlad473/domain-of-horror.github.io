@@ -12,20 +12,40 @@ html {
 
     /*default values*/
     font-family: $main-font-family;
-    font-size: 30px;
+    font-size: 14px;
     font-weight: map-get($fw, "normal");
+    color: map-get($primary-colors, "black");
 
-    background-color: map-get($primary-colors, "white");
     /*------------*/
+
+
+    //hide scrollbar
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+
+    &::-webkit-scrollbar {
+        /* WebKit */
+        width: 0;
+        height: 0;
+    }
 }
 
 body {
     min-height: 100vh;
+    
+    overflow-y: hidden;
+    overflow-x: hidden;
     overflow: hidden;
-    overflow-x: hidden;
-    overflow-x: hidden;
+
     text-rendering: optimizeSpeed;
     line-height: 1.5;
+
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 ul {
@@ -43,11 +63,11 @@ button {
 }
 
 /* Make images easier to work with */
-// img,
-// picture {
-//     max-width: 100%;
-//     display: block;
-// }
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
 
 a {
     text-decoration: none;

@@ -1,2 +1,10 @@
-@import "./colors", "./fonts", "./gutters", "./media", "./resets", "./mixins",
-    "./variables";
+@import "/node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "/node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+@import "./variables";
+@import "./resets", "./media", "./mixins";
+@import "../components/nav", "../components/body", "../components/hero";
+
+
+
+

@@ -1,0 +1,16 @@
+.nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: map-get($gutters, "g-2");
+
+    padding: map-get($gutters, "g-1");
+
+    .row-list {
+        gap: map-get($gutters, "g-sm");
+    }
+}

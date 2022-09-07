@@ -61,7 +61,7 @@ module.exports = {
         hot: true,
         open: {
             app: {
-                name: "chrome",
+                name: "firefox",
             },
         },
     },
