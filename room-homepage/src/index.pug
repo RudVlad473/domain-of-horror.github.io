@@ -3,13 +3,13 @@ include pug/libs/_libs
 doctype html
 html(lang="en")
     include pug/_head 
-    body.body
+    body.body.container-fluid
         //- include pug/libs/_nav
-        section.top-section
-            .featured
-                img(src=require("/src/images/mobile-image-hero-1.jpg"), alt="")
+        section.top-section.row
+            .featured.col-12
+                img.img-fluid(src=require("/src/images/mobile-image-hero-1.jpg"), alt="")
 
-            .hero
+            .hero.col-12
                 header.hero__header.header--1
                     | Discover innovative ways to decorate
                 article.hero__article
@@ -18,16 +18,16 @@ html(lang="en")
                     | SHOP NOW
                     img(src=require("/src/images/icon-arrow.svg"), alt="arrow")
 
-        section.bottom-section
-            div.bottom-section__col-1
-                img(src=require("/src/images/image-about-dark.jpg"), alt="")
-            .hero
+        section.bottom-section.row
+            div.bottom-section__col-1.col-12
+                img.img-fluid(src=require("/src/images/image-about-dark.jpg"), alt="")
+            .hero.col-12
                 header.hero__header.header--2.spaced-text
                     | ABOUT OUR FORNITURE 
                 article.hero__article
                     | Our multifunctional collection blends design and function to suit your individual taste. Make each room unique, or pick a cohesive theme that best express your interests and what inspires you. Find the furniture pieces you need, from traditional to contemporary styles or anything in between. Product specialists are available to help you create your dream space.
-            div.bottom-section__col-3
-                img(src=require("/src/images/image-about-light.jpg"), alt="")
+            div.bottom-section__col-3.col-12
+                img.img-fluid(src=require("/src/images/image-about-light.jpg"), alt="")
 
 
 

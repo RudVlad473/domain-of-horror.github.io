@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
+
 module.exports = {
     mode: mode,
     output: {
@@ -54,6 +55,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.pug",
         }),
+        
     ],
     devtool: "source-map",
     devServer: {
