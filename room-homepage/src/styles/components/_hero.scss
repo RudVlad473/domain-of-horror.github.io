@@ -18,5 +18,6 @@
 
     &__article {
         color: map-get($primary-colors, "grey-400");
+        font-size: map-get($fsz, "article");
     }
 }

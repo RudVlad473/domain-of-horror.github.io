@@ -1,0 +1,37 @@
+.counter {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    
+    max-width: 150px;
+
+    &__plus,
+    &__minus {
+        color: map-get($primary-colors, "orange");
+        font-size: map-get($fsz, "header-3");
+        user-select: none;
+
+        cursor: pointer;
+    }
+
+    
+
+    & > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: map-get($primary-colors, "light-grayish-blue");
+
+        font-weight: map-get($fw, "bold");
+
+        padding: map-get($gutters, "g-sm");
+
+        &:first-of-type {
+            border-radius: $border-radius-sm 0 0 $border-radius-sm;
+        }
+
+        &:last-of-type {
+            border-radius: 0 $border-radius-sm $border-radius-sm 0;
+        }
+    }
+}

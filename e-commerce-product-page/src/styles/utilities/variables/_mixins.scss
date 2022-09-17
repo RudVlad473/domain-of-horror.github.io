@@ -1,0 +1,24 @@
+@mixin sliders {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+
+    padding-inline: 2.5%;
+
+    & > * {
+        cursor: pointer;
+
+        background-color: white;
+        border-radius: 50%;
+
+        padding: map-get($gutters, "g-sm") * 0.5 * 0.688
+            map-get($gutters, "g-sm") * 0.5;
+    }
+}
+
+

@@ -1,0 +1,7 @@
+.container {
+    margin-inline: $container-mx;
+
+    &.container--lg {
+        margin-inline: $container-mx + 5%;
+    }
+}

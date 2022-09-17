@@ -1,0 +1,30 @@
+.add-to-cart-btn {
+    display: flex;
+    gap: map-get($gutters, "g-sm");
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+    font-weight: map-get($fw, "bold");
+
+    width: 100%;
+
+    border: 0;
+    border-radius: $border-radius-sm;
+
+    color: map-get($primary-colors, "light-grayish-blue");
+    background-color: map-get($primary-colors, "orange");
+
+    padding-inline: 10px;
+    padding-block: 20px;
+
+    transition: all .35s ease-in;
+
+    .cart>svg>path {
+        fill: map-get($primary-colors, "light-grayish-blue");    
+    }
+
+    &:hover {
+        background-color: hsl(26, 100%, 70%);
+    }
+}

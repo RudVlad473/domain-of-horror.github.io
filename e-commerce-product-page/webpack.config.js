@@ -5,19 +5,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
-
 module.exports = {
     mode: mode,
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
-        assetModuleFilename: "./images/[hash][ext][query]",
+        assetModuleFilename: "./images/[name][ext]",
+        
     },
     module: {
         rules: [
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                
                 type: "asset/resource",
             },
             {
@@ -69,3 +68,12 @@ module.exports = {
     },
     target: "web",
 }
+
+
+// output: {
+//         path: path.resolve(__dirname, "dist"),
+//         filename: "[name].js",
+//         assetModuleFilename: "./images/[hash][ext][query]",
+//         clean: true,
+        
+//     },

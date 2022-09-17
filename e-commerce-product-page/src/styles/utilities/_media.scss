@@ -1,0 +1,59 @@
+@media only screen and (max-width: 900px) {
+    .header > .header__nav {
+        .logo {
+            padding-block: map-get($gutters, "g-sm");
+        }
+
+        .row-list {
+            display: none;
+        }
+    }
+
+    .main {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .main {
+        margin-inline: 0 !important;
+        padding: 0;
+
+        .gallery {
+            &__featured {
+                img {
+                    border-radius: 0px !important;
+                }
+
+                &__sliders {
+                    @include sliders;
+                }
+            }
+
+            &__thumbnails {
+                display: none;
+            }
+        }
+
+        .description {
+            margin: $container-sm-mx $container-sm-mx $container-sm-mx * 3
+                $container-sm-mx;
+
+            &__amount {
+                flex-direction: column;
+                gap: map-get($gutters, "g-sm");
+
+                .counter {
+                    max-width: initial;
+                    padding: 0;
+                }
+            }
+
+            &__prices {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    }
+}

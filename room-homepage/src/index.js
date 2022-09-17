@@ -1,5 +1,5 @@
 import "./styles/index.scss"
-import "./index.pug"
-import "./pug/libs/_nav.pug"
-
+import "./index.html"
+// import "./pug/libs/_nav.pug"
+import "./js/navbar"
 
