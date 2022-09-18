@@ -12,6 +12,15 @@
         align-items: stretch;
     }
 
+    .humburger {
+        display: none;
+        position: relative;
+        z-index: 999;
+        cursor: pointer;
+
+        min-width: 16px;
+    }
+
     &__nav {
         display: flex;
         gap: map-get($gutters, "g-3") + map-get($gutters, "g-1");
@@ -22,31 +31,6 @@
             align-items: center;
 
             padding-block: map-get($gutters, "g-3");
-        }
-
-        .row-list {
-            display: flex;
-            gap: map-get($gutters, "g-2");
-
-            font-size: map-get($fsz, "links");
-            color: map-get($primary-colors, "dark-grayish-blue");
-            font-weight: map-get($fw, "normal");
-
-            .item {
-                display: flex;
-                align-items: center;
-                // border-bottom: 4px solid transparent;
-                box-shadow: 0 -5px 0 transparent inset;
-
-                transition: all 0.35s ease-in;
-
-                &:hover {
-                    color: map-get($primary-colors, "dark-blue");
-
-                    box-shadow: 0 -5px 0 map-get($primary-colors, "orange") inset;
-                    // border-bottom-color: map-get($primary-colors, "orange");
-                }
-            }
         }
     }
 
@@ -67,5 +51,49 @@
                 border-color: map-get($primary-colors, "orange");
             }
         }
+    }
+}
+
+.row-list {
+    display: flex;
+    gap: map-get($gutters, "g-2");
+
+    font-size: map-get($fsz, "links");
+    color: map-get($primary-colors, "dark-grayish-blue");
+    font-weight: map-get($fw, "normal");
+
+    .item {
+        display: flex;
+        align-items: center;
+        // border-bottom: 4px solid transparent;
+        box-shadow: 0 -5px 0 transparent inset;
+
+        transition: all 0.35s ease-in;
+
+        &:hover {
+            color: map-get($primary-colors, "dark-blue");
+
+            box-shadow: 0 -5px 0 map-get($primary-colors, "orange") inset;
+            // border-bottom-color: map-get($primary-colors, "orange");
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    opacity: 0;
+
+    background-color: black;
+
+    transition: all 0.5s ease-in;
+}
+
+.mobile-sidebar {
+    display: none;
+
+    &.active {
+        translate: 0;
     }
 }

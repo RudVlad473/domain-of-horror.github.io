@@ -1,9 +1,5 @@
 .cart {
     position: relative;
-    max-width: map-get($fsz, "header-0");
-
-    display: flex;
-    align-items: center;
 
     &__badge {
         position: absolute;
@@ -30,17 +26,21 @@
         // position: absolute;
         // bottom: 0;
         position: fixed;
-        top: 8vw;
+        top: -100%;
         z-index: 999;
         translate: -50% 0;
+
+        display: flex;
+        flex-direction: column;
 
         background-color: white;
         box-shadow: 0 0.5rem 1rem rgba(#000, 0.175);
 
-        transition: all 0.25s ease-in;
+        transition: all 0.5s ease-in;
         border-radius: $border-radius-md;
 
         width: clamp(18rem, 27.5vw, 25rem);
+        // min-height: 20rem;
         overflow-x: hidden;
 
         &__cart {
@@ -51,10 +51,22 @@
             align-items: center;
             justify-content: space-between;
 
+            user-select: none;
+
             padding-inline: map-get($gutters, "g-1");
 
-            span {
-                // padding-inline: map-get($gutters, "g-1");
+            svg {
+                cursor: pointer;
+
+                & > * {
+                    transition: all 0.25s ease-in;
+                }
+
+                &:hover {
+                    & > path {
+                        fill: red;
+                    }
+                }
             }
         }
 
@@ -158,6 +170,29 @@
         &__checkout {
             padding: 0 map-get($gutters, "g-1") map-get($gutters, "g-1")
                 map-get($gutters, "g-1");
+            justify-self: flex-end;
+        }
+    }
+
+    .reveal {
+        pointer-events: all;
+        translate: -50% 0;
+        opacity: 1;
+
+        top: 8vw;
+    }
+}
+
+.cart-img {
+    max-width: map-get($fsz, "header-0");
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &.cart-img--white {
+        svg > path {
+            fill: map-get($primary-colors, "white");
         }
     }
 }

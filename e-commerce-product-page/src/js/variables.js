@@ -5,6 +5,7 @@ import Cart from "./cart/cart"
 import getDescriptionDetails, {
     addItemToCartWithDetails,
 } from "./cart/descDetails"
+import "./nav"
 
 const domGallery = document.querySelector(".gallery")
 const imgsList = Object.freeze([
@@ -20,11 +21,10 @@ const thumbnails = new GalleryThumbnails(
     domGallery.querySelectorAll(".gallery__thumbnails__thumbnail"),
     gallery
 )
-const cart = new Cart(document.querySelector(".cart"))
+const cart = new Cart(document.querySelector("#cart"))
 const addToCartBtn = document.querySelector("#add-to-cart-btn")
 addToCartBtn.addEventListener(
     "click",
     addItemToCartWithDetails.bind(null, cart, gallery, counter)
 )
-
 

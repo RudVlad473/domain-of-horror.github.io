@@ -4,7 +4,8 @@ export default function getDescriptionDetails(gallery, counter) {
     const title = descNode.querySelector(".description__title").innerHTML
     const unitPrice = descNode.querySelector(
         ".description__prices__current-price"
-    ).innerHTML
+    ).innerHTML.substring(1)
+    console.log(unitPrice)
     const amount = counter.getParseIntValue()
 
     return {
