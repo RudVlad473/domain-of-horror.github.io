@@ -1,13 +1,10 @@
-$container-mx: clamp(0%, 8%, 10%);
+$container-mx: 5vw;
 
-$container-sm-mx: 5%;
-
-$border-radius-sm: 7px;
-$border-radius-md: 15px;
-$border-radius-lg: 25px;
+$border-radius: .75rem;
+$border: 3px solid grey;
 
 $gutters: (
-    "g-sm": 1rem,
+    "g-sm": .5rem,
     "g-1": 1.25rem,
     "g-2": 1.75rem,
     "g-3": 3rem,

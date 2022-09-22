@@ -3,6 +3,13 @@
 
 @import "../components/components";
 
+html {
+    /*default values*/
+    font-family: $main-font-family;
+    font-size: clamp(16px, 1.25vw, 32px);
+    font-weight: map-get($fw, "normal");
+    // color: map-get($primary-colors, "dark-blue");
+    background-color: ghostwhite;
 
-
-
+    /*------------*/
+}

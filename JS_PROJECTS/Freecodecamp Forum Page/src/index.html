@@ -8,37 +8,71 @@
     <title>Twitch JSON API</title>
 </head>
 
-<body>
-    
-        
-    
-    <main class="main grid container">
-        
-        <div class="grid__header">#</div>
-        <div class="grid__header">Topic</div>
-        <div class="grid__header">Replies</div>
-        <div class="grid__header">Views</div>
-        <div class="grid__header">Activity</div>
+<body class="container">
+    <table class="table ">
+        <thead class="header">
+            <tr>
+                <th>#</th>
+                <th colspan="2">Topic</th>
+                <th>Replies</th>
+                <th>Views</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
 
-        <div class="number">1</div>
-        <div class="topic">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, nostrum vel assumenda veniam eaque
-            voluptates quibusdam vero corporis dolor fugit!
-        </div>
-        <div class="active-users">
+        <tbody>
+            <tr class="bar">
+                <td class="number">30</td>
+                <td class="topic">
+                    <a href="#" target="_blank">
+                        <article class="topic__article">
+                            Lorem ipsum Lorem, ipsum. Lorem ipsum dolor
+                        </article>
+                    </a>
 
-        </div>
-        <div class="replies">
-            201
-        </div>
-        <div class="views">
-            10423
-        </div>
-        <div class="activity">
-            1
-        </div>
-        </div>
-    </main>
+                </td>
+                <td>
+                    <div class="active-users">
+                        <div class="avatar">
+                            <a href="#" target="_blank">
+                                <img src="./images/284652_2.jfif" alt="pic">
+                            </a>
+                        </div>
+                        <div class="avatar">
+                            <a href="#" target="_blank">
+                                <img src="./images/284652_2.jfif" alt="pic">
+                            </a>
+                        </div>
+                        <div class="avatar">
+                            <a href="#" target="_blank">
+                                <img src="./images/284652_2.jfif" alt="pic">
+                            </a>
+                        </div>
+                        <div class="avatar">
+                            <a href="#" target="_blank">
+                                <img src="./images/284652_2.jfif" alt="pic">
+                            </a>
+                        </div>
+                        <div class="avatar">
+                            <a href="#" target="_blank">
+                                <img src="./images/284652_2.jfif" alt="pic">
+                            </a>
+                        </div>
+                    </div>
+                </td>
+                <td class="replies">
+                    201
+                </td>
+                <td class="views">
+                    1042
+                </td>
+                <td class="activity">
+                    1
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </body>
 
 </html>

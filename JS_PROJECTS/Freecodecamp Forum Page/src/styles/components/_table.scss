@@ -1,0 +1,12 @@
+.table {
+    // border: 1px solid grey;
+    width: 100%;
+    // border-collapse: collapse;
+    border-spacing: 0 map-get($gutters, "g-sm");
+    margin-inline: auto;
+    
+
+    td:nth-of-type(3) {
+        width: clamp(30px, 20vw, 12rem);
+    }
+}

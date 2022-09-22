@@ -1,29 +1,6 @@
 .header {
-    border-bottom: 3px solid black;
-}
-
-.grid__header {
-    
-
-    &:nth-of-type(1) {
-        grid-column-end: span 1;
-    }
-
-    &:nth-of-type(2) {
-        grid-column: span 2;
-    }
-
-    &:nth-of-type(3) {
-        grid-column: span 1;
-    }
-
-    &:nth-of-type(4) {
-        grid-column: span 1;
-    }
-
-    &:nth-of-type(5) {
-        grid-column: span 1;
-
-        
+    tr > th {
+        border-bottom: 2px solid grey;
+        padding: map-get($gutters, "g-sm") 0;
     }
 }
