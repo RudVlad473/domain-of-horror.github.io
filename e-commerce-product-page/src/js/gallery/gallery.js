@@ -1,5 +1,5 @@
 export default class Gallery {
-    constructor(DOMgallery, orderedPicturesUrlsList) {
+    constructor(DOMgallery, orderedPicturesUrlsList, thumbnails = null) {
         this.gallery = DOMgallery
         this.featured = {
             value: this.gallery.querySelector(".gallery__featured"),
@@ -14,30 +14,58 @@ export default class Gallery {
             ".gallery__featured__sliders__right-slider"
         )
 
-        this.leftSwipe.addEventListener("click", this.slideLeft)
-        this.rightSwipe.addEventListener("click", this.slideRight)
+        this.leftSwipe.addEventListener(
+            "click",
+            this.slideLeft.bind(this, thumbnails)
+        )
+        this.rightSwipe.addEventListener(
+            "click",
+            this.slideRight.bind(this, thumbnails)
+        )
     }
 
-    slideRight = () => {
+    slideRight = (thumbnails) => {
         const pictureList = this.orderedPicturesUrlsList
         const featuredPic = this.featured
         const newPicIndex = Math.abs(--featuredPic.index % pictureList.length)
         const newFeaturedPic = pictureList[newPicIndex]
+        const prevFeaturedIndex = this.orderedPicturesUrlsList.indexOf(
+            featuredPic.value
+                .querySelector(".gallery__featured__img")
+                .getAttribute("src")
+        )
 
         featuredPic.value
             .querySelector(".gallery__featured__img")
             .setAttribute("src", newFeaturedPic)
+
+        thumbnails.makeSelected(newPicIndex, prevFeaturedIndex)
     }
 
-    slideLeft = () => {
+    slideLeft = (thumbnails) => {
         const pictureList = this.orderedPicturesUrlsList
         const featuredPic = this.featured
         const newPicIndex = Math.abs(++featuredPic.index % pictureList.length)
         const newFeaturedPic = pictureList[newPicIndex]
 
+        let prevFeaturedIndex = null
+        this.orderedPicturesUrlsList.forEach((image, index) => {
+            if (
+                image.includes(
+                    featuredPic.value
+                        .querySelector(".gallery__featured__img")
+                        .getAttribute("src")
+                )
+            ) {
+                prevFeaturedIndex = index
+            }
+        })
+
         featuredPic.value
             .querySelector(".gallery__featured__img")
             .setAttribute("src", newFeaturedPic)
+
+        thumbnails.makeSelected(newPicIndex, prevFeaturedIndex)
     }
 
     setFeaturedImg = (pictureListIndex) => {

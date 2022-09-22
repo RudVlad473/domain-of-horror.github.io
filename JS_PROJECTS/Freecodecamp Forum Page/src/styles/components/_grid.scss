@@ -1,0 +1,19 @@
+.grid {
+    display: grid;
+    // grid-template-columns:
+    //     1fr
+    //     minmax(200px, 9fr)
+    //     minmax(100px, 3fr)
+    //     minmax(100px, 1fr)
+    //     minmax(50px, 1fr)
+    //     1fr;
+    grid-template-columns: 1fr 12fr 2fr repeat(3, 1fr);
+    grid-auto-rows: auto;
+    align-items: center;
+
+    row-gap: 1vw;
+
+    min-height: 50px;
+
+    padding-block-start: 2vw;
+}

@@ -5,21 +5,27 @@ export default class Cart {
         this.cart = DOMcart
         this.DOMitems = this.cart.querySelector(".cart__content")
         this.DOMbadge = this.cart.querySelector(".cart__badge")
+        this.currentIds = []
 
         const cartImg = this.cart.querySelector("svg")
         cartImg.addEventListener("click", this.toggleCart.bind(this))
-        
+
         const closeBtn = this.cart.querySelector(".cart__content__cart__close")
         closeBtn.addEventListener("click", this.toggleCart.bind(this))
-        
+
         this.cart.addEventListener("dblclick", this.toggleCart.bind(this))
+
+        this.loadItemsFromLocalStorage()
     }
 
     getAllItems() {
         return this.DOMitems.querySelectorAll(".cart__content__item")
     }
 
-    addItem({ thumbnailUrl, title, unitPrice, amount }) {
+    addItem(
+        { thumbnailUrl, title, unitPrice, amount },
+        shouldUpdateLocalStorage = true
+    ) {
         const currentDOMitems = this.getAllItems()
         const id = getHash(thumbnailUrl + title + unitPrice)
 
@@ -30,6 +36,17 @@ export default class Cart {
             amount,
             id
         )
+
+        shouldUpdateLocalStorage
+            ? this.addItemToLocalStorage(
+                  { thumbnailUrl, title, unitPrice, amount },
+                  id
+              )
+            : undefined
+
+        if (!this.currentIds.indexOf(id)) {
+            this.currentIds.push(id)
+        }
 
         const existingItem = this.getExistingItem(id, currentDOMitems)
         if (this.getExistingItem(id, currentDOMitems) !== null) {
@@ -97,13 +114,18 @@ export default class Cart {
         const currentDOMitems = this.getAllItems()
 
         const itemToDelete = this.getExistingItem(id, currentDOMitems)
-        const itemToDeleteAmount = itemToDelete
-            ?.querySelector(".cart__content__item__desc__price__amount")
-            .innerHTML.split(" ")
-            .at(-1)
 
         if (itemToDelete !== null) {
             itemToDelete.remove()
+            this.removeItemFromLocalStorage(id)
+
+            this.currentIds.splice(this.currentIds.indexOf(id), 1)
+
+            const itemToDeleteAmount = itemToDelete
+                .querySelector(".cart__content__item__desc__price__amount")
+                .innerHTML.trim()
+                .split(" ")
+                .at(-1)
             this.decreaseBadge(itemToDeleteAmount)
         } else {
             throw new Error("Item with such id does not exist")
@@ -149,6 +171,40 @@ export default class Cart {
             this.DOMbadge.innerHTML = "+9"
         } else {
             this.DOMbadge.innerHTML = +this.DOMbadge.innerHTML + value
+        }
+    }
+
+    addItemToLocalStorage({ thumbnailUrl, title, unitPrice, amount }, id) {
+        if (localStorage.getItem(id) == null) {
+            localStorage.setItem(
+                id,
+                JSON.stringify({ thumbnailUrl, title, unitPrice, amount })
+            )
+        } else {
+            const prevItem = JSON.parse(localStorage.getItem(id))
+            prevItem.unitPrice = unitPrice
+            prevItem.amount += amount
+            localStorage.setItem(id, JSON.stringify(prevItem))
+        }
+    }
+
+    removeItemFromLocalStorage(id) {
+        return localStorage.removeItem(id)
+    }
+
+    loadItemsFromLocalStorage() {
+        const localStorageKeys = Object.keys(localStorage)
+
+        for (let id of localStorageKeys) {
+            const lsItem = JSON.parse(localStorage.getItem(id))
+            // const itemHash = getHash(
+            //     lsItem.thumbnailUrl + lsItem.title + lsItem.unitPrice
+            // )
+            console.log(this.currentIds.length)
+
+            if (this.currentIds.indexOf(id) === -1) {
+                this.addItem(lsItem, false)
+            }
         }
     }
 

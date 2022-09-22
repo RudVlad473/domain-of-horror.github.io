@@ -51,10 +51,6 @@
             color: map-get($primary-colors, "dark-blue");
         }
     }
-
-    .toggled {
-        opacity: .75;
-    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -98,5 +94,11 @@
                 justify-content: space-between;
             }
         }
+    }
+}
+
+@media only screen and (min-width: 1439.98px) {
+    .move-in {
+        translate: 0;
     }
 }

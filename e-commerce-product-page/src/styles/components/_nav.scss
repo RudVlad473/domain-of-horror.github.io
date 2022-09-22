@@ -84,11 +84,19 @@
     width: 100%;
     min-height: 100vh;
     opacity: 0;
+    pointer-events: none;
 
-    background-color: black;
+    background-color: map-get($primary-colors, "black");
 
     transition: all 0.5s ease-in;
+
+    &.toggled {
+        opacity: 0.75;
+        pointer-events: all;
+    }
 }
+
+
 
 .mobile-sidebar {
     display: none;

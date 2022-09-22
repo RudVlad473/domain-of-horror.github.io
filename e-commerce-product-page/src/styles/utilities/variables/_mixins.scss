@@ -1,4 +1,4 @@
-@mixin sliders {
+@mixin sliders($inline-padding: 2.5%, $bulged: false) {
     display: flex;
     justify-content: space-between;
 
@@ -8,17 +8,35 @@
     top: 50%;
     translate: 0 -50%;
 
-    padding-inline: 2.5%;
+    padding-inline: $inline-padding;
 
-    & > * {
+    @if $bulged {
+        &__right-slider {
+            translate: (75% - $inline-padding) 0;
+        }
+
+        &__left-slider {
+            translate: (-75% - $inline-padding) 0;
+        }
+    }
+
+    &__right-slider,
+    &__left-slider {
         cursor: pointer;
 
         background-color: white;
         border-radius: 50%;
 
-        padding: map-get($gutters, "g-sm") * 0.5 * 0.688
-            map-get($gutters, "g-sm") * 0.5;
+        padding: map-get($gutters, "g-sm");
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-inline: auto;
+
+            width: 18px;
+        }
     }
 }
-
-
