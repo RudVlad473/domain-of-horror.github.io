@@ -93,6 +93,7 @@
     .container {
         display: flex;
         justify-content: space-between;
+        
 
         .footer__links {
             display: flex;
@@ -234,7 +235,7 @@
                 map-get($font-sizes, "header-2")
             );
             color: map-get($primary-colors, "primary-dark");
-
+            
             &:last-of-type {
                 border-radius: 10px;
             }

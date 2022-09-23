@@ -15,13 +15,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
-        assetModuleFilename: "./images/[name][ext]",
+        assetModuleFilename: "./images/[hash][ext][query]",
     },
     module: {
         rules: [
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: "asset/resource",
+                type: "asset",
             },
             {
                 test: /\.(s[ac]|c)ss$/i,
