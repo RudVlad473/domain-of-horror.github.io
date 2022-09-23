@@ -4,6 +4,7 @@ const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+// const axios = require("axios").default
 
 module.exports = {
     mode: mode,
@@ -11,7 +12,6 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
         assetModuleFilename: "./images/[name][ext]",
-        
     },
     module: {
         rules: [
@@ -67,13 +67,15 @@ module.exports = {
         },
     },
     target: "web",
+    experiments: {
+        topLevelAwait: true,
+    },
 }
-
 
 // output: {
 //         path: path.resolve(__dirname, "dist"),
 //         filename: "[name].js",
 //         assetModuleFilename: "./images/[hash][ext][query]",
 //         clean: true,
-        
+
 //     },

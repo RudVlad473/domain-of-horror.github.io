@@ -1,8 +1,4 @@
 .bar {
-    // border-inline: 6px;
-    // border-block: 3px;
-    // border-style: solid;
-    // border-color: grey;
     background-color: white;
 
     & > * {
@@ -40,7 +36,18 @@
     // border-block: 2px solid black;
 }
 
-.topic {  
+.number,
+.replies,
+.views,
+.activity {
+    max-width: 10rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // border-block: 2px solid black;
+}
+
+.topic {
     max-width: 40vw;
     // padding: 0 (map-get($gutters, "g-sm") * 0.5);
     padding: 0;
@@ -50,7 +57,7 @@
     a {
         position: relative;
         display: block;
-        padding: 1rem 0.25rem;
+        padding: 1rem 0.5rem;
     }
 
     &__article {
@@ -59,26 +66,19 @@
         // overflow: hidden;
 
         // width: 30vw;
-        
     }
-}
-
-.number {
-}
-
-.topic {
 }
 
 .active-users {
     display: grid;
     // grid-template-columns: repeat(auto-fit, 25px);
-    grid-template-columns: repeat(auto-fit, 2rem);
-    // gap: map-get($gutters, "g-sm") * 0.5;
-
-    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fit, $avatar-width);
+    gap: map-get($gutters, "g-sm") * 0.5;
+    justify-items: center;
+    // justify-content: space-evenly;
 
     .avatar {
-        max-width: 30px;
+        max-width: $avatar-width;
 
         img {
             border-radius: 50%;
