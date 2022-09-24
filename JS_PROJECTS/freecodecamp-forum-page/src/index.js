@@ -7,21 +7,45 @@ import getDataAsync, {
     freecodecamp30latestPostsUrl,
 } from "./js/request/request"
 import arrayToString from "./js/classes/arrayToString"
+import sortTableByNumericValue from "./js/sortTable/byNumericValue"
+import sortTableByStringValue from "./js/sortTable/byNumericValue"
+import sortTableByActiveUsersCount from "./js/sortTable/byNumericValue"
+import setDefaultImg from "./js/request/defaultImgEventListeners"
 
 renderHtmlBarsToTable(
     await getAllHtmlBars(await getDataAsync(freecodecamp30latestPostsUrl))
 )
 
-document
-    .querySelectorAll(".avatar__img")
-    .forEach((img) => img.addEventListener("error", setDefaultImg))
+const DOMTable = document.querySelector("table")
+const DOMTableBody = DOMTable.querySelector("tbody")
+const DOMHeading = DOMTable.querySelector("thead")
 
-function setDefaultImg(event) {
-    console.log(event.target)
-    event.target.setAttribute("src", require("./images/no-avatar.png"))
-}
+const columnHeaders = Array.from(DOMHeading.rows[0].cells)
+columnHeaders[0].addEventListener("click", () => {
+    sortTableByNumericValue(DOMTableBody, 0)
+    setDefaultImg()
+})
+columnHeaders[1].addEventListener("click", () => {
+    sortTableByStringValue(DOMTableBody, 1)
+    setDefaultImg()
+})
+columnHeaders[2].addEventListener("click", () => {
+    sortTableByNumericValue(DOMTableBody, 3)
+    setDefaultImg()
+})
+columnHeaders[3].addEventListener("click", () => {
+    sortTableByNumericValue(DOMTableBody, 4)
+    setDefaultImg()
+})
+columnHeaders[4].addEventListener("click", () => {
+    sortTableByNumericValue(DOMTableBody, 5)
+    setDefaultImg()
+})
 
 function renderHtmlBarsToTable(htmlBars) {
     const tbody = document.querySelector("tbody")
     tbody.insertAdjacentHTML("beforeend", arrayToString(htmlBars))
+    setDefaultImg()
 }
+
+

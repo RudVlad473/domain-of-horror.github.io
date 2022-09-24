@@ -5,7 +5,10 @@ export default function getTopics(topics, users) {
         title: topic.title,
         repliesCount: topic.reply_count,
         viewsCount: topic.views,
-        activity: getHoursOfActivity(topic.created_at, topic.last_posted_at),
+        activity: `${getHoursOfActivity(
+            topic.created_at,
+            topic.last_posted_at
+        )}h`,
         topicUrl: `https://forum.freecodecamp.org/t/${topic.slug}`,
         activeUsers: arrayToString(
             topic.posters.map((poster) =>
@@ -20,7 +23,6 @@ export default function getTopics(topics, users) {
 
     function getUserById(id, userMap) {
         const user = userMap.get(id)
-        console.log(user)
         return new User(
             id,
             user.avatarUrl.replace("{size}", "30"),

@@ -5,8 +5,11 @@
         border-block: $border;
         border-right: $border;
 
+        transition: background-color 0.15s ease-in;
+
         &:hover {
             background-color: ghostwhite;
+            
         }
 
         &:first-child {
@@ -54,10 +57,14 @@
 
     text-align: left;
 
+    font-family: "Mukta";
+
+    font-size: map-get($fsz, "header-3");
+
     a {
         position: relative;
         display: block;
-        padding: 1rem 0.5rem;
+        padding: .75rem 0.5rem;
     }
 
     &__article {
