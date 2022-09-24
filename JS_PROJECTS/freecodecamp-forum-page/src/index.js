@@ -8,7 +8,7 @@ import getDataAsync, {
 } from "./js/request/request"
 import arrayToString from "./js/classes/arrayToString"
 import sortTableByNumericValue from "./js/sortTable/byNumericValue"
-import sortTableByStringValue from "./js/sortTable/byNumericValue"
+import sortTableByStringValue from "./js/sortTable/byStringValue"
 import sortTableByActiveUsersCount from "./js/sortTable/byNumericValue"
 import setDefaultImg from "./js/request/defaultImgEventListeners"
 
@@ -26,6 +26,7 @@ columnHeaders[0].addEventListener("click", () => {
     setDefaultImg()
 })
 columnHeaders[1].addEventListener("click", () => {
+    console.log(columnHeaders[1])
     sortTableByStringValue(DOMTableBody, 1)
     setDefaultImg()
 })

@@ -4,7 +4,8 @@ export default function sortTableByStringValue(DOMtableBody, columnIndex) {
 
     const isAscending = getCellValue(rows.at(0), columnIndex).localeCompare(
         getCellValue(rows.at(-1), columnIndex)
-    )
+    ) > 0
+
 
     if (isAscending) {
         rows.sort((row1, row2) =>
