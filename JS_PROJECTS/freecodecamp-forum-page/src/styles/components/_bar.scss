@@ -81,6 +81,7 @@
         max-width: $avatar-width;
 
         img {
+            border: 1px groove grey;
             border-radius: 50%;
         }
     }

@@ -1,19 +1,17 @@
 export default class User {
-    constructor(id, avatarUrl, fullName, profileUrl) {
+    constructor(id, avatarUrl, nickname, profileUrl) {
         this.id = id
         this.avatarUrl = avatarUrl
-        this.fullName = fullName
+        this.nickname = nickname
         this.profileUrl = profileUrl
     }
 
     getUserHtml() {
-        return `<div class="avatar" title="${this.fullName}">
+        return `<div class="avatar" title="${this.nickname}">
                     <a href="${this.profileUrl}" target="_blank">
                         <img class="avatar__img" src="${this.avatarUrl}" alt="pic" loading="lazy">
                     </a>
                 </div>`
-
-        
     }
 }
 
@@ -26,8 +24,8 @@ export function getUsersMap(users) {
                 `https://freecodecamp.org/forum${user[
                     "avatar_template"
                 ].replace("{size}", "30")}`,
-                user["name"],
-                `https://forum.freecodecamp.org/u/${user["name"]}`
+                user["username"],
+                `https://www.freecodecamp.org/forum/u/${user["username"]}`
             ),
         ])
     )

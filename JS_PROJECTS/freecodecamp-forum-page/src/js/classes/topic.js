@@ -20,11 +20,12 @@ export default function getTopics(topics, users) {
 
     function getUserById(id, userMap) {
         const user = userMap.get(id)
+        console.log(user)
         return new User(
             id,
-            user.avatarUrl.replace("{size}", "25"),
-            user.fullName,
-            `https://forum.freecodecamp.org/${user.fullName}`
+            user.avatarUrl.replace("{size}", "30"),
+            user.nickname,
+            `https://www.freecodecamp.org/forum/u/${user.nickname}`
         )
     }
 }
