@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Code:regular,600&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Mukta:regular&display=swap);
+
 $main-font-family: "Fira Code";
+
+$responsive-font-sm: clamp(0.75rem, 1.25vw, 1.75rem);
+$responsive-font-md: clamp(1rem, 1.5vw, 1.75rem);
 
 $fsz: (
     "article": 1rem,

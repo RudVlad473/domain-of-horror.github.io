@@ -1,0 +1,10 @@
+@mixin barSideBorder($isLeft: true) {
+    @if ($isLeft) {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+        border-left: $border;
+    } @else {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+    }
+}

@@ -1,12 +1,12 @@
 $container-mx: 5vw;
 
-$border-radius: .75rem;
+$border-radius: 0.75rem;
 $border: 3px solid grey;
 
-$avatar-width: max(30px, 2rem);
+$avatar-width: clamp(25px, 3vw, 30px);
 
 $gutters: (
-    "g-sm": .5rem,
+    "g-sm": 0.5rem,
     "g-1": 1.25rem,
     "g-2": 1.75rem,
     "g-3": 3rem,

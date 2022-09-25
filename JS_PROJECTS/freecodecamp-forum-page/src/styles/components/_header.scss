@@ -1,12 +1,14 @@
 .header {
     tr > th {
-        border-bottom: 2px solid grey;
         padding: map-get($gutters, "g-sm") 0;
 
         cursor: pointer;
         user-select: none;
 
         border: 2px solid transparent;
+        border-bottom-color: grey;
+
+        font-size: $responsive-font-sm;
 
         transition: all 0.15s ease-in;
 

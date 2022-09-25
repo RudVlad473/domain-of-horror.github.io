@@ -1,4 +1,7 @@
 import arrayToString from "../classes/arrayToString"
+import renderHtmlBarsToTable from "../classes/bar/renderBars"
+import setDefaultImg from "../request/defaultImgEventListeners"
+
 export default function sortTableByNumericValue(DOMtableBody, columnIndex) {
     const rows = Array.from(DOMtableBody.rows)
 
@@ -20,7 +23,8 @@ export default function sortTableByNumericValue(DOMtableBody, columnIndex) {
         )
     }
 
-    DOMtableBody.innerHTML = arrayToString(rows.map((row) => row.outerHTML))
+    renderHtmlBarsToTable(arrayToString(rows.map((row) => row.outerHTML)))
+    setDefaultImg()
 
     function getCellValue(row, index) {
         return parseInt(row.cells[index].innerText)

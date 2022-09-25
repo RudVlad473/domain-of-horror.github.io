@@ -18,15 +18,11 @@
         }
 
         &:first-child {
-            border-top-left-radius: $border-radius;
-            border-bottom-left-radius: $border-radius;
-
-            border-left: $border;
+            @include barSideBorder;
         }
 
         &:last-child {
-            border-top-right-radius: $border-radius;
-            border-bottom-right-radius: $border-radius;
+            @include barSideBorder(false);
         }
     }
 
@@ -69,31 +65,28 @@
     text-align: left;
 
     font-family: "Mukta";
-
-    font-size: map-get($fsz, "header-3");
+    font-size: $responsive-font-md;
 
     a {
-        position: relative;
         display: block;
-        padding: 0.75rem 0.5rem;
+        margin: calc(0.25rem + 0.5vw) calc(0.25vw + 0.25rem);
+        min-width: 0;
+
+        overflow: hidden;
     }
 
     &__article {
-        // white-space: nowrap;
-        // text-overflow: ellipsis;
-        // overflow: hidden;
-
-        // width: 30vw;
+        // width: 100%;
+        min-width: 0px;
     }
 }
 
 .active-users {
     display: grid;
-    // grid-template-columns: repeat(auto-fit, 25px);
     grid-template-columns: repeat(auto-fit, $avatar-width);
-    gap: map-get($gutters, "g-sm") * 0.5;
+    gap: map-get($gutters, "g-sm") * 0.25;
     justify-items: center;
-    // justify-content: space-evenly;
+    
 
     .avatar {
         max-width: $avatar-width;
