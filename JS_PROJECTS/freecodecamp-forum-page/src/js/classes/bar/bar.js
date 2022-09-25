@@ -1,4 +1,4 @@
-import User from "./activeUser"
+import User from "../activeUser"
 
 export default function getHTMLbar(
     id,

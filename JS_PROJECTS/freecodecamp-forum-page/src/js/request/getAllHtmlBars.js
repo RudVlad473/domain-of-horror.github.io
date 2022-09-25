@@ -1,5 +1,5 @@
 import User, { getUsersMap } from "../classes/activeUser"
-import getHTMLbar from "../classes/bar"
+import getHTMLbar from "../classes/bar/bar"
 import getTopics from "../classes/topic"
 
 export default async function getAllHtmlBars(requestPromise) {

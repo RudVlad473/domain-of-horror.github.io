@@ -1,6 +1,12 @@
 .bar {
     background-color: white;
 
+    transition: all 0.5s ease-in-out;
+
+    opacity: 0.5;
+    translate: -20%;
+    rotate: 3deg;
+
     & > * {
         border-block: $border;
         border-right: $border;
@@ -9,7 +15,6 @@
 
         &:hover {
             background-color: ghostwhite;
-            
         }
 
         &:first-child {
@@ -23,6 +28,12 @@
             border-top-right-radius: $border-radius;
             border-bottom-right-radius: $border-radius;
         }
+    }
+
+    &.show {
+        opacity: 1;
+        translate: 0;
+        rotate: 0deg;
     }
 }
 
@@ -64,7 +75,7 @@
     a {
         position: relative;
         display: block;
-        padding: .75rem 0.5rem;
+        padding: 0.75rem 0.5rem;
     }
 
     &__article {

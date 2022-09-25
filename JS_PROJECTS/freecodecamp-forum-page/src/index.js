@@ -6,22 +6,30 @@ import getAllHtmlBars from "./js/request/getAllHtmlBars"
 import getDataAsync, {
     freecodecamp30latestPostsUrl,
 } from "./js/request/request"
-import arrayToString from "./js/classes/arrayToString"
 import sortTableByNumericValue from "./js/sortTable/byNumericValue"
 import sortTableByStringValue from "./js/sortTable/byStringValue"
-import sortTableByActiveUsersCount from "./js/sortTable/byNumericValue"
-import setDefaultImg from "./js/request/defaultImgEventListeners"
+import renderHtmlBarsToTable from "./js/classes/bar/renderBars"
+import addSortEventListener from "./js/sortTable/addSortEventListener"
 
 renderHtmlBarsToTable(
-    await getAllHtmlBars(await getDataAsync(freecodecamp30latestPostsUrl))
+    await getAllHtmlBars(getDataAsync(freecodecamp30latestPostsUrl))
 )
 
 const DOMTable = document.querySelector("table")
 const DOMTableBody = DOMTable.querySelector("tbody")
 const DOMHeading = DOMTable.querySelector("thead")
 
-const columnHeaders = Array.from(DOMHeading.rows[0].cells)
+const columnHeaders = {
+    ...Array.from(DOMHeading.rows[0].cells).map((cell, index) => {
+        return {
+            index: cell.outerText,
+        }
+    }),
+}
+console.log(columnHeaders)
+
 columnHeaders[0].addEventListener("click", () => {
+    console.log(columnHeaders[0].outerText)
     sortTableByNumericValue(DOMTableBody, 0)
     setDefaultImg()
 })
@@ -42,11 +50,3 @@ columnHeaders[4].addEventListener("click", () => {
     sortTableByNumericValue(DOMTableBody, 5)
     setDefaultImg()
 })
-
-function renderHtmlBarsToTable(htmlBars) {
-    const tbody = document.querySelector("tbody")
-    tbody.insertAdjacentHTML("beforeend", arrayToString(htmlBars))
-    setDefaultImg()
-}
-
-
