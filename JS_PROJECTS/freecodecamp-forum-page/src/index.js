@@ -20,7 +20,7 @@ const DOMTableBody = DOMTable.querySelector("tbody")
 const DOMHeading = DOMTable.querySelector("thead")
 
 const columnHeaders = {
-    ...Array.from(DOMHeading.rows[0].cells).map((cell, index) => {
+    ...Array.from(DOMHeading.rows[0].cells).map((cell) => {
         return {
             index: cell.outerText,
         }
