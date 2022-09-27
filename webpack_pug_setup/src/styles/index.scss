@@ -1,0 +1,19 @@
+@import "./utilities/global";
+
+.spaced-text {
+    letter-spacing: 0.5rem;
+}
+
+.nav__link {
+    font-size: map-get($fsz, "links");
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    min-height: 0.5rem;
+}
+
+.row-list {
+    display: flex;
+}

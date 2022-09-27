@@ -1,0 +1,36 @@
+.body {
+    .top-section {
+        
+
+        .featured {
+            // @include bgImage("/src/images/desktop-image-hero-1.jpg");
+        }
+
+        .hero {
+            // padding: 6.5rem 5rem;
+
+            a {
+                display: flex;
+                flex-wrap: nowrap;
+            }
+        }
+    }
+
+    .bottom-section {
+        
+
+        &__col-1 {
+            // @include bgImage("/src/images/image-about-dark.jpg");
+        }
+
+        .hero {
+            // padding: 3.25rem 2.5rem;
+        }
+
+        &__col-3 {
+            // @include bgImage("/src/images/image-about-light.jpg");
+        }
+    }
+
+    
+}
