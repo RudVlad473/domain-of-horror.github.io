@@ -1,0 +1,104 @@
+@media only screen and (max-width: 900px) {
+    .header {
+        &__nav {
+            .logo {
+                display: flex;
+                align-items: flex-end;
+                gap: map-get($gutters, "g-sm");
+
+                .humburger {
+                    display: block;
+                }
+
+                padding-block: map-get($gutters, "g-sm");
+            }
+
+            .row-list {
+                display: none;
+            }
+        }
+    }
+
+    .main {
+        flex-wrap: wrap;
+    }
+
+    .mobile-sidebar {
+        display: block;
+
+        position: fixed;
+        z-index: 666;
+        left: 0;
+
+        transition: all 0.5s ease-in;
+
+        translate: -100% 0;
+
+        padding-inline: map-get($gutters, "g-2") map-get($gutters, "g-2");
+
+        width: 65%;
+        height: 100vh;
+
+        background-color: map-get($primary-colors, "white");
+
+        .row-list {
+            padding-top: 10vh;
+
+            flex-direction: column;
+            gap: map-get($gutters, "g-sm");
+
+            font-weight: map-get($fw, "bold");
+            color: map-get($primary-colors, "dark-blue");
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .main {
+        margin-inline: 0 !important;
+        padding: 0;
+
+        .gallery {
+            &__featured {
+                img {
+                    border-radius: 0px !important;
+                }
+
+                &__sliders {
+                    @include sliders;
+                }
+            }
+
+            &__thumbnails {
+                display: none;
+            }
+        }
+
+        .description {
+            margin: $container-sm-mx $container-sm-mx $container-sm-mx * 3
+                $container-sm-mx;
+
+            &__amount {
+                flex-direction: column;
+                gap: map-get($gutters, "g-sm");
+
+                .counter {
+                    max-width: initial;
+                    padding: 0;
+                }
+            }
+
+            &__prices {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1439.98px) {
+    .move-in {
+        translate: 0;
+    }
+}

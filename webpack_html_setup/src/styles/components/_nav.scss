@@ -1,0 +1,107 @@
+@import "./cart";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 2px solid map-get($primary-colors, "light-grayish-blue");
+
+    &__nav,
+    &__menu {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .humburger {
+        display: none;
+        position: relative;
+        z-index: 999;
+        cursor: pointer;
+
+        min-width: 16px;
+    }
+
+    &__nav {
+        display: flex;
+        gap: map-get($gutters, "g-3") + map-get($gutters, "g-1");
+
+        .logo {
+            max-width: map-get($fsz, "header-0") * 3.5;
+            display: flex;
+            align-items: center;
+
+            padding-block: map-get($gutters, "g-3");
+        }
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        gap: map-get($gutters, "g-2");
+
+        .avatar {
+            // max-width: map-get($fsz, "header-1") * 1.5;
+            max-width: calc(1.5rem + 2vw);
+
+            border: 2px solid transparent;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                border-color: map-get($primary-colors, "orange");
+            }
+        }
+    }
+}
+
+.row-list {
+    display: flex;
+    gap: map-get($gutters, "g-2");
+
+    font-size: map-get($fsz, "links");
+    color: map-get($primary-colors, "dark-grayish-blue");
+    font-weight: map-get($fw, "normal");
+
+    .item {
+        display: flex;
+        align-items: center;
+        // border-bottom: 4px solid transparent;
+        box-shadow: 0 -5px 0 transparent inset;
+
+        transition: all 0.35s ease-in;
+
+        &:hover {
+            color: map-get($primary-colors, "dark-blue");
+
+            box-shadow: 0 -5px 0 map-get($primary-colors, "orange") inset;
+            // border-bottom-color: map-get($primary-colors, "orange");
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+
+    background-color: map-get($primary-colors, "black");
+
+    transition: all 0.5s ease-in;
+
+    &.toggled {
+        opacity: 0.75;
+        pointer-events: all;
+    }
+}
+
+
+
+.mobile-sidebar {
+    display: none;
+
+    &.active {
+        translate: 0;
+    }
+}

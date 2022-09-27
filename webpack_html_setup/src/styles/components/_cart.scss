@@ -1,0 +1,198 @@
+.cart {
+    position: relative;
+
+    &__badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        translate: 50% -50%;
+
+        display: flex;
+        justify-content: center;
+
+        background-color: map-get($primary-colors, "orange");
+        border-radius: 50rem;
+
+        font-size: map-get($fsz, "links") * 0.75;
+        color: map-get($primary-colors, "white");
+        user-select: none;
+
+        overflow: hidden;
+
+        width: map-get($fsz, "links") * 1.25;
+    }
+
+    &__content {
+        // position: absolute;
+        // bottom: 0;
+        position: fixed;
+        top: -100%;
+        z-index: 999;
+        translate: -50% 0;
+
+        display: flex;
+        flex-direction: column;
+
+        background-color: white;
+        box-shadow: 0 0.5rem 1rem rgba(#000, 0.175);
+
+        transition: all 0.5s ease-in;
+        border-radius: $border-radius-md;
+
+        width: clamp(18rem, 27.5vw, 25rem);
+        // min-height: 20rem;
+        overflow-x: hidden;
+
+        &__cart {
+            padding-block: map-get($gutters, "g-1");
+            border-bottom: 1px solid hsl(240, 6%, 93%);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            user-select: none;
+
+            padding-inline: map-get($gutters, "g-1");
+
+            svg {
+                cursor: pointer;
+
+                & > * {
+                    transition: all 0.25s ease-in;
+                }
+
+                &:hover {
+                    & > path {
+                        fill: red;
+                    }
+                }
+            }
+        }
+
+        &__item {
+            display: grid;
+            grid-template-columns: 3fr 12fr 1fr;
+            grid-auto-rows: 50px;
+            align-items: center;
+            gap: map-get($gutters, "g-sm") * 0.5;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            max-width: 100%;
+
+            font-size: map-get($fsz, "links") * 0.85;
+
+            padding-block: 5px;
+            padding-inline: map-get($gutters, "g-1");
+            margin-block: map-get($gutters, "g-1");
+
+            transition: all 0.25s ease-in;
+
+            border: 1px solid transparent;
+            // border-radius: $border-radius-sm;
+
+            &:hover {
+                & > * {
+                    color: map-get($primary-colors, "dark-blue");
+                }
+
+                // border-color: map-get($primary-colors, "grayish-blue");
+                background-color: map-get(
+                    $primary-colors,
+                    "light-grayish-blue"
+                );
+            }
+
+            & > * {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                transition: all 0.1s ease-in;
+            }
+
+            &__thumbnail {
+                min-width: 50px;
+                // margin: 0 auto;
+
+                img {
+                    border-radius: $border-radius-sm;
+                }
+            }
+
+            &__desc {
+                flex-direction: column;
+                align-items: flex-start;
+
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                color: map-get($primary-colors, "grayish-blue");
+                &__title {
+                    width: clamp(9rem, 15vw, 11rem);
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+                &__price {
+                    &__amount {
+                    }
+
+                    &__sum {
+                        color: map-get($primary-colors, "dark-blue");
+                        font-weight: map-get($fw, "bold");
+                    }
+                }
+            }
+
+            &__delete > svg {
+                transition: all 0.25s ease-in;
+                & > * {
+                    transition: all 0.15s ease-in;
+                }
+
+                &:hover {
+                    & > use {
+                        fill: red;
+                    }
+
+                    rotate: -25deg;
+                    scale: 1.05;
+                }
+            }
+        }
+
+        &__checkout {
+            padding: 0 map-get($gutters, "g-1") map-get($gutters, "g-1")
+                map-get($gutters, "g-1");
+            justify-self: flex-end;
+        }
+    }
+
+    .reveal {
+        pointer-events: all;
+        translate: -50% 0;
+        opacity: 1;
+
+        top: 8vw;
+    }
+}
+
+.cart-img {
+    max-width: map-get($fsz, "header-0");
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &.cart-img--white {
+        svg > path {
+            fill: map-get($primary-colors, "white");
+        }
+    }
+}

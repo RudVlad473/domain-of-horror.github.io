@@ -1,0 +1,114 @@
+.gallery {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($gutters, "g-2");
+
+    min-width: 17.5rem;
+
+    &.gallery--fullscreen {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 999;
+
+        translate: -50% -50%;
+
+        // display: none;
+        opacity: 0;
+        pointer-events: none;
+
+        max-width: clamp(25rem, 32.5%, 30rem);
+
+        transition: all 0.15s ease-in;
+
+        .close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            translate: 0 -100%;
+
+            cursor: pointer;
+
+            svg > path {
+                width: 50px;
+            }
+        }
+
+        .gallery__featured {
+            // translate: -100vw;
+
+            &__sliders {
+                @include sliders(2.5%, true);
+            }
+        }
+
+        &__thumbnails {
+            //translate: 100vw;
+        }
+
+        &.fullscreen {
+            opacity: 1;
+            pointer-events: all;
+            // translate: 50% 0;
+        }
+    }
+
+    &__featured {
+        position: relative;
+
+        &__sliders {
+            display: none;
+        }
+
+        img {
+            border-radius: $border-radius-lg;
+            transition: all 0.25s ease-in-out;
+            overflow: hidden;
+            // &:hover {
+            //     border-radius: 35px;
+            // }
+        }
+    }
+
+    &__thumbnails {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: map-get($gutters, "g-2");
+
+        &__thumbnail {
+            border-radius: $border-radius-md;
+            border: 3px solid transparent;
+
+            transition: all 0.25s ease-in-out;
+
+            cursor: pointer;
+
+            &--selected {
+                border-radius: 1px;
+                opacity: 0.5;
+                border-color: map-get($primary-colors, "orange");
+
+                &:hover {
+                    opacity: 0.75 !important;
+                }
+            }
+
+            &:hover {
+                @extend .gallery__thumbnails__thumbnail--selected;
+            }
+        }
+    }
+}
+
+.overlay {
+    transition: all 0.25s ease-in;
+    background-color: #000 !important;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    width: 100%;
+}

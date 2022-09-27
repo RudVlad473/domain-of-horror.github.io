@@ -1,0 +1,42 @@
+@mixin sliders($inline-padding: 2.5%, $bulged: false) {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+
+    padding-inline: $inline-padding;
+
+    @if $bulged {
+        &__right-slider {
+            translate: (75% - $inline-padding) 0;
+        }
+
+        &__left-slider {
+            translate: (-75% - $inline-padding) 0;
+        }
+    }
+
+    &__right-slider,
+    &__left-slider {
+        cursor: pointer;
+
+        background-color: white;
+        border-radius: 50%;
+
+        padding: map-get($gutters, "g-sm");
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-inline: auto;
+
+            width: 18px;
+        }
+    }
+}
