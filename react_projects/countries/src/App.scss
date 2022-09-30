@@ -1,0 +1,29 @@
+@import "./stylesheets/main.scss";
+
+a:focus,
+a:hover, 
+.btn:focus,
+.btn:hover {
+    text-decoration: none !important;
+}
+
+
+input:active,
+input:focus,
+input:hover,
+input:visited,
+input.active,
+input.focus,
+input.hover,
+input.visited,
+button:active,
+button:focus,
+button:hover,
+button:visited,
+button.active,
+button.focus,
+button.hover,
+button.visited {
+    box-shadow: unset !important;
+    outline: 0 !important;
+}

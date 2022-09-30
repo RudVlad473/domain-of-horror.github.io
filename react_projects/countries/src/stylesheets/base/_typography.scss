@@ -1,0 +1,12 @@
+/**
+ * Basic typography style for copy text
+ */
+html {
+    font-size: 14px;
+}
+
+body {
+    color: map-get($l-mode, "blue-300");
+    font-family: $main-font-family;
+    font-size: clamp(1rem, 1.2vw, 2rem);
+}

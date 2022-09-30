@@ -1,0 +1,9 @@
+@import "/src/stylesheets/base/fonts";
+
+// .card-article {
+//     font-size: 0.9rem;
+// }
+
+.attribute {
+    font-weight: map-get($fw, "normal");
+}
