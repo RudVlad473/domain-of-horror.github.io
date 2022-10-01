@@ -8,11 +8,16 @@ const CountryCard = ({
     population,
     region,
     capital,
-    flagUrl: flagUrl,
-}: ICountryCard) => {
+    flagUrl,
+}) => {
     return (
-        <Card style={{ maxWidth: "18rem" }}>
-            <Card.Img variant="top" src={flagUrl} loading="lazy" />
+        <Card style={{ maxWidth: "18rem", marginInline: "auto" }}>
+            <Card.Img
+                style={{ aspectRatio: "16 / 9" }}
+                variant="top"
+                src={flagUrl}
+                loading="lazy"
+            />
             <Card.Body className={`pb-4 ${styles["card-article"]}`}>
                 <Card.Title className={`pt-2 ${styles.attribute}`}>
                     {country}
@@ -22,7 +27,7 @@ const CountryCard = ({
                         <span className={styles.attribute}>
                             Population:&nbsp;
                         </span>
-                        <span>{population}</span>
+                        <span>{population || "None"}</span>
                     </div>
                     <div>
                         <span className={styles.attribute}>Region:&nbsp;</span>
@@ -30,7 +35,7 @@ const CountryCard = ({
                     </div>
                     <div>
                         <span className={styles.attribute}>Capital:&nbsp;</span>
-                        <span>{capital}</span>
+                        <span>{capital || "None"}</span>
                     </div>
                 </Card.Text>
             </Card.Body>

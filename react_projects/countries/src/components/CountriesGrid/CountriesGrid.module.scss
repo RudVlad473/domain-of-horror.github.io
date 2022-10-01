@@ -2,5 +2,5 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     // gap: clamp(1rem, 3vw, 4rem);
-    gap: clamp(2rem, calc(8vw - 5vh), 8rem);
+    gap: clamp(2rem, calc(7vw - 5vh), 6rem);
 }
