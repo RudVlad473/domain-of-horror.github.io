@@ -1,8 +1,8 @@
-import React, { ReactComponentElement } from "react"
+import React from "react"
 import { Container } from "react-bootstrap"
 import MoonSvg from "./UI/MoonSvg/MoonSvg"
 
-const Header = (props: any) => {
+const Header = () => {
     return (
         <Container
             fluid

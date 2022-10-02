@@ -1,13 +1,17 @@
 import React from "react"
 import styles from "./SearchBar.module.scss"
 
-const SearchBar = () => {
+const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
     return (
         <div
-            className={`input-group light-background shadow-sm w-25 ms-0 d-flex align-items-center px-2  rounded ${styles["search-bar"]}`}>
+            className={`input-group 
+            light-background 
+            shadow-sm w-25 ms-0 d-flex 
+            align-items-center px-2
+            rounded ${styles["search-bar"]}`}>
             <div className="input-group-prepend">
                 <span
-                    className="input-group-text p-0 m-0 bg-white border-0 "
+                    className="input-group-text p-0 m-0 bg-white border-0"
                     id="basic-addon1">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +27,8 @@ const SearchBar = () => {
                 type="text"
                 className="form-control border-0 py-2"
                 placeholder="Search for a country..."
-                aria-label="Username"
                 aria-describedby="basic-addon1"
+                onChange={(e) => filterCountries(e.target.value)}
             />
         </div>
     )
