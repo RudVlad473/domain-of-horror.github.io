@@ -60,6 +60,7 @@ module.exports = {
         open: {
             app: {
                 name: "firefox",
+                // name: "chrome",
             },
         },
     },
