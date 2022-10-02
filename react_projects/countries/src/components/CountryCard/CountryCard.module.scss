@@ -1,12 +1,16 @@
 @import "/src/stylesheets/base/fonts";
 
 .card {
-    
+    transition: all 0.25s ease-in;
+
+    transform: scale(0.98) translateY(5%);
+    opacity: 0.5;
 }
 
-// .card-article {
-//     font-size: 0.9rem;
-// }
+.active {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
 
 .header {
     font-weight: map-get($fw, "bold");

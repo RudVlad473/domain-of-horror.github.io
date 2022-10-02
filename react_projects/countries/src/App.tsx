@@ -54,16 +54,16 @@ const App = () => {
             "https://restcountries.com/v2/all?fields=name,capital,region,population,flag"
 
         const { data } = await axios.get(requestUrl)
-        setIsDataLoading(false)
 
-        setCountries(data)
         setFilteredCountries(data)
+        setIsDataLoading(false)
         setRegions(data.map((country) => country["region"]))
         setFields(
             Object.keys(data[0]).map((key: string) =>
                 capitalizeFirstLetter(key)
             )
         )
+        setCountries(data)
     }
 
     return (

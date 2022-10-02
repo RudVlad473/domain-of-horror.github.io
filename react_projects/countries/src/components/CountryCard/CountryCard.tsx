@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import ICountryCard from "./ICountryCard"
 import { Card } from "react-bootstrap"
 import styles from "./CountryCard.module.scss"
@@ -9,10 +9,18 @@ const CountryCard = ({
     region,
     capital,
     flagUrl,
+    cardObserver,
     ...props
 }) => {
+    const cardRef = useRef(null)
+
+    useEffect(() => {
+        cardObserver.observe(cardRef.current)
+    }, [])
+
     return (
         <Card
+            ref={cardRef}
             style={{ maxWidth: "18rem", marginInline: "auto" }}
             className={`shadow hover-card ${styles.card}`}
             {...props}>
