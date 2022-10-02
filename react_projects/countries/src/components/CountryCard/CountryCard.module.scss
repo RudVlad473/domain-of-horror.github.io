@@ -1,9 +1,22 @@
 @import "/src/stylesheets/base/fonts";
 
+.card {
+    
+}
+
 // .card-article {
 //     font-size: 0.9rem;
 // }
 
+.header {
+    font-weight: map-get($fw, "bold");
+}
+
 .attribute {
     font-weight: map-get($fw, "normal");
+}
+
+.value {
+    font-weight: map-get($fw, "lighter");
+    user-select: all;
 }

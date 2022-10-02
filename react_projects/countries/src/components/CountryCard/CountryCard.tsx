@@ -9,9 +9,13 @@ const CountryCard = ({
     region,
     capital,
     flagUrl,
+    ...props
 }) => {
     return (
-        <Card style={{ maxWidth: "18rem", marginInline: "auto" }}>
+        <Card
+            style={{ maxWidth: "18rem", marginInline: "auto" }}
+            className={`shadow hover-card ${styles.card}`}
+            {...props}>
             <Card.Img
                 style={{ aspectRatio: "16 / 9" }}
                 variant="top"
@@ -19,7 +23,7 @@ const CountryCard = ({
                 loading="lazy"
             />
             <Card.Body className={`pb-4 ${styles["card-article"]}`}>
-                <Card.Title className={`pt-2 ${styles.attribute}`}>
+                <Card.Title className={`pt-2 ${styles.header}`}>
                     {country}
                 </Card.Title>
                 <Card.Text className="pb-2">
