@@ -13,14 +13,15 @@ const App = () => {
     const [fields, setFields] = useState([])
     const [isDataLoading, setIsDataLoading] = useState(true)
 
-    const filterCountries = (query: string) => {
+    const filterCountries = (query: string, field: string) => {
         query = query.toLowerCase()
+        field = field.toLowerCase()
         setFilteredCountries(
             [...countries].filter(
-                (country) =>
-                    Object.values(country).filter((field) =>
-                        String(field).toLowerCase().includes(query)
-                    ).length > 0
+                (country) => country[field]?.toLowerCase().includes(query)
+                // Object.values(country).filter((field) =>
+                //     String(field).toLowerCase().includes(query)
+                // ).length > 0
             )
         )
     }

@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "./SearchBar.module.scss"
+import { DebounceInput } from "react-debounce-input"
 
 const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
     return (
@@ -23,13 +24,24 @@ const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
                     </svg>
                 </span>
             </div>
-            <input
+            {/*  */}
+            <DebounceInput
+                minLength={1}
+                debounceTimeout={400}
+                onChange={(event) =>
+                    filterCountries(event.target.value, "name")
+                }
                 type="text"
                 className="form-control border-0 py-2"
                 placeholder="Search for a country..."
                 aria-describedby="basic-addon1"
-                onChange={(e) => filterCountries(e.target.value)}
             />
+            {/* <input
+                
+                onChange={(e) =>
+                    
+                }
+            /> */}
         </div>
     )
 }

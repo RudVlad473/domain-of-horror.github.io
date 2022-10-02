@@ -15,7 +15,7 @@ const RegionsDropDown = ({
                 <Dropdown.Item
                     key={region}
                     value={region}
-                    onClick={() => filterCountries(region)}>
+                    onClick={() => filterCountries(region, "region")}>
                     {region}
                 </Dropdown.Item>
             ))}
