@@ -1,0 +1,19 @@
+@import "/src/stylesheets/abstracts/mixins";
+
+.loading {
+    display: block;
+    margin: 15vh auto;
+
+    &__outer-circle {
+        animation: 1.25s infinite alternate counterClockWiseSpin linear;
+        transform-origin: center;
+    }
+
+    &__inner-circle {
+        animation: 1.25s infinite alternate clockWiseSpin linear;
+        transform-origin: center;
+    }
+
+    @include spinKeyframes("clockWise");
+    @include spinKeyframes("counterClockWise");
+}
