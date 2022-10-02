@@ -1,6 +1,8 @@
-import React from "react"
+import React, { Suspense } from "react"
 import styles from "./SearchBar.module.scss"
-import { DebounceInput } from "react-debounce-input"
+// import { DebounceInput } from "react-debounce-input"
+const DebounceInput = React.lazy(() => import("react-debounce-input"))
+// import { DebounceInput } from "react-debounce-input"
 
 const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
     return (
@@ -24,23 +26,24 @@ const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
                     </svg>
                 </span>
             </div>
-            {/*  */}
-            <DebounceInput
-                minLength={1}
-                debounceTimeout={400}
-                onChange={(event) =>
-                    filterCountries(event.target.value, "name")
-                }
+            <Suspense>
+                <DebounceInput
+                    minLength={1}
+                    debounceTimeout={300}
+                    onChange={(e) => filterCountries(e.target.value, "name")}
+                    type="text"
+                    className="form-control border-0 py-2"
+                    placeholder="Search for a country..."
+                    aria-describedby="basic-addon1"
+                />
+            </Suspense>
+
+            {/* <input
                 type="text"
                 className="form-control border-0 py-2"
                 placeholder="Search for a country..."
                 aria-describedby="basic-addon1"
-            />
-            {/* <input
-                
-                onChange={(e) =>
-                    
-                }
+                onChange={(e) => filterCountries(e.target.value, "name")}
             /> */}
         </div>
     )

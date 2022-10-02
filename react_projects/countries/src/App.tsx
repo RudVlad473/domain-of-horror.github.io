@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react"
-import CountriesGrid from "./components/CountriesGrid/CountriesGrid"
+import React, { Suspense, useEffect, useState } from "react"
+const CountriesGrid = React.lazy(
+    () => import("./components/CountriesGrid/CountriesGrid")
+)
+// import CountriesGrid from "./components/CountriesGrid/CountriesGrid"
+// const Filters = React.lazy(() => import("./components/Filters"))
 import Filters from "./components/Filters"
+
 import Header from "./components/Header"
 import axios from "axios"
 import capitalizeFirstLetter from "./helpers/capitalizeFirstLetter"
@@ -28,6 +33,7 @@ const App = () => {
 
     const sortCountries = (fieldName: string) => {
         fieldName = fieldName.toLowerCase()
+        console.log(fieldName)
         switch (fieldName) {
             case "population": {
                 setFilteredCountries(
@@ -56,6 +62,7 @@ const App = () => {
 
         const { data } = await axios.get(requestUrl)
 
+        setCountries(data)
         setFilteredCountries(data)
         setIsDataLoading(false)
         setRegions(data.map((country) => country["region"]))
@@ -64,22 +71,25 @@ const App = () => {
                 capitalizeFirstLetter(key)
             )
         )
-        setCountries(data)
     }
 
     return (
         <>
             <Header />
+
             <Filters
                 filterCountries={filterCountries}
                 regions={regions}
                 sortCountries={sortCountries}
                 fields={fields}
             />
+
             {isDataLoading ? (
                 <Loading />
             ) : (
-                <CountriesGrid countries={filteredCountries} />
+                <Suspense >
+                    <CountriesGrid countries={filteredCountries} />
+                </Suspense>
             )}
         </>
     )

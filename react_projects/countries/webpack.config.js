@@ -9,8 +9,21 @@ module.exports = {
     mode: mode,
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].js",
+        filename: "[name].bundle.js",
+        // chunkFilename: "[name].bundle.js",
         assetModuleFilename: "./images/[name][ext]",
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: "styles",
+                    test: /\.css$/,
+                    chunks: "all",
+                    enforce: true,
+                },
+            },
+        },
     },
     resolve: {
         extensions: [".ts", ".js", ".tsx", ".jsx"],
@@ -49,6 +62,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
+
         new HtmlWebpackPlugin({
             template: "./src/index.html",
         }),
