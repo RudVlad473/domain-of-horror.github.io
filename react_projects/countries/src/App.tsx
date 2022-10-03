@@ -1,14 +1,15 @@
 import React, { Suspense, useEffect, useState } from "react"
 
 import Loading from "./components/UI/Loading/Loading"
-const Header = React.lazy(() => import("./components/Header"))
-const Filters = React.lazy(() => import("./components/Filters"))
+// const Header = React.lazy(() => import("./components/Header"))
+// const Filters = React.lazy(() => import("./components/Filters"))
 const CountriesGrid = React.lazy(
     () => import("./components/CountriesGrid/CountriesGrid")
 )
-// import Filters from "./components/Filters"
+import Header from "./components/Header"
+import Filters from "./components/Filters"
 // import CountriesGrid from "./components/CountriesGrid/CountriesGrid"
-// import Header from "./components/Header"
+
 import axios from "axios"
 import capitalizeFirstLetter from "./helpers/capitalizeFirstLetter"
 
@@ -35,7 +36,6 @@ const App = () => {
     const sortCountries = (fieldName: string) => {
         fieldName = fieldName.toLowerCase()
         if (fieldName.includes("population")) {
-            console.log("populatio хэппи нэйшн епта")
             setFilteredCountries(
                 [...countries].sort((a, b) => b[fieldName] - a[fieldName])
             )
@@ -76,29 +76,26 @@ const App = () => {
 
         setCountries(data)
         setFilteredCountries(data)
-        setIsDataLoading(false)
+
         setRegions(data.map((country) => country["region"]))
         setFields(
             Object.keys(data[0]).map((key: string) =>
                 capitalizeFirstLetter(key)
             )
         )
+        setIsDataLoading(false)
     }
 
     return (
         <>
-            <Suspense>
-                <Header />
-            </Suspense>
+            <Header />
 
-            <Suspense>
-                <Filters
-                    filterCountries={filterCountries}
-                    regions={regions}
-                    sortCountries={sortCountries}
-                    fields={fields}
-                />
-            </Suspense>
+            <Filters
+                filterCountries={filterCountries}
+                regions={regions}
+                sortCountries={sortCountries}
+                fields={fields}
+            />
 
             {isDataLoading ? (
                 <Loading />

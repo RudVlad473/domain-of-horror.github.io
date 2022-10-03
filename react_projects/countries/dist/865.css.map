@@ -1,1 +1,0 @@
-{"version":3,"file":"865.css","mappings":"AAAA,sBACI,gBACA,iCACA,mC","sources":["webpack:///./src/components/SearchBar/SearchBar.module.scss"],"sourcesContent":[".search-bar {\r\n    min-width: 13rem;\r\n    margin-block: 0px;\r\n    padding-block: 0px;\r\n}"],"names":[],"sourceRoot":""}

@@ -25,7 +25,7 @@ const CountryCard = ({
             className={`shadow hover-card ${styles.card}`}
             {...props}>
             <Card.Img
-                style={{ aspectRatio: "16 / 9" }}
+                style={{ aspectRatio: "16 / 10" }}
                 variant="top"
                 src={flagUrl}
                 loading="lazy"

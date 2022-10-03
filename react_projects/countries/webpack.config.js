@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
     mode: mode,
+
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
@@ -14,6 +15,7 @@ module.exports = {
         assetModuleFilename: "./images/[name][ext]",
     },
     optimization: {
+        chunksId: "total-size",
         splitChunks: {
             cacheGroups: {
                 styles: {
