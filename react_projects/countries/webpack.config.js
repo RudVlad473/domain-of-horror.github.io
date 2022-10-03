@@ -4,6 +4,7 @@ const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 
 module.exports = {
     mode: mode,
@@ -15,7 +16,9 @@ module.exports = {
         assetModuleFilename: "./images/[name][ext]",
     },
     optimization: {
-        chunksId: "total-size",
+        // minimize: true,
+        // minimizer: [new TerserPlugin()],
+
         splitChunks: {
             cacheGroups: {
                 styles: {
