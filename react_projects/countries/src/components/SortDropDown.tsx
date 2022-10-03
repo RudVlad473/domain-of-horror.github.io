@@ -9,15 +9,16 @@ const SortDropDown = ({
     sortCountries: Function
     fields: string[]
 }) => {
-
-
     return (
         <DropDown purpose="Sort by Feature">
             {Array.from(new Set(fields)).map((field: string) => (
                 <Dropdown.Item
                     key={field}
                     value={field}
-                    onClick={() => sortCountries(field)}>
+                    onClick={() => {
+                        console.log(field)
+                        sortCountries(field)
+                    }}>
                     {field}
                 </Dropdown.Item>
             ))}

@@ -1,15 +1,16 @@
 import React, { Suspense, useEffect, useState } from "react"
+
+import Loading from "./components/UI/Loading/Loading"
+const Header = React.lazy(() => import("./components/Header"))
+const Filters = React.lazy(() => import("./components/Filters"))
 const CountriesGrid = React.lazy(
     () => import("./components/CountriesGrid/CountriesGrid")
 )
+// import Filters from "./components/Filters"
 // import CountriesGrid from "./components/CountriesGrid/CountriesGrid"
-// const Filters = React.lazy(() => import("./components/Filters"))
-import Filters from "./components/Filters"
-
-import Header from "./components/Header"
+// import Header from "./components/Header"
 import axios from "axios"
 import capitalizeFirstLetter from "./helpers/capitalizeFirstLetter"
-import Loading from "./components/UI/Loading/Loading"
 
 const App = () => {
     const [countries, setCountries] = useState([])
@@ -33,23 +34,34 @@ const App = () => {
 
     const sortCountries = (fieldName: string) => {
         fieldName = fieldName.toLowerCase()
-        console.log(fieldName)
-        switch (fieldName) {
-            case "population": {
-                setFilteredCountries(
-                    [...countries].sort((a, b) => a[fieldName] < b[fieldName])
+        if (fieldName.includes("population")) {
+            console.log("populatio хэппи нэйшн епта")
+            setFilteredCountries(
+                [...countries].sort((a, b) => b[fieldName] - a[fieldName])
+            )
+        } else {
+            setFilteredCountries(
+                [...countries].sort((a, b) =>
+                    a[fieldName]?.localeCompare(b[fieldName])
                 )
-                break
-            }
-            default: {
-                setFilteredCountries(
-                    [...countries].sort((a, b) =>
-                        a[fieldName]?.localeCompare(b[fieldName])
-                    )
-                )
-                break
-            }
+            )
         }
+        // switch (fieldName) {
+        //     case "population": {
+        //         setFilteredCountries(
+        //             [...countries].sort((a, b) => +a[fieldName] < +b[fieldName])
+        //         )
+        //         break
+        //     }
+        //     default: {
+        //         setFilteredCountries(
+        //             [...countries].sort((a, b) =>
+        //                 a[fieldName]?.localeCompare(b[fieldName])
+        //             )
+        //         )
+        //         break
+        //     }
+        // }
     }
 
     useEffect(() => {
@@ -75,19 +87,23 @@ const App = () => {
 
     return (
         <>
-            <Header />
+            <Suspense>
+                <Header />
+            </Suspense>
 
-            <Filters
-                filterCountries={filterCountries}
-                regions={regions}
-                sortCountries={sortCountries}
-                fields={fields}
-            />
+            <Suspense>
+                <Filters
+                    filterCountries={filterCountries}
+                    regions={regions}
+                    sortCountries={sortCountries}
+                    fields={fields}
+                />
+            </Suspense>
 
             {isDataLoading ? (
                 <Loading />
             ) : (
-                <Suspense >
+                <Suspense fallback={<Loading />}>
                     <CountriesGrid countries={filteredCountries} />
                 </Suspense>
             )}

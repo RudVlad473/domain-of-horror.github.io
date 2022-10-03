@@ -1,39 +1,20 @@
 /* RUN ON PRODUCTION */
-const purgecss = require("@fullhuman/postcss-purgecss")
-
-module.exports = {
-    plugins: [
-        "postcss-preset-env",
-        purgecss({
-            content: ["./dist/*.js"],
-            css: ["./dist/*.css"],
-        }),
-    ],
-}
-
-
-
+// const purgecss = require("@fullhuman/postcss-purgecss")
 
 // module.exports = {
-//     style: {
-//         postcss: {
-//             plugins: [
-//                 purgecss({
-//                     content: [
-//                         "./src/**/*.html",
-//                         "./src/**/*.tsx",
-//                         "./src/**/*.ts",
-//                     ],
-//                 }),
-//             ],
-//         },
-//     },
+//     plugins: [
+//         "postcss-preset-env",
+//         purgecss({
+//             content: ["./dist/*.js"],
+//             css: ["./dist/*.css"],
+//         }),
+//     ],
 // }
 
 
 
 /*COMMENT ON PRODUCTION */
 
-// module.exports = {
-//     plugins: ["postcss-preset-env"],
-// }
+module.exports = {
+    plugins: ["postcss-preset-env"],
+}

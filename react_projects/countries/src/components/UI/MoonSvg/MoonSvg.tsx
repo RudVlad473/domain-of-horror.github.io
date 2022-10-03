@@ -3,7 +3,7 @@ import styles from "./MoonSvg.module.scss"
 
 const MoonSvg = (props: any) => (
     <svg
-        className={styles.modeSvg}
+        className={styles["modeSvg"]}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 189.849 189.849"
         style={{

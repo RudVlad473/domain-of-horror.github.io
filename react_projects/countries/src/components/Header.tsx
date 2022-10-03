@@ -12,6 +12,7 @@ const Header = () => {
             </span>
             <span className="d-flex align-items-center gap-2">
                 <MoonSvg />
+
                 <span className="h5 me-1 me-md-5 m-0">Dark&nbsp;Mode</span>
             </span>
         </Container>

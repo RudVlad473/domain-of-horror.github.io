@@ -1,0 +1,1 @@
+{"version":3,"file":"632.css","mappings":"AAAA,sBACI,eACA,e","sources":["webpack:///./src/stylesheets/components/_modeSvg.scss"],"sourcesContent":[".modeSvg {\r\n    max-width: 30px;\r\n    min-width: 25px;\r\n}"],"names":[],"sourceRoot":""}
