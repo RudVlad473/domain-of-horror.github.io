@@ -4,7 +4,7 @@ const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const TerserPlugin = require("terser-webpack-plugin")
+
 
 module.exports = {
     mode: mode,
@@ -15,21 +15,21 @@ module.exports = {
         // chunkFilename: "[name].bundle.js",
         assetModuleFilename: "./images/[name][ext]",
     },
-    optimization: {
-        // minimize: true,
-        // minimizer: [new TerserPlugin()],
+    // optimization: {
+    //     // minimize: true,
+    //     // minimizer: [new TerserPlugin()],
 
-        splitChunks: {
-            cacheGroups: {
-                styles: {
-                    name: "styles",
-                    test: /\.css$/,
-                    chunks: "all",
-                    enforce: true,
-                },
-            },
-        },
-    },
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             styles: {
+    //                 name: "styles",
+    //                 test: /\.css$/,
+    //                 chunks: "all",
+    //                 enforce: true,
+    //             },
+    //         },
+    //     },
+    // },
     resolve: {
         extensions: [".ts", ".js", ".tsx", ".jsx"],
     },

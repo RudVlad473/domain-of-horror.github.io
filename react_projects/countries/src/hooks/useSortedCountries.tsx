@@ -1,14 +1,13 @@
 import { useMemo } from "react"
 
 const useSortedCountries = (countries: any[], fieldName: string) => {
-    console.time("sorting...")
     const sortedCountries = useMemo(() => {
         if (!fieldName) {
             return countries
         }
 
         const fieldToSortBy = fieldName.toLowerCase()
-        
+
         switch (fieldToSortBy) {
             case "population": {
                 return [...countries].sort(
@@ -21,7 +20,7 @@ const useSortedCountries = (countries: any[], fieldName: string) => {
                 )
             }
         }
-    }, [fieldName])
+    }, [countries, fieldName])
     console.timeEnd("sorting...")
     return sortedCountries
 }

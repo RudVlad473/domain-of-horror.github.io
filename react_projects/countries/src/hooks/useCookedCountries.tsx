@@ -18,7 +18,7 @@ const useCookedCountries = (
                       ?.toLowerCase()
                       .includes(filter.searchQuery.toLowerCase())
               )
-    }, [fieldName, filter])
+    }, [countries, fieldName, filter])
     return cookedCountries
 }
 
