@@ -1,29 +1,43 @@
-import React from "react"
-import DropDown from "./UI/DropDown/DropDown"
-import { Dropdown } from "react-bootstrap"
+import React, { memo } from "react"
+import { Form } from "react-bootstrap"
+import Select from "./UI/Select/Select"
 
-const SortDropDown = ({
-    sortCountries,
-    fields,
-}: {
-    sortCountries: Function
-    fields: string[]
-}) => {
-    return (
-        <DropDown purpose="Sort by Feature">
-            {Array.from(new Set(fields)).map((field: string) => (
-                <Dropdown.Item
-                    key={field}
-                    value={field}
-                    onClick={() => {
-                        console.log(field)
-                        sortCountries(field)
-                    }}>
-                    {field}
-                </Dropdown.Item>
-            ))}
-        </DropDown>
-    )
-}
+const SortDropDown = memo(
+    ({
+        setFieldToSortBy,
+        fields,
+    }: {
+        setFieldToSortBy: Function
+        fields: string[]
+    }) => {
+        return (
+            <Select purpose="Sort By Feature">
+                {fields.map((field: string) => (
+                    <option
+                        key={field}
+                        value={field}
+                        onClick={() => {
+                            setFieldToSortBy(field)
+                        }}>
+                        {field}
+                    </option>
+                ))}
+            </Select>
+
+            // <DropDown purpose="Sort by Feature">
+            //     {fields.map((field: string) => (
+            //         <Dropdown.Item
+            //             key={field}
+            //             value={field}
+            //             onClick={() => {
+            //                 setFieldToSortBy(field)
+            //             }}>
+            //             {field}
+            //         </Dropdown.Item>
+            //     ))}
+            // </DropDown>
+        )
+    }
+)
 
 export default SortDropDown

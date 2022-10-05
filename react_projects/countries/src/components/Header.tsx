@@ -1,8 +1,8 @@
-import React from "react"
+import React, { memo } from "react"
 import { Container } from "react-bootstrap"
 import MoonSvg from "./UI/MoonSvg/MoonSvg"
 
-const Header = () => {
+const Header = memo(() => {
     return (
         <Container
             fluid
@@ -17,6 +17,6 @@ const Header = () => {
             </span>
         </Container>
     )
-}
+})
 
 export default Header

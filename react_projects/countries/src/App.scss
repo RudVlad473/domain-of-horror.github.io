@@ -23,7 +23,11 @@ button:visited,
 button.active,
 button.focus,
 button.hover,
-button.visited {
+button.visited,
+select:active,
+select:focus,
+select:hover,
+select:visited {
     box-shadow: unset !important;
     outline: 0 !important;
 }

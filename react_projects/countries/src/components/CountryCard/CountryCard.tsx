@@ -19,7 +19,7 @@ const CountryCard = ({
     }, [])
 
     return (
-        <Card
+        <Card            
             ref={cardRef}
             style={{ maxWidth: "18rem", marginInline: "auto" }}
             className={`shadow hover-card ${styles.card}`}

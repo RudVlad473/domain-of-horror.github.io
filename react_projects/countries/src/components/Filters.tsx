@@ -1,21 +1,34 @@
-import React from "react"
+import React, { memo, useMemo } from "react"
 import SearchBar from "./SearchBar/SearchBar"
 import { Container } from "react-bootstrap"
 import RegionsDropDown from "./RegionsDropDown"
 import SortDropDown from "./SortDropDown"
+import uniquify from "../helpers/uniquify"
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter"
 
-const Filters = ({ filterCountries, regions, sortCountries, fields }) => {
+const Filters = ({ countries, setFilter, setFieldToSortBy }) => {
+    const regions = useMemo(() => {
+        return uniquify(countries.map((country) => country["region"]))
+    }, [countries])
+    const fields = useMemo(() => {
+        return uniquify(
+            Object.keys(countries[0] || [])
+                ?.filter((key) => !key.match(/flag|indep/i))
+                .map((key: string) => capitalizeFirstLetter(key))
+        )
+    }, [countries])
+
     return (
         <Container
             fluid
-            className="px-3 px-md-5 py-5 w-100 d-flex flex-wrap justify-content-start justify-content-md-between  align-items-center gap-4">
-            <SearchBar filterCountries={filterCountries} />
+            className="px-3 px-md-5 py-5 w-100 d-flex justify-content-start justify-content-md-between  align-items-center gap-4">
+            <SearchBar setFilter={setFilter} />
             <SortDropDown
-                sortCountries={sortCountries}
+                setFieldToSortBy={setFieldToSortBy}
                 fields={fields}
             />
             <RegionsDropDown
-                filterCountries={filterCountries}
+                setFilter={setFilter}
                 regions={regions}
             />
         </Container>

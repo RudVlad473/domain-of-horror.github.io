@@ -1,10 +1,10 @@
-import React, { Suspense } from "react"
+import React, { memo, Suspense } from "react"
 import styles from "./SearchBar.module.scss"
 // import { DebounceInput } from "react-debounce-input"
 const DebounceInput = React.lazy(() => import("react-debounce-input"))
 // import { DebounceInput } from "react-debounce-input"
 
-const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
+const SearchBar = memo(({  setFilter }: { setFilter: Function }) => {
     return (
         <div
             className={`input-group 
@@ -30,7 +30,12 @@ const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
                 <DebounceInput
                     minLength={1}
                     debounceTimeout={300}
-                    onChange={(e) => filterCountries(e.target.value, "name")}
+                    onChange={(e) =>
+                        setFilter({
+                            fieldName: "name",
+                            searchQuery: e.target.value,
+                        })
+                    }
                     type="text"
                     className="form-control border-0 py-2"
                     placeholder="Search for a country..."
@@ -47,6 +52,6 @@ const SearchBar = ({ filterCountries }: { filterCountries: Function }) => {
             /> */}
         </div>
     )
-}
+})
 
 export default SearchBar
