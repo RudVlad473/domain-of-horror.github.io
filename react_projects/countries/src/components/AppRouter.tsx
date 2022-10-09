@@ -12,12 +12,13 @@ const AppRouter = () => {
                 element={<Countries />}
             />
             <Route
+                exact
                 path="/:name"
                 element={<CountryDetails />}
             />
             <Route
                 path="*"
-                element={<NotFound />}
+                element={<Countries />}
             />
         </Routes>
     )
