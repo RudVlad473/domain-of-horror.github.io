@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import isObjectEmpty from "../helpers/isObjectEmpty"
+import isObjectEmpty from "../helpers/functions/isObjectEmpty"
 import useSortedCountries from "./useSortedCountries"
 
 const useCookedCountries = (

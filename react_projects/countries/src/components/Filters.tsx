@@ -3,10 +3,19 @@ import SearchBar from "./SearchBar/SearchBar"
 import { Container } from "react-bootstrap"
 import RegionsDropDown from "./RegionsDropDown"
 import SortDropDown from "./SortDropDown"
-import uniquify from "../helpers/uniquify"
-import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter"
+import uniquify from "../helpers/functions/uniquify"
+import capitalizeFirstLetter from "../helpers/functions/capitalizeFirstLetter"
+import ICountryCard from "./CountryCard/ICountryCard"
 
-const Filters = ({ countries, setFilter, setFieldToSortBy }) => {
+const Filters = ({
+    countries,
+    setFilter,
+    setFieldToSortBy,
+}: {
+    countries: ICountryCard[]
+    setFilter: Function
+    setFieldToSortBy: Function
+}) => {
     const regions = useMemo(() => {
         return uniquify(countries.map((country) => country["region"]))
     }, [countries])

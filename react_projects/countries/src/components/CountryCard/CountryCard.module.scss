@@ -1,39 +1,46 @@
-@import "/src/stylesheets/base/fonts";
+@use "/src/stylesheets/base/fonts";
 
 .card {
-    transition: all 0.1s ease-out;
+    transition: all 0.25s ease-out;
 
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
-    transform: scale(0.9789);
 
+    // transform: scale(0.9789);
+    translate: -12.5%;
     opacity: 0.75;
 
     // outline: 1px groove transparent;
 
-    &:hover {
-        // outline-color: gray;
+    // &:hover {
+    //     // outline-color: gray;
 
-        transform: scale(1.0489);
-    }
+    //     transform: scale(1.0489);
+    // }
 }
 
 .active {
-    transform: scale(1);
+    // transform: scale(1);
+    translate: 0;
     opacity: 1;
 }
 
-
+.img {
+    cursor: pointer;
+}
 
 .header {
-    font-weight: map-get($fw, "bold");
+    font-weight: map-get(fonts.$fw, "bold");
+    font-size: map-get(fonts.$fs, "fs-2");
 }
 
 .attribute {
-    font-weight: map-get($fw, "normal");
+    font-weight: map-get(fonts.$fw, "normal");
+    font-size: map-get(fonts.$fs, "fs-1");
 }
 
 .value {
-    font-weight: map-get($fw, "lighter");
+    font-weight: map-get(fonts.$fw, "lighter");
+    font-size: map-get(fonts.$fs, "fs-1");
     user-select: all;
 }

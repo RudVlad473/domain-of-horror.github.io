@@ -1,0 +1,19 @@
+.rect-button {
+    transition: all 0.125s ease-in-out;
+
+    background-color: white;
+    border-radius: 5px;
+
+    width: 100px;
+
+    &:hover {
+        svg {
+            translate: -75%;
+        }
+    }
+
+    svg {
+        transition: all 0.125s ease-in-out;
+        max-width: 20px;
+    }
+}

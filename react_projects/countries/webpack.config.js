@@ -5,14 +5,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
-
 module.exports = {
     mode: mode,
 
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
-        // chunkFilename: "[name].bundle.js",
+        chunkFilename: "[name].chunk.js",
         assetModuleFilename: "./images/[name][ext]",
     },
     // optimization: {
@@ -31,7 +30,7 @@ module.exports = {
     //     },
     // },
     resolve: {
-        extensions: [".ts", ".js", ".tsx", ".jsx"],
+        extensions: [".ts", ".js", ".tsx", ".jsx", ".scss", ".css"],
     },
     module: {
         rules: [
@@ -82,6 +81,7 @@ module.exports = {
                 // name: "chrome",
             },
         },
+        historyApiFallback: true,
     },
     target: "web",
 }

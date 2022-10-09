@@ -3,12 +3,20 @@ import { Container } from "react-bootstrap"
 import CountryCard from "../CountryCard/CountryCard"
 // const CountryCard = React.lazy(() => import("../CountryCard/CountryCard"))
 // import ICountryCard from "../CountryCard/ICountryCard"
-import separateNumber from "../../helpers/separateNumber"
+import separateNumber from "../../helpers/functions/separateNumber"
 import useCookedCountries from "../../hooks/useCookedCountries"
 import cardStyles from "../CountryCard/CountryCard.module.scss"
 import Loading from "../UI/Loading/Loading"
 
-const CountriesGrid = ({ countries, filter, fieldToSortBy }) => {
+const CountriesGrid = ({
+    countries,
+    filter,
+    fieldToSortBy,
+}: {
+    countries: ICountryCard[]
+    setFilter: Function
+    setFieldToSortBy: Function
+}) => {
     const cardObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -22,12 +30,10 @@ const CountriesGrid = ({ countries, filter, fieldToSortBy }) => {
             threshold: 0.5,
         }
     )
-    
+
     const isDataLoading = useMemo(() => {
         return countries.length === 0
     }, [countries])
-
-    console.log("inside grid, loading=", isDataLoading)
 
     const cookedCountries = useCookedCountries(countries, filter, fieldToSortBy)
 
