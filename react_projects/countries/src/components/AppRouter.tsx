@@ -2,7 +2,7 @@ import React from "react"
 import { Route, Routes } from "react-router"
 import Countries from "../pages/Countries/Countries"
 import CountryDetails from "../pages/CountryDetails/CountryDetails"
-import NotFound from "../pages/NotFound/NotFound"
+// import NotFound from "../pages/NotFound/NotFound"
 
 const AppRouter = () => {
     return (
@@ -12,7 +12,6 @@ const AppRouter = () => {
                 element={<Countries />}
             />
             <Route
-                exact
                 path="/:name"
                 element={<CountryDetails />}
             />

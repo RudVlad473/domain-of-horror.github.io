@@ -1,8 +1,7 @@
 import React, { memo } from "react"
-import { Form } from "react-bootstrap"
 import Select from "./UI/Select/Select"
 
-const SortDropDown = memo(
+const SortSelect = memo(
     ({
         setFieldToSortBy,
         fields,
@@ -11,33 +10,21 @@ const SortDropDown = memo(
         fields: string[]
     }) => {
         return (
-            <Select purpose="Sort By Feature">
+            <Select
+                purpose="Sort By Feature"
+                onChange={(e) => {
+                    setFieldToSortBy(e.target.value)
+                }}>
                 {fields.map((field: string) => (
                     <option
                         key={field}
-                        value={field}
-                        onClick={() => {
-                            setFieldToSortBy(field)
-                        }}>
+                        value={field}>
                         {field}
                     </option>
                 ))}
             </Select>
-
-            // <DropDown purpose="Sort by Feature">
-            //     {fields.map((field: string) => (
-            //         <Dropdown.Item
-            //             key={field}
-            //             value={field}
-            //             onClick={() => {
-            //                 setFieldToSortBy(field)
-            //             }}>
-            //             {field}
-            //         </Dropdown.Item>
-            //     ))}
-            // </DropDown>
         )
     }
 )
 
-export default SortDropDown
+export default SortSelect

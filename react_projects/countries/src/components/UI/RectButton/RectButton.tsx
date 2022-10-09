@@ -1,7 +1,8 @@
-import React from "react"
+import React, { memo } from "react"
 import styles from "./RectButton.module.scss"
 
-const RectButton = (props) => {
+
+const RectButton = memo((props) => {
     return (
         <button
             className={`shadow-sm px-2 py-1 d-flex justify-content-center 
@@ -19,6 +20,6 @@ const RectButton = (props) => {
             {props.children}
         </button>
     )
-}
+})
 
 export default RectButton

@@ -21,7 +21,6 @@ const useSortedCountries = (countries: any[], fieldName: string) => {
             }
         }
     }, [countries, fieldName])
-    
     return sortedCountries
 }
 

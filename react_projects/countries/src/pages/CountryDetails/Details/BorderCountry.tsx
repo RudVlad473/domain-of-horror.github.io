@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useMemo, useState } from "react"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import constructCountryNameUrl from "../../../helpers/functions/constructCountryNameUrl"
 import strToUrl from "../../../helpers/functions/strToUrl"
 import styles from "../CountryDetails.module.scss"
@@ -18,7 +18,7 @@ const BorderCountry = ({ countryCode }: { countryCode: string }) => {
 
         const { data } = await axios.get<Object>(nameUrl)
 
-        setCountryName(data["name"])
+        setCountryName( data["name"])
     }
 
     useEffect(() => {

@@ -4,7 +4,9 @@ import styles from "./Select.module.scss"
 
 const Select = ({ purpose, ...props }: { purpose: string }) => {
     return (
-        <Form.Select className={styles["select"]}>
+        <Form.Select
+            className={styles["select"]}
+            {...props}>
             <option
                 selected
                 disabled>
