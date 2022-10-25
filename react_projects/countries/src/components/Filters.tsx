@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react"
+import React, { memo, useContext, useMemo } from "react"
 import SearchBar from "./SearchBar/SearchBar"
 import { Container } from "react-bootstrap"
 import RegionsSelect from "./RegionsDropDown"
@@ -6,16 +6,16 @@ import SortSelect from "./SortDropDown"
 import uniquify from "../helpers/functions/uniquify"
 import capitalizeFirstLetter from "../helpers/functions/capitalizeFirstLetter"
 import ICountryCard from "./CountryCard/ICountryCard"
+import { CountriesContext } from "../context"
 
 const Filters = ({
-    countries,
     setFilter,
     setFieldToSortBy,
 }: {
-    countries: ICountryCard[]
     setFilter: Function
     setFieldToSortBy: Function
 }) => {
+    const { countries } = useContext(CountriesContext)
     const regions = useMemo(() => {
         return uniquify(countries.map((country) => country["region"]))
     }, [countries])

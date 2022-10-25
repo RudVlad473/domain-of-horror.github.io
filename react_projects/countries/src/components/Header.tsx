@@ -1,5 +1,6 @@
 import React, { memo } from "react"
 import { Container } from "react-bootstrap"
+import { Link } from "react-router-dom"
 import MoonSvg from "./UI/MoonSvg/MoonSvg"
 
 const Header = memo(() => {
@@ -7,9 +8,13 @@ const Header = memo(() => {
         <Container
             fluid
             className="w-100 d-flex justify-content-between align-items-center px-3 px-md-0 py-3 m-0 border-2 border-bottom light-background">
-            <span className="fw-bold h4 my-0 ms-1 ms-md-5">
+            <Link
+                to={"/"}
+                className="fw-bold h4 my-0 ms-1 ms-md-5"
+                style={{transition: "all 0.25s ease-in-out"}}
+                >
                 Where in the world?
-            </span>
+            </Link>
             <span className="d-flex align-items-center gap-2">
                 <MoonSvg />
 
