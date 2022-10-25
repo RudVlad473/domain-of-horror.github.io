@@ -1,7 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router"
-import Countries from "../pages/Countries/Countries"
-import CountryDetails from "../pages/CountryDetails/CountryDetails"
+// import Countries from "../pages/Countries/Countries"
+// import CountryDetails from "../pages/CountryDetails/CountryDetails"
+// import HeroPage from "../pages/HeroPage"
 import { routes } from "../router"
 // import NotFound from "../pages/NotFound/NotFound"
 

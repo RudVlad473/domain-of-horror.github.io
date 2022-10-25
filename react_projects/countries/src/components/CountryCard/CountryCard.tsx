@@ -18,7 +18,6 @@ const CountryCard: FC<ICountryCard> = memo(
         cardObserver,
         ...props
     }) => {
-        
         const cardRef = useRef(null)
 
         // const [isBackCardActive, setIsBackCardActive] = useState(false)

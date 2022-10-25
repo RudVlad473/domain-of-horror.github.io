@@ -1,23 +1,18 @@
 @use "/src/stylesheets/base/fonts";
 
 .card {
+    position: relative;
+
     transition: all 0.25s ease-out;
 
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-
-    // transform: scale(0.9789);
     translate: -12.5%;
     opacity: 0.75;
 
-    // outline: 1px groove transparent;
-
-    // &:hover {
-    //     // outline-color: gray;
-
-    //     transform: scale(1.0489);
-    // }
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
+
+
 
 .active {
     // transform: scale(1);
@@ -36,11 +31,11 @@
 
 .attribute {
     font-weight: map-get(fonts.$fw, "normal");
-    font-size: map-get(fonts.$fs, "fs-1");
+    
 }
 
 .value {
     font-weight: map-get(fonts.$fw, "lighter");
-    font-size: map-get(fonts.$fs, "fs-1");
+    
     user-select: all;
 }

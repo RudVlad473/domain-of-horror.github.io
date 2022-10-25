@@ -25,8 +25,9 @@ const CountriesGrid = ({
     const loadCountriesObserver = useRef<IntersectionObserver>()
     const lastElemRef = useRef()
 
-    const defaultLoadCount: number =
-        (countries.length / 10) | 0 || countries.length
+    // const defaultLoadCount: number =
+    //     (countries.length / 10) | 0 || countries.length
+    const defaultLoadCount: number = countries.length
 
     const [loadCount, setLoadCount] = useState(defaultLoadCount)
 

@@ -10,11 +10,11 @@ const SearchBar = memo(({  setFilter }: { setFilter: Function }) => {
             className={`input-group 
             light-background 
             shadow-sm w-25 ms-0 d-flex 
-            align-items-center px-2
+            align-items-center 
             rounded ${styles["search-bar"]}`}>
             <div className="input-group-prepend">
                 <span
-                    className="input-group-text p-0 m-0 bg-white border-0"
+                    className="input-group-text p-2 m-0 bg-white border-0"
                     id="basic-addon1">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,9 @@
 @use "/src/stylesheets/base/fonts";
 
 .details {
-    gap: clamp(2rem, calc(8vw), 10rem);
+    gap: clamp(1rem, calc(6vw), 10rem);
 
+    font-size: 1.15rem;
     // overflow: hidden;
 
     &__header,
@@ -14,6 +15,10 @@
     &__header {
         min-width: 20rem;
         max-width: 38rem;
+
+        &__img {
+            outline: 1px solid #837b7b;
+        }
     }
 
     &__body {
@@ -50,13 +55,18 @@
 }
 
 .gradient {
-    animation-duration: 0.75s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-name: placeHolderShimmer;
     animation-timing-function: linear;
     background: #f6f7f8;
-    background: linear-gradient(to right, #fafafa 8%, #f4f4f4 38%, #fafafa 54%);
+    background: linear-gradient(
+        to right,
+        hsl(0, 5%, 98%) 8%,
+        hsl(0, 20%, 96%) 38%,
+        hsl(0, 5%, 98%) 54%
+    );
     background-size: 1000px 640px;
 
     position: relative;
@@ -72,3 +82,12 @@
         background-position: 468px 0;
     }
 }
+
+// @media only screen and (max-width: 577.98px) {
+//     .details__body__content {
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, 250px);
+//         gap: 0.25vw 0.75vw;
+//         // word-wrap: break-word;
+//     }
+// }

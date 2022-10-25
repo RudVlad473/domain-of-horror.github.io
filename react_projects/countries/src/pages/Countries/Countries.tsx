@@ -9,6 +9,8 @@ const Filters = React.lazy(() => import("../../components/Filters"))
 import axios from "axios"
 import ICountryCard from "../../components/CountryCard/ICountryCard"
 import { allCountriesUrl } from "../../helpers/constants/links"
+import { CountriesContext } from "../../context"
+import Header from "../../components/Header"
 
 const Countries = () => {
     const [countries, setCountries] = useState<ICountryCard[]>([])
@@ -22,7 +24,7 @@ const Countries = () => {
     async function fetchCountries(): Promise<void> {
         const { data } = await axios.get<ICountryCard[]>(allCountriesUrl)
 
-        setCountries(data)
+        setCountries((countries) => data)
         // return data
     }
 
@@ -32,20 +34,23 @@ const Countries = () => {
 
     return (
         <>
-            <Suspense>
-                <Filters
-                    countries={countries}
-                    setFilter={setFilter}
-                    setFieldToSortBy={setFieldToSortBy}
-                />
-            </Suspense>
-            <Suspense>
-                <CountriesGrid
-                    countries={countries}
-                    filter={filter}
-                    fieldToSortBy={fieldToSortBy}
-                />
-            </Suspense>
+            <Header />
+            <CountriesContext.Provider value={{ countries, setCountries }}>
+                <Suspense>
+                    <Filters
+                        countries={countries}
+                        setFilter={setFilter}
+                        setFieldToSortBy={setFieldToSortBy}
+                    />
+                </Suspense>
+                <Suspense>
+                    <CountriesGrid
+                        countries={countries}
+                        filter={filter}
+                        fieldToSortBy={fieldToSortBy}
+                    />
+                </Suspense>
+            </CountriesContext.Provider>
         </>
     )
 }

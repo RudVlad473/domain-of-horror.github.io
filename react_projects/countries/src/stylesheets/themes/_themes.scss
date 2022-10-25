@@ -1,1 +1,12 @@
-@import "./light-background", "./dark-background", "./gray-background";
+.white-content {
+    background-color: hsl(0, 0%, 98%);
+    // elementsbg: hsl(0, 0%, 100%);
+    color: hsl(200, 15%, 8%);
+    // inputcolor: hsl(0, 0%, 52%);
+}
+
+.dark-content {
+    // elementsBg: "hsl(209, 23%, 22%)",
+    background-color: hsl(207, 26%, 17%);
+    color: hsl(0, 0%, 100%);
+}

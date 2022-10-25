@@ -4,12 +4,13 @@ import capitalizeFirstLetter from "../../helpers/functions/capitalizeFirstLetter
 
 const CountryFeature = ({ feature, ...props }: { feature: string }) => {
     return (
-        <div>
+        <span style={{ display: "block" }}>
             <span className={styles.attribute}>
                 {capitalizeFirstLetter(feature)}:
             </span>
+
             <span> {props.children || "None"}</span>
-        </div>
+        </span>
     )
 }
 

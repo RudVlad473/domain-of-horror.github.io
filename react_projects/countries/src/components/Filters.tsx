@@ -30,7 +30,10 @@ const Filters = ({
     return (
         <Container
             fluid
-            className="px-3 px-md-5 py-5 w-100 d-flex justify-content-start justify-content-md-between  align-items-center gap-4">
+            className="px-3 px-md-5 py-5 w-100 
+            d-flex justify-content-center 
+            justify-content-md-between  
+            align-items-center gap-4 flex-wrap flex-sm-nowrap">
             <SearchBar setFilter={setFilter} />
             <SortSelect
                 setFieldToSortBy={setFieldToSortBy}

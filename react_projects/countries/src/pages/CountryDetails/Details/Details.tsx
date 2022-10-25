@@ -1,16 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { Suspense, useEffect, useMemo, useState } from "react"
 import CountryFeature from "../../../components/CountryCard/CountryFeature"
 import styles from "../CountryDetails.module.scss"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import ICookedDetails from "../CookCountries/ICookedCountries"
 import camelCaseToNormal from "../../../helpers/functions/camelCaseToNormal"
-import BorderCountry from "./BorderCountry"
+// import BorderCountry from "./BorderCountry"
+const BorderCountry = React.lazy(() => import("./BorderCountry"))
 import constructCountryDetailsUrl from "../../../helpers/functions/constructCountryDetailsUrl"
 import getNthWord from "../../../helpers/functions/getNthWord"
 import axios from "axios"
 import ICountryDetails from "../ICountryDetails"
 import cookCountryDetails from "../CookCountries/cookCountryDetails"
 import Loading from "../../../components/UI/Loading/Loading"
+import LoadingBorder from "./LoadingBorder"
 
 const Details = ({ params }) => {
     const { name } = params
@@ -50,7 +52,7 @@ const Details = ({ params }) => {
         <div
             className={`d-flex flex-column flex-sm-row align-items-center ${styles["details"]}`}>
             <div className={styles["details__header"]}>
-                <LazyLoadImage
+                <img
                     src={cookedCountryDetails?.flag}
                     alt="Country flag"
                     className={`shadow-lg ${styles["details__header__img"]}`}
@@ -64,7 +66,12 @@ const Details = ({ params }) => {
                 <article className={`${styles["details__body__content"]}`}>
                     {Object.keys(cookedCountryDetails)
                         .filter((i) => !i.match(/(flag)|(name)|(borders)/i))
-                        .sort()
+                        .sort((a, b) => {
+                            return (
+                                cookedCountryDetails[b]?.length + b.length <
+                                cookedCountryDetails[a]?.length + a.length
+                            )
+                        })
                         .map((prop: string) => (
                             <CountryFeature
                                 key={prop}
@@ -80,10 +87,12 @@ const Details = ({ params }) => {
                         Border Countries:&nbsp;
                     </span>
                     {cookedCountryDetails.borders?.map((border) => (
-                        <BorderCountry
-                            key={border}
-                            countryCode={border}
-                        />
+                        <Suspense fallback={<LoadingBorder />}>
+                            <BorderCountry
+                                key={border}
+                                countryCode={border}
+                            />
+                        </Suspense>
                     )) || "None"}
                 </footer>
             </div>

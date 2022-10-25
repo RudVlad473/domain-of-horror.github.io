@@ -18,7 +18,7 @@ const BorderCountry = ({ countryCode }: { countryCode: string }) => {
 
         const { data } = await axios.get<Object>(nameUrl)
 
-        setCountryName( data["name"])
+        setCountryName(data["name"])
     }
 
     useEffect(() => {
@@ -36,6 +36,17 @@ const BorderCountry = ({ countryCode }: { countryCode: string }) => {
             {countryName}
         </span>
     )
+    // return (
+    //     <span
+    //         className={`shadow-sm ${styles["details__footer__item"]} ${
+    //             isLoading ? styles["gradient"] : ""
+    //         }`}
+    //         onClick={() => {
+    //             navigate(`/${strToUrl(countryName.toLowerCase())}`)
+    //         }}>
+    //         {countryName}
+    //     </span>
+    // )
 }
 
 export default BorderCountry

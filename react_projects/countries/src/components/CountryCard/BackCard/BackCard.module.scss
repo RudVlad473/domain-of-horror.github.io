@@ -1,0 +1,32 @@
+@use "/src/stylesheets/base/fonts";
+
+.back-card {
+    position: absolute;
+    top: 0;
+    bottom: 85%;
+    right: 0;
+    left: 0;
+
+    border: 1px groove gray;
+
+    text-align: center;
+
+    
+
+
+    font-weight: map-get(fonts.$fw, "bold");
+    font-size: map-get(fonts.$fs, "fs-2");
+
+    padding: 1.25vw 1.25vw 0 0;
+
+    transition: translate 0.15s ease-out;
+
+
+    &__text {
+    }
+
+    &--active {
+        translate: 0px -100%;
+        
+    }
+}
