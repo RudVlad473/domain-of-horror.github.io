@@ -1,7 +1,7 @@
 import React, { memo } from "react"
 import { Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import MoonSvg from "./UI/MoonSvg/MoonSvg"
+//import MoonSvg from "./UI/MoonSvg/MoonSvg"
 
 const Header = memo(() => {
     return (
@@ -15,11 +15,11 @@ const Header = memo(() => {
                 >
                 Where in the world?
             </Link>
-            <span className="d-flex align-items-center gap-2">
+            {/* <span className="d-flex align-items-center gap-2">
                 <MoonSvg />
 
                 <span className="h5 me-1 me-md-5 m-0">Dark&nbsp;Mode</span>
-            </span>
+            </span> */}
         </Container>
     )
 })

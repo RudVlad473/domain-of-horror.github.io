@@ -1,13 +1,19 @@
 import React, { memo } from "react"
+import { useNavigate } from "react-router-dom"
 import styles from "./RectButton.module.scss"
 
-
 const RectButton = memo((props) => {
+    const navigate = useNavigate()
+
     return (
         <button
             className={`shadow-sm px-2 py-1 d-flex justify-content-center 
             align-items-center border-0 ${styles["rect-button"]}
-            gap-2 fs-5`}>
+            gap-2 fs-5`}
+            {...props}
+            onClick={() => {
+                navigate("/")
+            }}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 330.002 330.002"

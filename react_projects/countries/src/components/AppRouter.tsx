@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router"
 // import CountryDetails from "../pages/CountryDetails/CountryDetails"
 // import HeroPage from "../pages/HeroPage"
 import { routes } from "../router"
-// import NotFound from "../pages/NotFound/NotFound"
+
 
 const AppRouter = () => {
     return (

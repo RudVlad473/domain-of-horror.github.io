@@ -8,6 +8,8 @@ import strToUrl from "../../helpers/functions/strToUrl"
 // import BackCard from "./BackCard/BackCard"
 import { useNavigate } from "react-router"
 
+import { redirect } from "react-router-dom"
+
 const CountryCard: FC<ICountryCard> = memo(
     ({
         name: country,
@@ -42,19 +44,9 @@ const CountryCard: FC<ICountryCard> = memo(
                         width: 251.51,
                     }}
                     className={styles["img"]}
-                    onClick={() =>
+                    onClick={() => {
                         navigate(`/${strToUrl(country.toLowerCase())}`)
-                    }
-                    // onMouseEnter={() => {
-                    //     if (!isBackCardActive) {
-                    //         setIsBackCardActive(true)
-                    //     }
-                    // }}
-                    // onMouseLeave={() => {
-                    //     if (isBackCardActive) {
-                    //         setIsBackCardActive(false)
-                    //     }
-                    // }}
+                    }}
                 />
                 <Card.Body className={`pb-4`}>
                     <Card.Title className={`pt-2 ${styles.header}`}>
