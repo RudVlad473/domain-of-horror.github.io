@@ -1,16 +1,18 @@
 import React, { FC, memo, useEffect, useRef, useState } from "react"
-import ICountryCard from "./ICountryCard"
+import ICountryCard, {
+    CountryCardProps as CountryCardProps,
+} from "./ICountryCard"
 import { Card } from "react-bootstrap"
 import styles from "./CountryCard.module.scss"
-import CountryFeature from "./CountryFeature"
+import CountryFeature from "./CountryFeature/CountryFeature"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import strToUrl from "../../helpers/functions/strToUrl"
 // import BackCard from "./BackCard/BackCard"
 import { useNavigate } from "react-router"
 
-import { redirect } from "react-router-dom"
+//import { redirect } from "react-router-dom"
 
-const CountryCard: FC<ICountryCard> = memo(
+const CountryCard: FC<CountryCardProps> = memo(
     ({
         name: country,
         population,
@@ -21,11 +23,10 @@ const CountryCard: FC<ICountryCard> = memo(
         ...props
     }) => {
         const cardRef = useRef(null)
-
         // const [isBackCardActive, setIsBackCardActive] = useState(false)
 
         useEffect(() => {
-            cardObserver.observe(cardRef.current)
+            cardObserver.observe(cardRef.current!)
         }, [])
 
         const navigate = useNavigate()

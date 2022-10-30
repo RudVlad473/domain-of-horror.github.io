@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect, useMemo, useState } from "react"
-import CountryFeature from "../../../components/CountryCard/CountryFeature"
+import React, { FC, Suspense, useEffect, useMemo, useState } from "react"
+import CountryFeature from "../../../components/CountryCard/CountryFeature/CountryFeature"
 import styles from "../CountryDetails.module.scss"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import ICookedDetails from "../CookCountries/ICookedCountries"
@@ -9,12 +9,13 @@ const BorderCountry = React.lazy(() => import("./BorderCountry"))
 import constructCountryDetailsUrl from "../../../helpers/functions/constructCountryDetailsUrl"
 import getNthWord from "../../../helpers/functions/getNthWord"
 import axios from "axios"
-import ICountryDetails from "../ICountryDetails"
+import ICountryDetails, { ICountryParams } from "../ICountryDetails"
 import cookCountryDetails from "../CookCountries/cookCountryDetails"
 import Loading from "../../../components/UI/Loading/Loading"
 import LoadingBorder from "./LoadingBorder"
+import { Params } from "react-router"
 
-const Details = ({ params }) => {
+const Details: FC = ({ params }) => {
     const { name } = params
 
     const [cookedCountryDetails, setCookedCountryDetails] =
@@ -43,7 +44,7 @@ const Details = ({ params }) => {
         //TODO: Реализовать случай, когда приходит несколько стран
 
         currentDetails = details[0]
-        setCookedCountryDetails(cookCountryDetails(currentDetails))
+        setCookedCountryDetails(cookCountryDetails(currentDetails!))
     }
 
     return isLoading ? (
@@ -64,7 +65,7 @@ const Details = ({ params }) => {
                     {cookedCountryDetails?.name}
                 </header>
                 <article className={`${styles["details__body__content"]}`}>
-                    {Object.keys(cookedCountryDetails)
+                    {Object.keys(cookedCountryDetails as Object)
                         .filter((i) => !i.match(/(flag)|(name)|(borders)/i))
                         .sort((a, b) => {
                             return (

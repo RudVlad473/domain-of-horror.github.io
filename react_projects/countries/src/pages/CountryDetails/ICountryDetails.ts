@@ -12,15 +12,19 @@ interface ICountryDetails {
     flag: string
 }
 
-interface ICurrency {
+export interface ICurrency {
     code: string
     name: string
     symbol: string
 }
 
-interface ILanguage {
+export interface ILanguage {
     name: string
     nativeName: string
+}
+
+export type ICountryParams {
+    name: string
 }
 
 

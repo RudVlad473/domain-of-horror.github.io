@@ -1,5 +1,4 @@
 import React, { memo } from "react"
-import { Form } from "react-bootstrap"
 import Select from "./UI/Select/Select"
 
 const RegionsSelect = memo(

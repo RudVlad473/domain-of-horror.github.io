@@ -1,8 +1,9 @@
-import React, { memo } from "react"
+import React, { FC, memo } from "react"
 import { useNavigate } from "react-router-dom"
+import IRectButton from "./IRectButton"
 import styles from "./RectButton.module.scss"
 
-const RectButton = memo((props) => {
+const RectButton: FC<IRectButton> = memo((props) => {
     const navigate = useNavigate()
 
     return (

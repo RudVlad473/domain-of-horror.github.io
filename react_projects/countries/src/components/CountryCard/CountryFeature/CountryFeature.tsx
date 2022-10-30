@@ -1,8 +1,9 @@
 import React, { FC } from "react"
-import styles from "./CountryCard.module.scss"
-import capitalizeFirstLetter from "../../helpers/functions/capitalizeFirstLetter"
+import styles from "../CountryCard.module.scss"
+import capitalizeFirstLetter from "../../../helpers/functions/capitalizeFirstLetter"
+import ICountryFeature from "./ICountryFeature"
 
-const CountryFeature = ({ feature, ...props }: { feature: string }) => {
+const CountryFeature: FC<ICountryFeature> = ({ feature, ...props }) => {
     return (
         <span style={{ display: "block" }}>
             <span className={styles.attribute}>

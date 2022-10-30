@@ -5,17 +5,18 @@ const CountriesGrid = React.lazy(
 )
 // import CountriesGrid from "./components/CountriesGrid/CountriesGrid"
 // import Filters from "./components/Filters"
-const Filters = React.lazy(() => import("../../components/Filters"))
+const Filters = React.lazy(() => import("../../components/Filter/Filters"))
 import axios from "axios"
 import ICountryCard from "../../components/CountryCard/ICountryCard"
 import { allCountriesUrl } from "../../helpers/constants/links"
 import { CountriesContext } from "../../context"
 import Header from "../../components/Header"
+import IFilter from "../../components/Filter/IFilter"
 
 const Countries = () => {
     const [countries, setCountries] = useState<ICountryCard[]>([])
 
-    const [filter, setFilter] = useState({
+    const [filter, setFilter] = useState<IFilter>({
         searchQuery: "",
         fieldName: "",
     })
@@ -38,14 +39,12 @@ const Countries = () => {
             <CountriesContext.Provider value={{ countries, setCountries }}>
                 <Suspense>
                     <Filters
-                        countries={countries}
                         setFilter={setFilter}
                         setFieldToSortBy={setFieldToSortBy}
                     />
                 </Suspense>
                 <Suspense>
                     <CountriesGrid
-                        countries={countries}
                         filter={filter}
                         fieldToSortBy={fieldToSortBy}
                     />

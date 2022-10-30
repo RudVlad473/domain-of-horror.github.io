@@ -3,6 +3,7 @@ import { useParams } from "react-router"
 import Header from "../../components/Header"
 import Loading from "../../components/UI/Loading/Loading"
 import RectButton from "../../components/UI/RectButton/RectButton"
+import { ICountryParams } from "./ICountryDetails"
 
 const Details = React.lazy(() => import("./Details/Details"))
 
