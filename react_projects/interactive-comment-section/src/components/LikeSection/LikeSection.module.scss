@@ -1,0 +1,40 @@
+@use "../../stylesheets/abstracts" as *;
+
+.like-section {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 2.5rem;
+
+    background-color: $gray-100;
+
+    border-radius: $br;
+
+    max-height: 100px;
+
+    &__score {
+        font-weight: $bolder;
+
+        &--featured {
+
+            color: black;
+        }
+    }
+
+    & > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        //padding: map-get($gutters, "g-1") * 0.25 map-get($gutters, "g-1") * 0.5;
+
+        width: 100%;
+        height: 100%;
+
+        overflow: hidden;
+
+        &:first-of-type,
+        &:last-of-type {
+            cursor: pointer;
+        }
+    }
+}

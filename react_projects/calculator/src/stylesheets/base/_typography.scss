@@ -1,8 +1,0 @@
-/**
- * Basic typography style for copy text
- */
-body {
-    color: map-get($w-keys, "yellow-500");
-    font-family: $main-font-family;
-    font: clamp(1.25rem, 2vw, 2rem);
-}

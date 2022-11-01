@@ -1,0 +1,27 @@
+.main-btn {
+    color: map-get($secondary-colors, "very-light-gray");
+    font-size: map-get($font-sizes, "links");
+    white-space: nowrap;
+
+    padding-inline: 1.5rem;
+    padding-block: 0.5rem;
+
+    max-width: fit-content;
+
+    cursor: pointer;
+
+    border: 0;
+    border-radius: 50rem;
+    background: map-get($primary-colors, "gradient");
+}
+
+.toggle-button {
+    display: none;
+
+    height: 20px;
+    width:  2em;
+
+    border: 0;
+    
+    background-color: transparent;
+}

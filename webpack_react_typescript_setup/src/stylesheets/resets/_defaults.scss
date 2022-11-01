@@ -1,0 +1,11 @@
+@use "../abstracts/" as *;
+
+html {
+    font-family: $mainFontSize;
+}
+
+body {
+    color: $blue-200;
+    background-color: $gray-200;
+    font-weight: $normal;
+}

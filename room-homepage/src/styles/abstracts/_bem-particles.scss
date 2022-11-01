@@ -1,0 +1,100 @@
+[class*="__logo"] {
+    display: flex;
+    align-items: center;
+}
+
+[class*="__content"] {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    align-items: flex-start;
+}
+
+[class*="__header"] {
+    font-weight: map-get($font-weights, "light");
+
+    &.header--sm {
+        font-size: map-get($font-sizes, "header-3");
+    }
+
+    &.header--md {
+        font-size: map-get($font-sizes, "header-2");
+    }
+
+    &.header--lg {
+        font-size: map-get($font-sizes, "header-1");
+    }
+
+    &.header--xlg {
+        font-size: map-get($font-sizes, "header-0");
+    }
+}
+
+[class*="__article"] {
+    font-weight: map-get($font-weights, "normal");
+    color: map-get($secondary-colors, "grayish-blue");
+
+    &.article--sm {
+        font-size: map-get($font-sizes, "links");
+    }
+
+    &.article--md {
+        font-size: map-get($font-sizes, "article");
+    }
+
+    &.article--lg {
+        font-size: map-get($font-sizes, "header-3");
+    }
+}
+
+.cards-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($card-width-desk, 1fr));
+    grid-auto-columns: 1fr;
+    gap: map-get($gutters, "g-sm");
+    justify-items: center;
+
+    .card {
+        &--feature {
+            img {
+                max-width: 6rem;
+            }
+
+            img, 
+            [class*="__header"] {
+                padding-block-end: map-get($gutters, "g-1");
+            }
+        }
+
+        &--article {
+            background-color: map-get($secondary-colors, "white");
+            border-radius: 0 0 5px 5px;
+
+            img {
+                border-radius: 5px 5px 0 0;
+                object-fit: cover;
+
+                display: block;
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            & > [class*="__body"] {
+                display: flex;
+                flex-direction: column;
+                gap: map-get($gutters, "g-sm");
+
+                padding: map-get($gutters, "g-2");
+            }
+
+            [class*="__author"] {
+                font-size: map-get($font-sizes, "links");
+            }
+
+            [class*="__header"] {
+                color: map-get($primary-colors, "primary-dark");
+                font-size: map-get($font-sizes, "article");
+            }
+        }
+    }
+}

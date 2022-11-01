@@ -1,0 +1,6 @@
+@use "../../stylesheets/abstracts/gutters/" as g;
+
+.actions {
+    column-gap: map-get(g.$gutters, "g-3");
+
+}
