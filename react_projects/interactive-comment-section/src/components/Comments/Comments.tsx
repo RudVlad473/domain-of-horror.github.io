@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useEffect, useState } from "react"
 import Comment, { CommentProps } from "../Comment/Comment"
 import NoComments from "../NoComments/NoComments"
 import Replies from "../Replies/Replies"

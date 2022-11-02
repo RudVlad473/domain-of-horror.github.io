@@ -1,22 +1,30 @@
-import React, { FC } from "react"
+import React, { FC, useEffect, useState } from "react"
 import Comment, { CommentProps } from "../Comment/Comment"
 
 interface RepliesProps {
-    replies?: CommentProps[] | undefined
+    replies?: Promise<CommentProps[] | undefined>
 }
 
 const Replies: FC<RepliesProps> = ({ replies }) => {
-    
+    const [awaitedReplies, setAwaitedReplies] = useState<
+        CommentProps[] | undefined
+    >([])
+
+    useEffect(() => {
+        replies?.then((data) => setAwaitedReplies(data))
+    }, [])
 
     return (
         <>
-            {replies &&
-                (replies.length > 0 ? replies : undefined)?.map((reply) => (
-                    <Comment
-                        key={reply.id}
-                        {...reply}
-                    />
-                ))}
+            {awaitedReplies &&
+                (awaitedReplies.length > 0 ? awaitedReplies : undefined)?.map(
+                    (reply) => (
+                        <Comment
+                            key={reply.id}
+                            {...reply}
+                        />
+                    )
+                )}
         </>
     )
 }
