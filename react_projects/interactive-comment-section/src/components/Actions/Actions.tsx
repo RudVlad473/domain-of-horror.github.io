@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react"
-import { UserContext } from "../../context/context"
+import { UserContext } from "../../context/UserContext"
 import {
     UserActions as userActions,
     AuthorActions as authorActions,

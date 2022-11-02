@@ -6,6 +6,7 @@ import extractComments from "../../helpers/functions/extractComments"
 import Comments from "../Comments/Comments"
 
 import commentsData from "../../data/comments.json"
+import { CommentsContext } from "../../context/CommentsContext"
 
 interface CommentSectionProps {}
 
@@ -40,18 +41,26 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         setComments((comments) => data)
     }
 
+    function appendComments(comments: CommentProps[]): void {
+        setComments((currentComments) => [...currentComments!, ...comments])
+    }
+
+    function removeComment(id: number): void {}
+
     useEffect(() => {
         fetchCommentsFromLocalJSON()
     }, [])
 
     return (
         <section
+            aria-label="comments"
             className={styles["comments-section"]}
             style={{ marginBlock: "2rem" }}>
-            {/* <LoadingComments /> */}
-
-            <Comments comments={comments} />
-            <PostForm />
+            <CommentsContext.Provider
+                value={{ appendComments, removeComment, lastCommentId: 0 }}>
+                <Comments comments={comments} />
+                <PostForm />
+            </CommentsContext.Provider>
         </section>
     )
 }

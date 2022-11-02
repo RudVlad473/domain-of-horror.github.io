@@ -1,15 +1,16 @@
 import React, { FC } from "react"
-import styles from "./CommentArea.module.scss"
+import styles from "./CommentInput.module.scss"
 
-interface CommentAreaProps {
+interface CommentInputProps {
     formId?: string
     name?: string
     children?: React.ReactNode
 }
 
-const CommentArea: FC<CommentAreaProps> = ({ formId, name }) => {
+const CommentInput: FC<CommentInputProps> = ({ formId, name }, ref) => {
     return (
         <textarea
+            ref={ref}
             className={styles["comment-area"]}
             placeholder={"Add a comment..."}
             form={formId}
@@ -17,4 +18,6 @@ const CommentArea: FC<CommentAreaProps> = ({ formId, name }) => {
     )
 }
 
-export default CommentArea
+const ForwardedCommentInput = React.forwardRef(CommentInput)
+
+export default ForwardedCommentInput

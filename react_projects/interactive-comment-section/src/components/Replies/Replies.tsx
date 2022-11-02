@@ -1,10 +1,9 @@
 import React, { FC, useEffect, useState } from "react"
 import Comment, { CommentProps } from "../Comment/Comment"
-import Reply from "../Reply/Reply"
 import styles from "./Replies.module.scss"
 
 interface RepliesProps {
-    replies?: Promise<CommentProps[] | undefined>
+    replies?: Promise<CommentProps[] | undefined> | undefined
 }
 
 const Replies: FC<RepliesProps> = ({ replies }) => {

@@ -1,5 +1,5 @@
-import { UserInfo } from "./../features/User/currentUserSlice";
 import { createContext } from "react"
+import { UserInfo } from "../App"
 
 // Create a context
 export const UserContext = createContext<UserInfo>({

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC } from "react"
 import Comment, { CommentProps } from "../Comment/Comment"
 import NoComments from "../NoComments/NoComments"
 import Replies from "../Replies/Replies"
@@ -8,11 +8,6 @@ interface CommentsProps {
 }
 
 const Comments: FC<CommentsProps> = ({ comments }) => {
-    // console.log(
-    //     "replies within comments",
-    //     ...comments.map((comment) => comment.replies)
-    // )
-
     return (
         <>
             {comments?.map((comment) => (

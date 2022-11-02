@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CommentsSection from "./components/CommentsSection/CommentsSection"
-import { UserContext } from "./context/context"
+import { UserContext } from "./context/UserContext"
 import commentsData from "./data/comments.json"
 import extractCurrentUser from "./helpers/functions/extractCurrentUser"
 

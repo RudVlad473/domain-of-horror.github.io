@@ -4,7 +4,7 @@
 .post-form {
     display: grid;
     grid-template-columns: 1fr 8fr 2fr;
-    column-gap: map-get($gutters, "g-3");
+    column-gap: map-get($gutters, "g-4");
 
     justify-content: center;
     align-items: flex-start;

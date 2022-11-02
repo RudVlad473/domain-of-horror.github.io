@@ -4,7 +4,7 @@ import UserDetails from "../UserDetails/UserDetails"
 import styles from "./Header.module.scss"
 import { UserDetailsProps } from "../UserDetails/UserDetails"
 import { UserInfo } from "../../App"
-import { UserContext } from "../../context/context"
+import { UserContext } from "../../context/UserContext"
 
 export interface HeaderProps {
     userDetails: UserDetailsProps
