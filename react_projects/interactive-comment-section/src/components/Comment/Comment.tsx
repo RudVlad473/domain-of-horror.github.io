@@ -1,27 +1,22 @@
 import React, { FC } from "react"
 import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
-import LikeSection from "../LikeSection/LikeSection"
+import LikeSection, { LikeSectionProps } from "../LikeSection/LikeSection"
 
 import styles from "./Comment.module.scss"
 
 export interface CommentProps {
     id: string
-    likesCount: number
+    likesCount: LikeSectionProps
     commentBodyInfo: CommentBodyProps
-    levelOfIndent?: number
+    replies?: Promise<CommentProps[]>
 }
 
-const Comment: FC<CommentProps> = ({
-    id,
-    likesCount,
-    commentBodyInfo,
-    levelOfIndent,
-}) => {
+const Comment: FC<CommentProps> = ({ id, likesCount, commentBodyInfo }) => {
     return (
         <div
             id={id}
             className={styles["comment"]}>
-            <LikeSection {...{ likesCount }} />
+            <LikeSection {...likesCount} />
             <CommentBody {...commentBodyInfo} />
         </div>
     )

@@ -4,17 +4,26 @@ import DislikeComment from "../DislikeComment/DislikeComment"
 import LikeComment from "../LikeComment/LikeComments"
 import styles from "./LikeSection.module.scss"
 
-const LikeSection: FC<number> = ({ likesCount }) => {
-    const [likesScore, setLikesScore] = useState<number>(likesCount)
+export interface LikeSectionProps {
+    likesCount: number
+}
+
+const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
+    const [score, setScore] = useState<LikeSectionProps>({
+        likesCount,
+    })
     const maxLikesScore = 2
 
     const likeComment = useCallback(
-        () => setLikesScore((likesScore) => likesScore + 1),
+        () =>
+            setScore((score) => ({
+                likesCount: score.likesCount + 1,
+            })),
         []
     )
 
     const dislikeComment = useCallback(
-        () => setLikesScore((likesScore) => likesScore - 1),
+        () => setScore((score) => ({ likesCount: score.likesCount - 1 })),
         []
     )
 
@@ -23,9 +32,9 @@ const LikeSection: FC<number> = ({ likesCount }) => {
             <LikeComment likeComment={likeComment} />
 
             <div className={styles["like-section__score"]}>
-                {likesScore.toString().length > maxLikesScore
+                {score.likesCount.toString().length > maxLikesScore
                     ? "99+"
-                    : likesScore}
+                    : score.likesCount}
             </div>
 
             <DislikeComment dislikeComment={dislikeComment} />

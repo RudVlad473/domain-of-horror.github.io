@@ -1,19 +1,42 @@
 import React, { FC, useEffect, useState } from "react"
-import Comment, { CommentProps } from "../Comment/Comment"
+import { CommentProps } from "../Comment/Comment"
 import PostForm from "../PostForm/PostForm"
 import styles from "./CommentsSection.module.scss"
-import commentsData from "../../data/comments.json"
 import extractComments from "../../helpers/functions/extractComments"
-import LoadingComments from "../UI/LoadingComments/LoadingComments"
+import Comments from "../Comments/Comments"
+
+import commentsData from "../../data/comments.json"
 
 interface CommentSectionProps {}
 
+export interface FetchedImage {
+    png: string
+    webp: string
+}
+
+export interface FetchedUser {
+    image: FetchedImage
+    username: string
+}
+export interface FetchedComment {
+    id: number
+    content: string
+    createdAt: string
+    score: number
+    user: FetchedUser
+    replies?: FetchedComment[]
+}
+
+export interface FetchedData {
+    currentUser: FetchedUser
+    comments: FetchedComment[]
+}
+
 const CommentsSection: FC<CommentSectionProps> = () => {
-    const [comments, setComments] = useState<CommentProps[]>([])
+    const [comments, setComments] = useState<CommentProps[] | undefined>([])
 
     async function fetchCommentsFromLocalJSON() {
-        const data = await extractComments(commentsData)
-        console.log(data)
+        const data = await extractComments(commentsData.comments)
         setComments((comments) => data)
     }
 
@@ -24,14 +47,8 @@ const CommentsSection: FC<CommentSectionProps> = () => {
     return (
         <section className={styles["comments-section"]}>
             {/* <LoadingComments /> */}
-            {comments?.map((comment) => (
-                <Comment
-                    id={comment.id}
-                    key={comment.id}
-                    likesCount={comment.likesCount}
-                    commentBodyInfo={comment.commentBodyInfo}
-                />
-            ))}
+
+            <Comments comments={comments} />
             <PostForm />
         </section>
     )

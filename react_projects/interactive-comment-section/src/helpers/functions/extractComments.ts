@@ -1,15 +1,21 @@
+import { FetchedComment } from "./../../components/CommentsSection/CommentsSection"
 import { CommentProps } from "../../components/Comment/Comment"
-import extractCurrentUser from "./extractCurrentUser"
 import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
 
-async function extractComments(commentsData: any): Promise<CommentProps[]> {
-    const currentUser = await extractCurrentUser(commentsData)
+async function extractComments(
+    comments: FetchedComment[]
+): Promise<CommentProps[] | undefined> {
+    if (Object.keys(comments).length === 0) {
+        return undefined
+    }
 
-    const comments: CommentProps[] = commentsData["comments"].map(
-        (comment) =>
+    //const currentUser = await extractCurrentUser(commentsData)
+
+    const extractedComments: CommentProps[] = comments.map(
+        (comment: FetchedComment) =>
             ({
-                id: comment["id"],
-                likesCount: comment["score"],
+                id: `${comment["id"]}`,
+                likesCount: { likesCount: comment["score"] },
                 commentBodyInfo: {
                     headerInfo: {
                         userDetails: {
@@ -21,16 +27,16 @@ async function extractComments(commentsData: any): Promise<CommentProps[]> {
                             },
                             when: comment["createdAt"],
                         },
-                        isCurrentUser:
-                            currentUser.userName == comment["user"]["username"],
                     },
                     article: { article: comment["content"] },
                 },
-                levelOfIndent: comment["replyingTo"] ? 1 : 0,
+                replies: comment.replies
+                    ? extractComments(comment.replies)
+                    : undefined,
             } as CommentProps)
     )
 
-    return comments
+    return extractedComments
 }
 
 export default extractComments
