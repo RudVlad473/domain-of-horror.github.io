@@ -1,0 +1,18 @@
+@use "../CommentsSection/CommentsSection.module.scss" as *;
+@use "../../stylesheets/abstracts/colors/" as c;
+
+.replies-section {
+    display: flex;
+    
+    .replies {
+        @extend .comments-section;
+    }
+
+    &__left-separator {
+        border: 1px solid c.$gray-200;
+
+        margin-inline: calc(2.5vw + 0.5vh);
+    }
+
+    //margin-left: 10%;
+}

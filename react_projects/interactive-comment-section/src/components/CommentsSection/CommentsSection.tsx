@@ -45,7 +45,9 @@ const CommentsSection: FC<CommentSectionProps> = () => {
     }, [])
 
     return (
-        <section className={styles["comments-section"]}>
+        <section
+            className={styles["comments-section"]}
+            style={{ marginBlock: "2rem" }}>
             {/* <LoadingComments /> */}
 
             <Comments comments={comments} />

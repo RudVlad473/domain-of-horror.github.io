@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react"
 import Comment, { CommentProps } from "../Comment/Comment"
+import Reply from "../Reply/Reply"
+import styles from "./Replies.module.scss"
 
 interface RepliesProps {
     replies?: Promise<CommentProps[] | undefined>
@@ -16,15 +18,25 @@ const Replies: FC<RepliesProps> = ({ replies }) => {
 
     return (
         <>
-            {awaitedReplies &&
-                (awaitedReplies.length > 0 ? awaitedReplies : undefined)?.map(
-                    (reply) => (
-                        <Comment
-                            key={reply.id}
-                            {...reply}
-                        />
-                    )
-                )}
+            {awaitedReplies && (
+                <section
+                    className={styles["replies-section"]}
+                    aria-label="replies">
+                    <div
+                        className={
+                            styles["replies-section__left-separator"]
+                        }></div>
+
+                    <div className={styles["replies"]}>
+                        {awaitedReplies?.map((reply) => (
+                            <Comment
+                                key={reply.id}
+                                {...reply}
+                            />
+                        ))}
+                    </div>
+                </section>
+            )}
         </>
     )
 }
