@@ -1,0 +1,149 @@
+@import './variables', './resets';
+
+body {
+    background-color: #1c2230;
+    color: white !important;
+}
+
+ul {
+    list-style-type: none;
+    font-size: $secondary-font-size;
+}
+
+form {
+    position: relative;
+    margin: 0 auto;
+    width: clamp(50%, 70%, 90%);
+    bottom: 17vh;
+    background-color: #272d3b;
+}
+
+input {
+    border: 0;
+    font-size: $secondary-font-size + 0.1em;
+}
+
+article {
+    font-size: $article-font-size;
+}
+
+header {
+    font-size: $secondary-font-size;
+    font-weight: bold;
+}
+
+#comments {
+    margin-bottom: 10%;
+}
+
+main>p {
+    font-size: $secondary-font-size;
+}
+
+input, button {
+    font-size: 12px !important;
+}
+
+button {
+    background: #43b2d0;
+    color: white;
+    border: 0;
+    
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    user-select: none;
+}
+
+.nav-list {
+    li {
+        display: inline;
+    }
+}
+
+#footer {
+    margin-top: 20vh;
+}
+
+#animated-link {
+    border-bottom: 1px solid transparent;
+    transition: all .5s linear;
+    
+
+    &:hover {
+        color: skyblue;
+        border-bottom: 1px solid skyblue;
+    }
+}
+
+#introduction {
+    width: clamp(50%, 75%, 100%);
+}
+
+#illustration {
+    width: clamp(50%, 75%, 100%);
+}
+
+.suit-button {
+    font-weight: bold;
+    font-size: $secondary-font-size !important;
+    transition: all .4s ease-in-out;
+
+    &:hover {
+        transform: scale(1.025);
+        background: deepskyblue;
+        color: aliceblue;
+    }
+}
+
+.card-header {
+    font-size: $secondary-font-size - 0.25em;
+    letter-spacing: 0.05rem;
+    font-weight: 500;
+}
+
+.card-footer {
+    font-size: $article-font-size - 0.1em;
+    letter-spacing: 0.03rem;
+}
+
+.card-gray {
+    background-color: #21293c;
+
+    article {
+        font-size: $article-font-size - 0.1;
+    }
+}
+
+
+//hide scrollbar
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#features img {
+    height: $feature-icons-size  !important;
+    max-height: $feature-icons-size;
+}
+
+#footer-wrapper {
+    
+    background-color: #101424;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+// ::-webkit-scrollbar-thumb {
+//     background: #FF0000;
+// }
+
+/*# sourceMappingURL=main.css.map */

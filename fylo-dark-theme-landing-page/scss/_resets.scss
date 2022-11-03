@@ -1,0 +1,12 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: $main-font-family;
+    // color: $main-text-color;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}

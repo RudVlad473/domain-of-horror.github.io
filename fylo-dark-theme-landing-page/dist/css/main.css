@@ -1,0 +1,148 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Work Sans";
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #1c2230;
+  color: white !important;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 1em;
+}
+
+form {
+  position: relative;
+  margin: 0 auto;
+  width: 70%;
+  bottom: 17vh;
+  background-color: #272d3b;
+}
+
+input {
+  border: 0;
+  font-size: 1.1em;
+}
+
+article {
+  font-size: 0.9em;
+}
+
+header {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+#comments {
+  margin-bottom: 10%;
+}
+
+main > p {
+  font-size: 1em;
+}
+
+input, button {
+  font-size: 12px !important;
+}
+
+button {
+  background: #43b2d0;
+  color: white;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.nav-list li {
+  display: inline;
+}
+
+#footer {
+  margin-top: 20vh;
+}
+
+#animated-link {
+  border-bottom: 1px solid transparent;
+  transition: all 0.5s linear;
+}
+#animated-link:hover {
+  color: skyblue;
+  border-bottom: 1px solid skyblue;
+}
+
+#introduction {
+  width: 75%;
+}
+
+#illustration {
+  width: 75%;
+}
+
+.suit-button {
+  font-weight: bold;
+  font-size: 1em !important;
+  transition: all 0.4s ease-in-out;
+}
+.suit-button:hover {
+  transform: scale(1.025);
+  background: deepskyblue;
+  color: aliceblue;
+}
+
+.card-header {
+  font-size: 0.75em;
+  letter-spacing: 0.05rem;
+  font-weight: 500;
+}
+
+.card-footer {
+  font-size: 0.8em;
+  letter-spacing: 0.03rem;
+}
+
+.card-gray {
+  background-color: #21293c;
+}
+.card-gray article {
+  font-size: 0.8em;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#features img {
+  height: 80px !important;
+  max-height: 80px;
+}
+
+#footer-wrapper {
+  background-color: #101424;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+/*# sourceMappingURL=main.css.map *//*# sourceMappingURL=main.css.map */
