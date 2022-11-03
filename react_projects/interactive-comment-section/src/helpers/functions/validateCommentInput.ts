@@ -7,7 +7,7 @@ export enum MessageStates {
 function validateCommentInput(text: string): MessageStates {
     if (!text) {
         return MessageStates.Empty
-    } else if (text.length < 3) {
+    } else if (text.length < 4) {
         return MessageStates.Short
     } else {
         return MessageStates.Normal

@@ -17,7 +17,7 @@ const Replies: FC<RepliesProps> = ({ replies }) => {
 
     return (
         <>
-            {awaitedReplies?.length > 0 && (
+            {awaitedReplies?.length! > 0 && (
                 <section
                     className={styles["replies-section"]}
                     aria-label="replies">
