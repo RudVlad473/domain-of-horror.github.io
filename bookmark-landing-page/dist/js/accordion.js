@@ -26,7 +26,6 @@ function hideOpenedBar() {
 
     openedBar.style.setProperty('gap', '0rem')
     article.style.setProperty('max-height', '0')
-    // article.style.setProperty('transform', 'scaleY(0)')
     arrow.style.setProperty('fill', '#5368df')
     arrow.style.setProperty('transform', 'rotate(0deg)')
 
