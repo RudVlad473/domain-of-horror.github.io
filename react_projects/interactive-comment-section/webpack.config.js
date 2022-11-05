@@ -4,6 +4,8 @@ const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+// const BundleAnalyzerPlugin =
+//     require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 module.exports = {
     mode: mode,
@@ -54,6 +56,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.html",
         }),
+        //new BundleAnalyzerPlugin(),
     ],
     devtool: "source-map",
     devServer: {

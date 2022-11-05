@@ -5,8 +5,6 @@ export interface ArticleProps {
 }
 
 const Article: FC<ArticleProps> = ({ article }) => {
-
-    
     return <article>{article}</article>
 }
 

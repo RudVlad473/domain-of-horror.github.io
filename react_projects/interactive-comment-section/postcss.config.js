@@ -11,7 +11,3 @@ module.exports = {
     ],
 }
 
-/*COMMENT ON PRODUCTION */
-// module.exports = {
-//     plugins: ["postcss-preset-env"],
-// }

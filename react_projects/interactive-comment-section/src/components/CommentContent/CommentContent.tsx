@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { ICommentContent } from "../Comment/Comment"
 import CommentBody from "../CommentBody/CommentBody"
-import LikeSection from "../LikeSection/LikeSection"
+const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 import styles from "../Comment/Comment.module.scss"
 
 const CommentContent: FC<ICommentContent> = ({

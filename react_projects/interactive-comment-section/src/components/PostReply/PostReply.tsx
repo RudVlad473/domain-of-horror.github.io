@@ -4,10 +4,15 @@ import { CommentsContext } from "../../context/CommentsContext"
 import { UserContext } from "../../context/UserContext"
 import getAvatarImagePathByUsername from "../../helpers/functions/getAvatarImagePathByUsername"
 import getNewComment from "../../helpers/functions/getNewComment"
-import validateCommentInput, { MessageStates } from "../../helpers/functions/validateCommentInput"
+import validateCommentInput, {
+    MessageStates,
+} from "../../helpers/functions/validateCommentInput"
 import { CommentProps } from "../Comment/Comment"
 import PostForm from "../PostForm/PostForm"
 import { ReplyProps } from "../Reply/Reply"
+import UserName from "../UserName/UserName"
+import colors from "../../stylesheets/abstracts/colors/_colors.module.scss"
+import weights from "../../stylesheets/abstracts/fonts/_weights.module.scss"
 
 export interface ReplyFormProps {
     replyingTo: string
@@ -35,7 +40,7 @@ const PostReply: FC<ReplyFormProps> = ({ replyingTo }) => {
                 alert(validatedInput)
                 return
             }
-        }        
+        }
 
         setLocalReplies((currentLocalReplies) => [
             ...(currentLocalReplies?.filter(
@@ -55,7 +60,20 @@ const PostReply: FC<ReplyFormProps> = ({ replyingTo }) => {
                             when: "today",
                         },
                     },
-                    article: { article: text },
+                    article: {
+                        article: (
+                            <>
+                                <UserName
+                                    userName={`@${replyingTo}, `}
+                                    styles={{
+                                        color: colors["lightBlue"],
+                                        fontWeight: weights["bold"],
+                                    }}
+                                />
+                                {text}
+                            </>
+                        ),
+                    },
                 },
             },
         ])
@@ -66,7 +84,6 @@ const PostReply: FC<ReplyFormProps> = ({ replyingTo }) => {
             formId={"replyForm"}
             avatarUrl={avatarUrl}
             textAreaRef={replyInputRef}
-            textAreaValue={`@${replyingTo}, `}
             buttonValue={"Reply"}
             action={addReply}
         />

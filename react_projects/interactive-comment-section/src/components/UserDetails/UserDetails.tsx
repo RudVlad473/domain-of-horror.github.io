@@ -1,6 +1,9 @@
 import React, { FC } from "react"
 import { UserInfo } from "../../App"
-import ContainedImage from "../ContainedImage/ContainedImage"
+const ContainedImage = React.lazy(
+    () => import("../ContainedImage/ContainedImage")
+)
+//import ContainedImage from "../ContainedImage/ContainedImage"
 import UserName from "../UserName/UserName"
 import styles from "./UserDetails.module.scss"
 
@@ -12,7 +15,10 @@ export interface UserDetailsProps {
 const UserDetails: FC<UserDetailsProps> = ({ userInfo, when }) => {
     return (
         <div className={styles["user-details"]}>
-            <ContainedImage src={userInfo.avatarUrl} />
+            <React.Suspense>
+                <ContainedImage src={userInfo.avatarUrl} />
+            </React.Suspense>
+
             <UserName userName={userInfo.userName} />
             <span
                 className={styles["user-details__when"]}
