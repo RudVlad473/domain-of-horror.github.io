@@ -1,23 +1,34 @@
-import React, { FC, useEffect, useState } from "react"
-import Comment, { CommentProps } from "../Comment/Comment"
+import React, { FC, useContext } from "react"
+import { CommentDetailsContext } from "../../context/CommentDetailsContext"
+import { UserContext } from "../../context/UserContext"
+import Comment, { CommentProps, ICommentContent } from "../Comment/Comment"
+import Reply, { ReplyProps } from "../Reply/Reply"
+import PostReply, { ReplyFormProps } from "../PostReply/PostReply"
 import styles from "./Replies.module.scss"
 
-interface RepliesProps {
-    replies?: Promise<CommentProps[] | undefined> | undefined
+export interface RepliesProps {
+    replies?: ReplyProps[] | undefined
 }
 
 const Replies: FC<RepliesProps> = ({ replies }) => {
-    const [awaitedReplies, setAwaitedReplies] = useState<
-        CommentProps[] | undefined
-    >([])
+    // const [awaitedReplies, setAwaitedReplies] = useState<
+    //     CommentProps[] | undefined
+    // >([])
 
-    useEffect(() => {
-        replies?.then((data) => setAwaitedReplies(data))
-    }, [])
+    const { userName } = useContext(CommentDetailsContext)
+
+    const { avatarUrl } = useContext(UserContext)
+
+    // useEffect(() => {
+    //     repliesPromise?.then((data) => {
+    //         setAwaitedReplies((_) => data)
+    //         setReplies((_) => data)
+    //     })
+    // }, [])
 
     return (
         <>
-            {awaitedReplies?.length! > 0 && (
+            {replies?.length! > 0 && (
                 <section
                     className={styles["replies-section"]}
                     aria-label="replies">
@@ -27,11 +38,20 @@ const Replies: FC<RepliesProps> = ({ replies }) => {
                         }></div>
 
                     <div className={styles["replies"]}>
-                        {awaitedReplies?.map((reply) => (
-                            <Comment
-                                key={reply.id}
-                                {...reply}
-                            />
+                        {replies?.map((reply) => (
+                            <>
+                                {reply.commentBodyInfo ? (
+                                    <Reply
+                                        key={reply.id}
+                                        {...reply}
+                                    />
+                                ) : (
+                                    <PostReply
+                                        key={reply.id}
+                                        replyingTo={reply.replyingTo}
+                                    />
+                                )}
+                            </>
                         ))}
                     </div>
                 </section>

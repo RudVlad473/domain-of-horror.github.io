@@ -1,12 +1,13 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useEffect, useMemo, useState } from "react"
 import { CommentProps } from "../Comment/Comment"
-import PostForm from "../PostForm/PostForm"
+
 import styles from "./CommentsSection.module.scss"
 import extractComments from "../../helpers/functions/extractComments"
 import Comments from "../Comments/Comments"
-
 import commentsData from "../../data/comments.json"
 import { CommentsContext } from "../../context/CommentsContext"
+import assignConsecutiveIds from "../../helpers/functions/assignConsecutiveIds"
+const PostComment = React.lazy(() => import("../PostComment/PostComment"))
 
 interface CommentSectionProps {}
 
@@ -25,7 +26,11 @@ export interface FetchedComment {
     createdAt: string
     score: number
     user: FetchedUser
-    replies?: FetchedComment[]
+    replies?: FetchedReply[]
+}
+
+export interface FetchedReply extends FetchedComment {
+    replyingTo: string
 }
 
 export interface FetchedData {
@@ -36,13 +41,50 @@ export interface FetchedData {
 const CommentsSection: FC<CommentSectionProps> = () => {
     const [comments, setComments] = useState<CommentProps[] | undefined>([])
 
+    const [lastId, setLastId] = useState<number>(0)
+
     async function fetchCommentsFromLocalJSON() {
         const data = await extractComments(commentsData.comments)
-        setComments((comments) => data)
+
+        let lastIdCount = lastId
+        await data?.forEach(async (comment) => {
+            lastIdCount++
+            comment.id = `${lastIdCount}`
+            ;(await comment.replies)?.forEach((reply) => {
+                lastIdCount++
+                reply.id = `${lastIdCount}`
+            })
+        })
+
+        setLastId((_) => lastIdCount)
+        setComments((_) => data)
     }
 
-    function appendComments(comments: CommentProps[]): void {
-        setComments((currentComments) => [...currentComments!, ...comments])
+    // function appendExistingComment(id: number, newComment: CommentProps): void {
+    //     const indexOfExistingComment = comments?.findIndex(
+    //         (comments) => +comments.id == id
+    //     )!
+
+    //     newComment.id = `${lastId + 1}`
+
+    //     setLastId((lastId) => lastId + 1)
+    //     setComments((currentComments) => {
+    //         const newComments = [...currentComments!]
+    //         newComments[indexOfExistingComment] = {
+    //             ...newComments[indexOfExistingComment],
+    //             ...newComment,
+    //         }
+
+    //         return [...newComments!]
+    //     })
+    // }
+
+    function appendComments(comments: CommentProps[]) {
+        setComments((currentComments) => [
+            ...(currentComments || []),
+            ...assignConsecutiveIds(lastId, comments),
+        ])
+        setLastId((lastId) => lastId + comments.length)
     }
 
     function removeComment(id: number): void {}
@@ -57,9 +99,15 @@ const CommentsSection: FC<CommentSectionProps> = () => {
             className={styles["comments-section"]}
             style={{ marginBlock: "2rem" }}>
             <CommentsContext.Provider
-                value={{ appendComments, removeComment, lastCommentId: 0 }}>
+                value={{
+                    appendComments,
+                    removeComment,
+                    lastId: lastId,
+                }}>
                 <Comments comments={comments} />
-                <PostForm />
+                <React.Suspense>
+                    <PostComment />
+                </React.Suspense>
             </CommentsContext.Provider>
         </section>
     )

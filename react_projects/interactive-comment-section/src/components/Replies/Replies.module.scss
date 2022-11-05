@@ -3,7 +3,7 @@
 
 .replies-section {
     display: flex;
-    
+
     .replies {
         @extend .comments-section;
     }

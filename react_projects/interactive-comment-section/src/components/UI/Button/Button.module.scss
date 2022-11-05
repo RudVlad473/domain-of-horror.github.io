@@ -1,0 +1,20 @@
+@use "../../../stylesheets/abstracts/" as *;
+@use "../../../stylesheets/components/comment" as c;
+
+.button {
+    //transition: opacity 0.05s ease-in-out;
+
+    border: 0;
+    border-radius: $br;
+
+    padding-block: map-get($gutters, "g-1") * 0.75;
+
+    background-color: $blue-300;
+
+    color: white;
+    font-weight: $bold;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}

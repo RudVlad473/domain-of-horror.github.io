@@ -13,6 +13,7 @@
 
     &__score {
         font-weight: $bolder;
+        user-select: none;
 
         &--featured {
 

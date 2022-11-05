@@ -2,22 +2,30 @@ import React, { FC } from "react"
 import styles from "./CommentInput.module.scss"
 
 interface CommentInputProps {
+    ref?: HTMLTextAreaElement
     formId?: string
     name?: string
     children?: React.ReactNode
+    isEditable?: boolean
 }
 
-const CommentInput: FC<CommentInputProps> = ({ formId, name }, ref) => {
-    return (
-        <textarea
-            ref={ref}
-            className={styles["comment-area"]}
-            placeholder={"Add a comment..."}
-            form={formId}
-            name={name}></textarea>
-    )
-}
+const CommentInput: FC<CommentInputProps> = React.forwardRef(
+    ({ formId, name, isEditable = true, ...props }, ref) => {
+        return (
+            <textarea
+                ref={ref}
+                // disabled={!isEditable}
+                className={`${styles["comment-area"]} ${
+                    !isEditable && styles["comment-area--disabled"]
+                }`}
+                placeholder={"Add a comment..."}
+                form={formId}
+                name={name}
+                spellCheck="false">
+                {props.children}
+            </textarea>
+        )
+    }
+)
 
-const ForwardedCommentInput = React.forwardRef(CommentInput)
-
-export default ForwardedCommentInput
+export default CommentInput

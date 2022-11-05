@@ -1,6 +1,7 @@
 @use "../../stylesheets/abstracts" as *;
 
 .comment-area {
+
     width: 100%;
 
     padding: 0.5em 1.25em;
@@ -14,6 +15,13 @@
     transition: all 0.1s ease-in-out;
 
     resize: none;
+
+    &--disabled {
+        outline: 0;
+        border-radius: 0;
+        padding: 0;
+        overflow: auto;
+    }
 
     &:focus {
         border-color: $blue-300;

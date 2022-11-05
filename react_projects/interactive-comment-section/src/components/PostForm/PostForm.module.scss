@@ -12,22 +12,4 @@
     padding: map-get($gutters, "g-2");
 
     @extend c, .content-box !optional;
-
-    &__submit-button {
-        //transition: opacity 0.05s ease-in-out;
-
-        border: 0;
-        border-radius: $br;
-
-        padding-block: map-get($gutters, "g-1") * 0.75;
-
-        background-color: $blue-300;
-
-        color: white;
-        font-weight: $bold;
-
-        &:hover {
-            opacity: 0.5;
-        }
-    }
 }

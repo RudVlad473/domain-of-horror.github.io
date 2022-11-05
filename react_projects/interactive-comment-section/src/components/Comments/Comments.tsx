@@ -1,7 +1,6 @@
 import React, { FC } from "react"
 import Comment, { CommentProps } from "../Comment/Comment"
 import NoComments from "../NoComments/NoComments"
-import Replies from "../Replies/Replies"
 
 interface CommentsProps {
     comments: CommentProps[] | undefined
@@ -11,16 +10,10 @@ const Comments: FC<CommentsProps> = ({ comments }) => {
     return (
         <>
             {comments?.map((comment) => (
-                <>
-                    <Comment
-                        key={comment.id}
-                        {...comment}
-                    />
-                    <Replies
-                        key={Math.random()}
-                        replies={comment?.replies}
-                    />
-                </>
+                <Comment
+                    key={comment.id}
+                    {...comment}
+                />
             )) || <NoComments />}
         </>
     )

@@ -1,69 +1,54 @@
-import React, { FC, FormEvent, useCallback, useContext, useRef } from "react"
-import { CommentsContext } from "../../context/CommentsContext"
-import { UserContext } from "../../context/UserContext"
-import getNewComment from "../../helpers/functions/getNewComment"
-import validateCommentInput, {
-    MessageStates,
-} from "../../helpers/functions/validateCommentInput"
-import { CommentProps } from "../Comment/Comment"
-import ForwardedCommentInput from "../CommentInput/CommentInput"
+import React, { FC, useEffect } from "react"
+import CommentInput from "../CommentInput/CommentInput"
 import ContainedImage from "../ContainedImage/ContainedImage"
+import Button from "../UI/Button/Button"
 import styles from "./PostForm.module.scss"
+import { Action } from "../../models/ActionTypes"
 
-const PostForm: FC = () => {
-    const { avatarUrl, userName } = useContext(UserContext)
+export interface PostFormProps extends Action {
+    id?: number
+    formId?: string
+    avatarUrl: string
+    buttonValue?: string
+    buttonRef?: any
+    textAreaValue?: string
+    textAreaRef?: any
+}
 
-    const { appendComments, lastCommentId } = useContext(CommentsContext)
-
-    const commentInputRef = useRef(null)
-
-    function addComment(e: FormEvent) {
-        e.preventDefault()
-
-        const text = commentInputRef?.current.value
-        const validatedInput = validateCommentInput(text)
-
-        alert(validatedInput)
-
-        switch (validatedInput) {
-            case MessageStates.Normal: {
-                break
-            }
-            default: {
-                return
-            }
-        }
-
-        const newComment: CommentProps = getNewComment({
-            id: `${lastCommentId.id + 1}`,
-            likesCount: 0,
-            avatarUrl,
-            userName,
-            createdAt: "today",
-            article: commentInputRef!.current!.value,
-            replies: undefined,
-        })
-
-        appendComments([newComment])
-
-        commentInputRef!.current!.value = ''
-    }
+const PostForm: FC<PostFormProps> = ({
+    id,
+    formId,
+    avatarUrl,
+    buttonValue,
+    buttonRef,
+    textAreaValue,
+    textAreaRef,
+    action,
+}) => {
+    useEffect(() => {
+        textAreaRef?.current.focus()
+    }, [])
 
     return (
         <form
+            id={formId}
             className={styles["post-form"]}
-            onSubmit={addComment}>
+            onSubmit={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                action!(id)
+            }}>
             <ContainedImage
                 src={avatarUrl}
                 alt={"You"}
                 maxWidth={"2.5rem"}
             />
-            <ForwardedCommentInput ref={commentInputRef} />
-            <button
-                type="submit"
-                className={styles["post-form__submit-button"]}>
-                SEND
-            </button>
+            <CommentInput ref={textAreaRef}>{textAreaValue || ""}</CommentInput>
+            <Button
+                ref={buttonRef}
+                type="submit">
+                {buttonValue}
+            </Button>
         </form>
     )
 }

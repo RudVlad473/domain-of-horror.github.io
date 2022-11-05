@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import styles from "./ContainedImage.module.scss"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 interface ContainedImageProps {
     src: string
@@ -17,7 +18,7 @@ const ContainedImage: FC<ContainedImageProps> = ({
         <div
             className={styles["container"]}
             {...props}>
-            <img
+            <LazyLoadImage
                 src={src}
                 alt={alt || "img"}
                 className={styles["container__image"]}
