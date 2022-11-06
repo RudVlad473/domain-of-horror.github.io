@@ -1,30 +1,19 @@
-import React, { FC, useContext } from "react"
-import { CommentDetailsContext } from "../../context/CommentDetailsContext"
-import { UserContext } from "../../context/UserContext"
-import Comment, { CommentProps, ICommentContent } from "../Comment/Comment"
-import Reply, { ReplyProps } from "../Reply/Reply"
-import PostReply, { ReplyFormProps } from "../PostReply/PostReply"
+import React, { FC } from "react"
+import PostReply from "../PostReply/PostReply"
 import styles from "./Replies.module.scss"
+import CommentContent, {
+    CommentContentProps,
+} from "../CommentContent/CommentContent"
 
 export interface RepliesProps {
-    replies?: ReplyProps[] | undefined
+    replies?: CommentContentProps[] | undefined
+    setLocalReplies: React.Dispatch<
+        React.SetStateAction<CommentContentProps[] | undefined>
+    >
 }
 
-const Replies: FC<RepliesProps> = ({ replies }) => {
-    // const [awaitedReplies, setAwaitedReplies] = useState<
-    //     CommentProps[] | undefined
-    // >([])
-
-    const { userName } = useContext(CommentDetailsContext)
-
-    const { avatarUrl } = useContext(UserContext)
-
-    // useEffect(() => {
-    //     repliesPromise?.then((data) => {
-    //         setAwaitedReplies((_) => data)
-    //         setReplies((_) => data)
-    //     })
-    // }, [])
+const Replies: FC<RepliesProps> = ({ replies, setLocalReplies }) => {
+    //TODO: сделать await реплаев тут а не в comments
 
     return (
         <>
@@ -41,7 +30,7 @@ const Replies: FC<RepliesProps> = ({ replies }) => {
                         {replies?.map((reply) => (
                             <>
                                 {reply.commentBodyInfo ? (
-                                    <Reply
+                                    <CommentContent
                                         key={reply.id}
                                         {...reply}
                                     />
@@ -49,6 +38,7 @@ const Replies: FC<RepliesProps> = ({ replies }) => {
                                     <PostReply
                                         key={reply.id}
                                         replyingTo={reply.replyingTo}
+                                        setLocalReplies={setLocalReplies}
                                     />
                                 )}
                             </>

@@ -1,24 +1,39 @@
 import React, { FC } from "react"
-import { ICommentContent } from "../Comment/Comment"
-import CommentBody from "../CommentBody/CommentBody"
+
+import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
 const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 import styles from "../Comment/Comment.module.scss"
+import { CommentContext } from "../../context/CommentContext"
+import { LikeSectionProps } from "../LikeSection/LikeSection"
 
-const CommentContent: FC<ICommentContent> = ({
+export interface CommentContentProps {
+    id: number
+    likesCount: LikeSectionProps
+    commentBodyInfo: CommentBodyProps
+}
+
+const CommentContent: FC<CommentContentProps> = ({
     id,
     likesCount,
     commentBodyInfo,
 }) => {
     return (
-        <div
-            id={id}
-            className={styles["comment"]}>
-            <React.Suspense>
-                <LikeSection {...likesCount} />
-            </React.Suspense>
+        <CommentContext.Provider
+            value={{
+                id,
+                userName:
+                    commentBodyInfo.headerInfo.userDetails.userInfo.userName,
+            }}>
+            <div
+                id={`${id}`}
+                className={styles["comment"]}>
+                <React.Suspense>
+                    <LikeSection {...likesCount} />
+                </React.Suspense>
 
-            <CommentBody {...commentBodyInfo} />
-        </div>
+                <CommentBody {...commentBodyInfo} />
+            </div>
+        </CommentContext.Provider>
     )
 }
 

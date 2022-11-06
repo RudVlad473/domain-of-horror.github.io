@@ -1,16 +1,13 @@
 import React, { FC, useCallback, useContext } from "react"
-import { CommentDetailsContext } from "../../context/CommentDetailsContext"
-import { CommentsContext } from "../../context/CommentsContext"
+import { CommentContext } from "../../context/CommentContext"
 import { UserContext } from "../../context/UserContext"
 import {
     UserActions as userActions,
     AuthorActions as authorActions,
 } from "../../models/ActionTypes"
 import Action from "../Action/Action"
-import { CommentProps } from "../Comment/Comment"
-import { ReplyProps } from "../Reply/Reply"
-
 import { ReplyFormProps } from "../PostReply/PostReply"
+
 import styles from "./Actions.module.scss"
 
 interface ActionsProps {
@@ -18,10 +15,9 @@ interface ActionsProps {
 }
 
 const Actions: FC<ActionsProps> = ({ isCurrentUser }) => {
-    const { userName: localUserName, setLocalReplies } = useContext(
-        CommentDetailsContext
+    const { userName: localUserName } = useContext(
+        CommentContext
     )
-    //const { avatarUrl: currentUserAvatarUrl } = useContext(UserContext)
 
     const addReplyForm = useCallback(() => {
         //TODO: добавить удаление всех остальных ответных форм
@@ -33,7 +29,7 @@ const Actions: FC<ActionsProps> = ({ isCurrentUser }) => {
             {
                 id: "replyForm",
                 replyingTo: localUserName,
-            } as ReplyProps,
+            } as ReplyFormProps,
         ])
     }, [localUserName])
 

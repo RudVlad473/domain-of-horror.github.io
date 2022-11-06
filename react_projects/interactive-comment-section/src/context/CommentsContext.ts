@@ -4,7 +4,7 @@ import { CommentProps } from "../components/Comment/Comment"
 interface ICommentsContext {
     appendComments(comments: CommentProps[]): void
     removeComment(id: number): void
-    lastId: number
+    readonly lastId: number
 }
 
 // Create a context
