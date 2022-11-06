@@ -81,6 +81,7 @@ module.exports = {
                 // name: "chrome",
             },
         },
+        compress: true,
         historyApiFallback: true,
     },
     target: "web",
