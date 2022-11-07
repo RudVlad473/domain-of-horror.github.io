@@ -1,18 +1,16 @@
 import React, { FC } from "react"
-import PostReply from "../PostReply/PostReply"
+import PostReply, { ReplyFormProps } from "../PostReply/PostReply"
 import styles from "./Replies.module.scss"
 import CommentContent, {
     CommentContentProps,
 } from "../CommentContent/CommentContent"
+import Comment from "../Comment/Comment"
 
 export interface RepliesProps {
     replies?: CommentContentProps[] | undefined
-    setLocalReplies: React.Dispatch<
-        React.SetStateAction<CommentContentProps[] | undefined>
-    >
 }
 
-const Replies: FC<RepliesProps> = ({ replies, setLocalReplies }) => {
+const Replies: FC<RepliesProps> = ({ replies }) => {
     //TODO: сделать await реплаев тут а не в comments
 
     return (
@@ -29,7 +27,7 @@ const Replies: FC<RepliesProps> = ({ replies, setLocalReplies }) => {
                     <div className={styles["replies"]}>
                         {replies?.map((reply) => (
                             <>
-                                {reply.commentBodyInfo ? (
+                                {reply?.commentBodyInfo ? (
                                     <CommentContent
                                         key={reply.id}
                                         {...reply}
@@ -38,7 +36,6 @@ const Replies: FC<RepliesProps> = ({ replies, setLocalReplies }) => {
                                     <PostReply
                                         key={reply.id}
                                         replyingTo={reply.replyingTo}
-                                        setLocalReplies={setLocalReplies}
                                     />
                                 )}
                             </>

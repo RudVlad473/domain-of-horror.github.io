@@ -9,7 +9,8 @@
 
     border-radius: $br;
 
-    max-height: 100px;
+    min-height: 90px;
+    max-height: 90px;
 
     &__score {
         font-weight: $bolder;

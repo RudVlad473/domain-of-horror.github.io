@@ -18,22 +18,17 @@ const CommentContent: FC<CommentContentProps> = ({
     commentBodyInfo,
 }) => {
     return (
-        <CommentContext.Provider
-            value={{
-                id,
-                userName:
-                    commentBodyInfo.headerInfo.userDetails.userInfo.userName,
-            }}>
-            <div
-                id={`${id}`}
-                className={styles["comment"]}>
-                <React.Suspense>
-                    <LikeSection {...likesCount} />
-                </React.Suspense>
+        <div
+            id={`${id}`}
+            data-name={commentBodyInfo.headerInfo.userDetails.userInfo.userName}
+            className={styles["comment"]}
+            onClick={(e) => console.log(e.currentTarget)}>
+            <React.Suspense>
+                <LikeSection {...likesCount} />
+            </React.Suspense>
 
-                <CommentBody {...commentBodyInfo} />
-            </div>
-        </CommentContext.Provider>
+            <CommentBody {...commentBodyInfo} />
+        </div>
     )
 }
 

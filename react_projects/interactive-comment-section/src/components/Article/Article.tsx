@@ -1,11 +1,14 @@
-import React, { FC } from "react"
+import React, { FC, useContext } from "react"
+import { CommentContext } from "../../context/CommentContext"
 
 export interface ArticleProps {
-    article: string
+    article: string | React.ReactNode
 }
 
 const Article: FC<ArticleProps> = ({ article }) => {
-    return <article>{article}</article>
+    const { isEditable } = useContext(CommentContext)
+
+    return <article contentEditable={isEditable} >{article}</article>
 }
 
 export default Article

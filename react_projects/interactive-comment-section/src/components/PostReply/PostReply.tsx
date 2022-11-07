@@ -9,17 +9,21 @@ import PostForm from "../PostForm/PostForm"
 import UserName from "../UserName/UserName"
 import colors from "../../stylesheets/abstracts/colors/_colors.module.scss"
 import weights from "../../stylesheets/abstracts/fonts/_weights.module.scss"
+import { CommentContext } from "../../context/CommentContext"
 
 export interface ReplyFormProps {
+    id?: string
     replyingTo: string
 }
 
-const PostReply: FC<ReplyFormProps> = ({ replyingTo }, setLocalReplies) => {
+const PostReply: FC<ReplyFormProps> = ({ replyingTo }) => {
     const { avatarUrl, userName } = useContext(UserContext)
 
     const { lastId } = useContext(CommentsContext)
 
     const replyInputRef = useRef<HTMLTextAreaElement>(null)
+
+    const { setLocalReplies } = useContext(CommentContext)
 
     const addReply = useCallback(() => {
         const text = replyInputRef!.current!.value
@@ -38,10 +42,10 @@ const PostReply: FC<ReplyFormProps> = ({ replyingTo }, setLocalReplies) => {
 
         setLocalReplies((currentLocalReplies) => [
             ...(currentLocalReplies?.filter(
-                (reply) => reply.id !== "replyForm"
+                (reply) => `${reply.id}` !== "replyForm"
             ) || []),
             {
-                id: `${lastId + 1}`,
+                id: lastId + 1,
                 likesCount: { likesCount: 0 },
                 commentBodyInfo: {
                     headerInfo: {
