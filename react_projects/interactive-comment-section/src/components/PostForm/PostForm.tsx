@@ -1,33 +1,32 @@
-import React, { FC, useEffect } from "react"
+import React, { FC, LegacyRef, useContext, useEffect } from "react"
 import CommentInput from "../CommentInput/CommentInput"
-import ContainedImage from "../ContainedImage/ContainedImage"
-import Button from "../UI/Button/Button"
 import styles from "./PostForm.module.scss"
-import { Action } from "../../models/ActionTypes"
+import Action from "../../models/ActionTypes"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import { UserContext } from "../../context/UserContext"
 
 export interface PostFormProps extends Action {
     id?: number
     formId?: string
-    avatarUrl: string
     buttonValue?: string
-    buttonRef?: any
+    buttonRef?: LegacyRef<HTMLButtonElement> | undefined
     textAreaValue?: string
-    textAreaRef?: any
+    textAreaRef?: LegacyRef<HTMLTextAreaElement> | undefined
 }
 
 const PostForm: FC<PostFormProps> = ({
     id,
     formId,
-    avatarUrl,
     buttonValue,
     buttonRef,
     textAreaValue,
     textAreaRef,
-    action,
 }) => {
     useEffect(() => {
-        textAreaRef?.current.focus()
+        textAreaRef?.current?.focus({ cursor: "end" })
     }, [])
+
+    const { avatarUrl } = useContext(UserContext)
 
     return (
         <form
@@ -36,19 +35,19 @@ const PostForm: FC<PostFormProps> = ({
             onSubmit={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                action!(id)
+                //action!(id)
             }}>
-            <ContainedImage
+            <LazyLoadImage
                 src={avatarUrl}
-                alt={"You"}
-                maxWidth={"2.5rem"}
+                alt="You"
+                style={{ maxWidth: "3rem" }}
             />
             <CommentInput ref={textAreaRef}>{textAreaValue || ""}</CommentInput>
-            <Button
+            <button
                 ref={buttonRef}
-                type="submit">
-                {buttonValue}
-            </Button>
+                className="button button--default">
+                SEND
+            </button>
         </form>
     )
 }

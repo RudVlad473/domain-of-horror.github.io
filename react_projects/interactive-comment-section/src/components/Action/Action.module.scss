@@ -10,6 +10,10 @@
     user-select: none;
     cursor: pointer;
 
+    & > * {
+        pointer-events: none;
+    }
+
     &:hover {
         opacity: 0.5;
     }

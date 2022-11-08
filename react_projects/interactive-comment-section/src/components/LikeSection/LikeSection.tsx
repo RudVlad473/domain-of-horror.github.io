@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useState } from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import ContainedImage from "../ContainedImage/ContainedImage"
-import DislikeComment from "../DislikeComment/DislikeComment"
-import LikeComment from "../LikeComment/LikeComments"
 import styles from "./LikeSection.module.scss"
 
 export interface LikeSectionProps {
@@ -15,10 +14,7 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
     const maxLikesScore = 2
 
     const likeComment = useCallback(
-        () =>
-            setScore((score) => ({
-                likesCount: score.likesCount + 1,
-            })),
+        () => setScore((score) => ({ likesCount: score.likesCount + 1 })),
         []
     )
 
@@ -29,7 +25,12 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
 
     return (
         <div className={styles["like-section"]}>
-            <LikeComment likeComment={likeComment} />
+            <figure onClick={likeComment}>
+                <LazyLoadImage
+                    src={require("../../images/icon-plus.svg")}
+                    alt="+"
+                />
+            </figure>
 
             <div className={styles["like-section__score"]}>
                 {score.likesCount.toString().length > maxLikesScore
@@ -37,7 +38,12 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
                     : score.likesCount}
             </div>
 
-            <DislikeComment dislikeComment={dislikeComment} />
+            <figure onClick={dislikeComment}>
+                <LazyLoadImage
+                    src={require("../../images/icon-minus.svg")}
+                    alt="-"
+                />
+            </figure>
         </div>
     )
 }

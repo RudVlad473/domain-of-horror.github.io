@@ -1,21 +1,14 @@
 import React, { FC } from "react"
-import PostReply, { ReplyFormProps } from "../PostReply/PostReply"
 import styles from "./Replies.module.scss"
-import CommentContent, {
-    CommentContentProps,
-} from "../CommentContent/CommentContent"
-import Comment from "../Comment/Comment"
+import Reply, { ReplyProps } from "../Reply/Reply"
 
-export interface RepliesProps {
-    replies?: CommentContentProps[] | undefined
-}
-
-const Replies: FC<RepliesProps> = ({ replies }) => {
+const Replies: FC<ReplyProps[]> = (replies) => {
     //TODO: сделать await реплаев тут а не в comments
+    //TODO: сделать нормальную передачу replies
 
     return (
         <>
-            {replies?.length! > 0 && (
+            {Object.values(replies)?.length ? (
                 <section
                     className={styles["replies-section"]}
                     aria-label="replies">
@@ -25,24 +18,15 @@ const Replies: FC<RepliesProps> = ({ replies }) => {
                         }></div>
 
                     <div className={styles["replies"]}>
-                        {replies?.map((reply) => (
-                            <>
-                                {reply?.commentBodyInfo ? (
-                                    <CommentContent
-                                        key={reply.id}
-                                        {...reply}
-                                    />
-                                ) : (
-                                    <PostReply
-                                        key={reply.id}
-                                        replyingTo={reply.replyingTo}
-                                    />
-                                )}
-                            </>
+                        {Object.values(replies)?.map((reply) => (
+                            <Reply
+                                key={reply.id}
+                                {...reply}
+                            />
                         ))}
                     </div>
                 </section>
-            )}
+            ) : undefined}
         </>
     )
 }

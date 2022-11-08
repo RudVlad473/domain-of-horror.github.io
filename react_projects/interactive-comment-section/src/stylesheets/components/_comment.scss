@@ -1,8 +1,12 @@
-@use "../../stylesheets/abstracts/" as *;
+@use "../abstracts/" as *;
+@use "./content-box" as c;
 
-.content-box {
-    display: flex;
+.comment {
+   
+    gap: map-get($gutters, "g-3");
 
-    border-radius: $br;
-    background-color: white;
+    padding: map-get($gutters, "g-2");
+    margin-inline-start: auto;
+
+    @extend c, .content-box !optional;
 }

@@ -57,7 +57,6 @@ const PostComment: FC = () => {
         <React.Suspense>
             <PostForm
                 id={0}
-                avatarUrl={avatarUrl}
                 action={addComment}
                 buttonValue={"Send"}
                 buttonRef={submitButtonRef}

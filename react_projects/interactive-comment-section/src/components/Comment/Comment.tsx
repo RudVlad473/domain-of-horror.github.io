@@ -1,14 +1,15 @@
 import React, { FC, useEffect, useState } from "react"
 import { CommentContext } from "../../context/CommentContext"
-import { SetLocalRepliesContext } from "../../context/SetLocalRepliesContext"
 import CommentContent, {
     CommentContentProps,
 } from "../CommentContent/CommentContent"
 import NoComments from "../NoComments/NoComments"
+import { ReplyProps } from "../Reply/Reply"
+
 const Replies = React.lazy(() => import("../Replies/Replies"))
 
 export interface CommentProps extends CommentContentProps {
-    replies?: Promise<CommentContentProps[] | undefined> | undefined
+    replies: Promise<ReplyProps[] | undefined>
 }
 
 const Comment: FC<CommentProps> = ({
@@ -17,40 +18,46 @@ const Comment: FC<CommentProps> = ({
     commentBodyInfo,
     replies,
 }) => {
-    const [localReplies, setLocalReplies] = useState<
-        CommentContentProps[] | undefined
-    >([])
+    const [localReplies, setLocalReplies] = useState<ReplyProps[] | undefined>(
+        []
+    )
 
-    const [isEditable, setIsEditable] = useState<boolean>(false)
+    const [postForm, setPostForm] = useState()
 
-    const userName = commentBodyInfo.headerInfo.userDetails.userInfo.userName
+    // const [isEditable, setIsEditable] = useState<boolean>(false)
+
+    // const userName = commentBodyInfo.headerInfo.userDetails.userInfo.userName
 
     useEffect(() => {
         replies?.then((data) => {
-            data?.length! > 0 && setLocalReplies((_) => data)
+            data?.length && setLocalReplies((_) => data)
         })
     }, [])
 
     return (
-        
         <CommentContext.Provider
             value={{
                 id,
-                userName,
-                setLocalReplies,
-                isEditable,
+                userName:
+                    commentBodyInfo.headerInfo.userDetails.userInfo.userName,
+                //setLocalReplies: (): void => {},
+                isEditable: false,
+                replyingTo: "",
             }}>
             <CommentContent
                 id={id}
                 likesCount={likesCount}
                 commentBodyInfo={commentBodyInfo}
+                //setLocalReplies={setLocalReplies}
             />
             <React.Suspense fallback={<NoComments />}>
-                {localReplies?.length! > 0 && (
-                    <Replies replies={localReplies} />
-                )}
+                {localReplies?.length ? (
+                    <Replies {...localReplies} />
+                ) : undefined}
             </React.Suspense>
         </CommentContext.Provider>
+
+        //</CommentContext.Provider>
     )
 }
 

@@ -1,8 +1,7 @@
 import React, { FC } from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import { UserInfo } from "../../App"
-const ContainedImage = React.lazy(
-    () => import("../ContainedImage/ContainedImage")
-)
+
 //import ContainedImage from "../ContainedImage/ContainedImage"
 import UserName from "../UserName/UserName"
 import styles from "./UserDetails.module.scss"
@@ -16,7 +15,11 @@ const UserDetails: FC<UserDetailsProps> = ({ userInfo, when }) => {
     return (
         <div className={styles["user-details"]}>
             <React.Suspense>
-                <ContainedImage src={userInfo.avatarUrl} />
+                <LazyLoadImage
+                    src={userInfo.avatarUrl}
+                    alt={userInfo.userName}
+                    style={{ maxWidth: "2rem" }}
+                />
             </React.Suspense>
 
             <UserName userName={userInfo.userName} />

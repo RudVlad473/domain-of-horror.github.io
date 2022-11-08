@@ -1,10 +1,11 @@
 import variables from "./../stylesheets/abstracts/colors/_colors.module.scss"
 
-export interface Action {
-    action?(id?: number): void
+export enum ActionTypes {
+    DELETE = "Delete",
+    EDIT = "Edit",
+    REPLY = "Reply",
 }
-
-export default interface IAction extends Action {
+export default interface IAction {
     iconUrl: string
     actionName: string
     color: string
@@ -13,12 +14,12 @@ export default interface IAction extends Action {
 export const AuthorActions: IAction[] = [
     {
         iconUrl: require("./../images/icon-delete.svg"),
-        actionName: "Delete",
+        actionName: ActionTypes.DELETE,
         color: variables["red"],
     },
     {
         iconUrl: require("./../images/icon-edit.svg"),
-        actionName: "Edit",
+        actionName: ActionTypes.EDIT,
         color: variables["blue"],
     },
 ]
@@ -26,7 +27,7 @@ export const AuthorActions: IAction[] = [
 export const UserActions: IAction[] = [
     {
         iconUrl: require("./../images/icon-reply.svg"),
-        actionName: "Reply",
+        actionName: ActionTypes.REPLY,
         color: variables["blue"],
     },
 ]

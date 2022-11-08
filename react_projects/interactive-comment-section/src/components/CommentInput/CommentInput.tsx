@@ -1,8 +1,8 @@
-import React, { FC, useEffect } from "react"
+import React, { FC, LegacyRef, useEffect } from "react"
 import styles from "./CommentInput.module.scss"
 
 interface CommentInputProps {
-    ref?: HTMLTextAreaElement
+    ref?: LegacyRef<HTMLTextAreaElement> | undefined
     formId?: string
     name?: string
     children?: React.ReactNode
@@ -10,7 +10,7 @@ interface CommentInputProps {
 }
 
 const CommentInput: FC<CommentInputProps> = React.forwardRef(
-    ({ formId, name, isEditable = true, ...props }, ref) => {
+    ({ formId, name, isEditable = true, ref, ...props }) => {
         useEffect(() => {
             ref?.current?.scrollIntoView()
         }, [])

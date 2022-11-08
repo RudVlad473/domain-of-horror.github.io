@@ -26,7 +26,7 @@ const CountryCard: FC<CountryCardProps> = memo(
         // const [isBackCardActive, setIsBackCardActive] = useState(false)
 
         useEffect(() => {
-            cardObserver.observe(cardRef.current!)
+            cardObserver?.observe(cardRef.current!)
         }, [])
 
         const navigate = useNavigate()

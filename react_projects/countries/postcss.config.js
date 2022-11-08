@@ -4,10 +4,10 @@ const purgecss = require("@fullhuman/postcss-purgecss")
 module.exports = {
     plugins: [
         "postcss-preset-env",
-        // purgecss({
-        //     content: ["./dist/*.js"],
-        //     css: ["./dist/*.css"],
-        // }),
+        purgecss({
+            content: ["./dist/*.js"],
+            css: ["./dist/*.css"],
+        }),
     ],
 }
 

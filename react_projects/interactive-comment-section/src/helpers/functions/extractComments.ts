@@ -14,7 +14,7 @@ async function extractComments(
 
     const extractedComments: CommentProps[] = comments.map(
         (comment: FetchedComment): CommentProps => ({
-            id: `${comment["id"]}`,
+            id: comment["id"],
             likesCount: { likesCount: comment["score"] },
             commentBodyInfo: {
                 headerInfo: {
@@ -30,9 +30,7 @@ async function extractComments(
                 },
                 article: { article: comment["content"] },
             },
-            replies: comment.replies
-                ? extractReplies(comment.replies)
-                : undefined,
+            replies: extractReplies(comment.replies),
         })
     )
 

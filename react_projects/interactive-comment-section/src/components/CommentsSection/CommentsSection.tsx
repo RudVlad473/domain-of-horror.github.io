@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { CommentProps } from "../Comment/Comment"
 
 import styles from "./CommentsSection.module.scss"
@@ -49,10 +49,10 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         let lastIdCount = lastId
         await data?.forEach(async (comment) => {
             lastIdCount++
-            comment.id = `${lastIdCount}`
+            comment.id = lastIdCount
             ;(await comment.replies)?.forEach((reply) => {
                 lastIdCount++
-                reply.id = `${lastIdCount}`
+                reply.id = lastIdCount
             })
         })
 
@@ -87,7 +87,11 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         setLastId((lastId) => lastId + comments.length)
     }
 
-    function removeComment(id: number): void {}
+    function removeComment(id: number): void {
+        setComments((currentComments) => [
+            ...(currentComments?.filter((comment) => comment.id !== id) || []),
+        ])
+    }
 
     useEffect(() => {
         fetchCommentsFromLocalJSON()

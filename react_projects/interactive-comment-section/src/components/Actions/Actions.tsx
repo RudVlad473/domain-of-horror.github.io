@@ -17,22 +17,22 @@ interface ActionsProps {
 }
 
 const Actions: FC<ActionsProps> = memo(({ isCurrentUser }) => {
-    const { userName: localUserName } = useContext(CommentContext)
-    const { setLocalReplies } = useContext(CommentContext)
+    // const { userName: localUserName } = useContext(CommentContext)
+    // const { setLocalReplies } = useContext(CommentContext)
 
-    const addReplyForm = useCallback(() => {
-        //TODO: добавить удаление всех остальных ответных форм
+    // const addReplyForm = useCallback(() => {
+    //     //TODO: добавить удаление всех остальных ответных форм
 
-        setLocalReplies((currentLocalReplies) => [
-            ...(currentLocalReplies?.filter(
-                (reply) => `${reply.id}` !== "replyForm"
-            ) || []),
-            {
-                id: "replyForm",
-                replyingTo: localUserName,
-            } as ReplyFormProps,
-        ])
-    }, [localUserName])
+    //     setLocalReplies((currentLocalReplies) => [
+    //         ...(currentLocalReplies?.filter(
+    //             (reply) => `${reply.id}` !== "replyForm"
+    //         ) || []),
+    //         {
+    //             id: "replyForm",
+    //             replyingTo: localUserName,
+    //         } as ReplyFormProps,
+    //     ])
+    // }, [localUserName])
 
     return (
         <div className={styles["actions"]}>
@@ -40,11 +40,11 @@ const Actions: FC<ActionsProps> = memo(({ isCurrentUser }) => {
                 <Action
                     key={action.actionName}
                     {...action}
-                    action={
-                        {
-                            Reply: addReplyForm,
-                        }[action.actionName]
-                    }
+                    // action={
+                    //     {
+                    //         Reply: addReplyForm,
+                    //     }[action.actionName]
+                    // }
                 />
             ))}
         </div>

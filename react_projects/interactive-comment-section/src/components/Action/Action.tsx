@@ -1,17 +1,16 @@
 import React, { FC } from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import IAction from "../../models/ActionTypes"
-import ContainedImage from "../ContainedImage/ContainedImage"
 import styles from "./Action.module.scss"
 
-const Action: FC<IAction> = ({ iconUrl, actionName, color, action }) => {
+const Action: FC<IAction> = ({ iconUrl, actionName, color }) => {
     return (
         <div
             data-name={actionName}
-            className={styles["action"]}
-            onClick={() => action!()}>
-            <ContainedImage
+            className={styles["action"]}>
+            <LazyLoadImage
                 src={iconUrl}
-                alt={actionName}
+                style={{ maxWidth: "1rem" }}
             />
             <span style={{ color }}>{actionName}</span>
         </div>

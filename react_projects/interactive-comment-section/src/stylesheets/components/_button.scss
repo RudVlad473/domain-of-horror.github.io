@@ -1,5 +1,5 @@
-@use "../../../stylesheets/abstracts/" as *;
-@use "../../../stylesheets/components/comment" as c;
+@use "../abstracts/" as *;
+//@use "../comment" as c;
 
 .button {
     //transition: opacity 0.05s ease-in-out;
@@ -9,10 +9,13 @@
 
     padding-block: map-get($gutters, "g-1") * 0.75;
 
-    background-color: $blue-300;
-
-    color: white;
     font-weight: $bold;
+
+    &--default {
+        background-color: $blue-300;
+
+        color: white;
+    }
 
     &:hover {
         opacity: 0.5;
