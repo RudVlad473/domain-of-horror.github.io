@@ -1,9 +1,13 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import { CommentContext } from "../../context/CommentContext"
+import { UserContext } from "../../context/UserContext"
 import CommentContent, {
     CommentContentProps,
 } from "../CommentContent/CommentContent"
 import NoComments from "../NoComments/NoComments"
+import PostComment from "../PostComment/PostComment"
+import PostForm from "../PostForm/PostForm"
+import PostReply from "../PostReply/PostReply"
 import { ReplyProps } from "../Reply/Reply"
 
 const Replies = React.lazy(() => import("../Replies/Replies"))
@@ -21,8 +25,13 @@ const Comment: FC<CommentProps> = ({
     const [localReplies, setLocalReplies] = useState<ReplyProps[] | undefined>(
         []
     )
+    const [hasPostForm, setHasPostForm] = useState<boolean>(false)
 
-    const [postForm, setPostForm] = useState()
+    const currentUserInfo = useContext(UserContext)
+
+    const textAreaRef = useRef<HTMLTextAreaElement>(null)
+
+    function addReply() {}
 
     // const [isEditable, setIsEditable] = useState<boolean>(false)
 
@@ -48,12 +57,13 @@ const Comment: FC<CommentProps> = ({
                 id={id}
                 likesCount={likesCount}
                 commentBodyInfo={commentBodyInfo}
-                //setLocalReplies={setLocalReplies}
+                setLocalReplies={setLocalReplies}
             />
             <React.Suspense fallback={<NoComments />}>
                 {localReplies?.length ? (
                     <Replies {...localReplies} />
                 ) : undefined}
+                {hasPostForm && <PostComment />}
             </React.Suspense>
         </CommentContext.Provider>
 

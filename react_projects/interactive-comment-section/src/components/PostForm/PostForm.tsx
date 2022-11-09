@@ -1,29 +1,36 @@
-import React, { FC, LegacyRef, useContext, useEffect } from "react"
+import React, { FC, useContext, useEffect } from "react"
 import CommentInput from "../CommentInput/CommentInput"
 import styles from "./PostForm.module.scss"
-import Action from "../../models/ActionTypes"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { UserContext } from "../../context/UserContext"
 
-export interface PostFormProps extends Action {
+export interface PostFormProps  {
     id?: number
     formId?: string
+
     buttonValue?: string
-    buttonRef?: LegacyRef<HTMLButtonElement> | undefined
+    buttonRef?: React.MutableRefObject<HTMLButtonElement>
+
     textAreaValue?: string
-    textAreaRef?: LegacyRef<HTMLTextAreaElement> | undefined
+    textAreaRef?: React.MutableRefObject<HTMLTextAreaElement>
+
+    onFormSubmit: Function
 }
 
 const PostForm: FC<PostFormProps> = ({
     id,
     formId,
+
     buttonValue,
     buttonRef,
+
     textAreaValue,
     textAreaRef,
+
+    onFormSubmit,
 }) => {
     useEffect(() => {
-        textAreaRef?.current?.focus({ cursor: "end" })
+        textAreaRef?.current?.focus()
     }, [])
 
     const { avatarUrl } = useContext(UserContext)
@@ -33,9 +40,9 @@ const PostForm: FC<PostFormProps> = ({
             id={formId}
             className={styles["post-form"]}
             onSubmit={(e) => {
+                onFormSubmit()
                 e.preventDefault()
                 e.stopPropagation()
-                //action!(id)
             }}>
             <LazyLoadImage
                 src={avatarUrl}
@@ -46,7 +53,7 @@ const PostForm: FC<PostFormProps> = ({
             <button
                 ref={buttonRef}
                 className="button button--default">
-                SEND
+                {buttonValue}
             </button>
         </form>
     )

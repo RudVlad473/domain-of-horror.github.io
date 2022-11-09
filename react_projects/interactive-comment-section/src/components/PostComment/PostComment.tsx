@@ -13,8 +13,8 @@ const PostComment: FC = () => {
 
     const { appendComments } = useContext(CommentsContext)
 
-    const commentInputRef = useRef<HTMLTextAreaElement>(null)
-    const submitButtonRef = useRef<HTMLButtonElement>(null)
+    const commentInputRef = useRef<HTMLTextAreaElement>()
+    const submitButtonRef = useRef<HTMLButtonElement>()
 
     function addComment() {
         const text = commentInputRef?.current!.value
@@ -56,11 +56,7 @@ const PostComment: FC = () => {
     return (
         <React.Suspense>
             <PostForm
-                id={0}
-                action={addComment}
-                buttonValue={"Send"}
-                buttonRef={submitButtonRef}
-                textAreaRef={commentInputRef}
+                
             />
         </React.Suspense>
     )

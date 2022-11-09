@@ -3,17 +3,22 @@ import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
 const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 //import styles from "../Comment/Comment.module.scss"
 import { LikeSectionProps } from "../LikeSection/LikeSection"
+import { ReplyProps } from "../Reply/Reply"
 
 export interface CommentContentProps {
     id: number
     likesCount: LikeSectionProps
     commentBodyInfo: CommentBodyProps
+    setLocalReplies: React.Dispatch<
+        React.SetStateAction<ReplyProps[] | undefined>
+    >
 }
 
 const CommentContent: FC<CommentContentProps> = ({
     id,
     likesCount,
     commentBodyInfo,
+    setLocalReplies,
 }) => {
     // function handleActions(e: React.MouseEvent<HTMLDivElement>) {
     //     switch (e.target.dataset["name"]) {
