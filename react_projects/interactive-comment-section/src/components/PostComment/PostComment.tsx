@@ -1,4 +1,10 @@
-import React, { FC, useContext, useEffect, useRef } from "react"
+import React, {
+    FC,
+    MutableRefObject,
+    useContext,
+    useEffect,
+    useRef,
+} from "react"
 import { CommentsContext } from "../../context/CommentsContext"
 import { UserContext } from "../../context/UserContext"
 import getNewComment from "../../helpers/functions/getNewComment"
@@ -8,13 +14,18 @@ import validateCommentInput, {
 import { CommentProps } from "../Comment/Comment"
 const PostForm = React.lazy(() => import("../PostForm/PostForm"))
 
-const PostComment: FC = () => {
+interface PostCommentProps {}
+
+const PostComment: FC<PostCommentProps> = () => {
     const { avatarUrl, userName } = useContext(UserContext)
 
     const { appendComments } = useContext(CommentsContext)
 
-    const commentInputRef = useRef<HTMLTextAreaElement>()
-    const submitButtonRef = useRef<HTMLButtonElement>()
+    const commentInputRef = useRef<HTMLTextAreaElement>(
+        null
+    ) as MutableRefObject<HTMLTextAreaElement>
+    const submitButtonRef =
+        useRef<HTMLButtonElement>() as MutableRefObject<HTMLButtonElement>
 
     function addComment() {
         const text = commentInputRef?.current!.value
@@ -56,7 +67,9 @@ const PostComment: FC = () => {
     return (
         <React.Suspense>
             <PostForm
-                
+                textAreaRef={commentInputRef}
+                onFormSubmit={addComment}
+                buttonValue="Send"
             />
         </React.Suspense>
     )

@@ -40,11 +40,6 @@ const Actions: FC<ActionsProps> = memo(({ isCurrentUser }) => {
                 <Action
                     key={action.actionName}
                     {...action}
-                    // action={
-                    //     {
-                    //         Reply: addReplyForm,
-                    //     }[action.actionName]
-                    // }
                 />
             ))}
         </div>

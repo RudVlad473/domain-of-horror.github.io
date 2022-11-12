@@ -1,8 +1,10 @@
 import React, { FC, useCallback } from "react"
+import { ActionTypes } from "../../models/ActionTypes"
 import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
 const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 //import styles from "../Comment/Comment.module.scss"
 import { LikeSectionProps } from "../LikeSection/LikeSection"
+import { PostReplyProps } from "../PostReply/PostReply"
 import { ReplyProps } from "../Reply/Reply"
 
 export interface CommentContentProps {
@@ -12,6 +14,7 @@ export interface CommentContentProps {
     setLocalReplies: React.Dispatch<
         React.SetStateAction<ReplyProps[] | undefined>
     >
+    setPostReply: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const CommentContent: FC<CommentContentProps> = ({
@@ -19,52 +22,30 @@ const CommentContent: FC<CommentContentProps> = ({
     likesCount,
     commentBodyInfo,
     setLocalReplies,
+    setPostReply,
 }) => {
-    // function handleActions(e: React.MouseEvent<HTMLDivElement>) {
-    //     switch (e.target.dataset["name"]) {
-    //         case ActionTypes.REPLY: {
-    //             addReplyForm(e.currentTarget.dataset["name"]!)
-    //         }
-    //     }
-    //     //console.log(e.currentTarget.dataset["name"])
-    // }
-
-    const addReplyForm = useCallback((_replyingTo: string) => {
-        // console.log(setLocalReplies)
-        // setLocalReplies((currentLocalReplies) => [
-        //     ...(currentLocalReplies?.filter(
-        //         (reply) => `${reply.id}` !== "replyForm"
-        //     ) || []),
-        //     {
-        //         id: "replyForm",
-        //         replyingTo,
-        //     } as ReplyFormProps,
-        // ])
-    }, [])
-
-    const handleActions = useCallback(
-        (_e: React.MouseEvent<HTMLDivElement>) => {
-            // switch (e.target.dataset["name"]) {
-            //     case ActionTypes.REPLY: {
-            //         addReplyForm(e.currentTarget.dataset["name"]!)
-            //     }
-            // }
-        },
-        []
-    )
-
-    // function addReplyForm(replyingTo: string) {
-    //     console.log(setLocalReplies)
-    //     setLocalReplies((currentLocalReplies) => [
-    //         ...(currentLocalReplies?.filter(
-    //             (reply) => `${reply.id}` !== "replyForm"
-    //         ) || []),
-    //         {
-    //             id: "replyForm",
-    //             replyingTo,
-    //         } as ReplyFormProps,
-    //     ])
-    // }
+    function handleActions(e: React.MouseEvent<HTMLDivElement>) {
+        const actionType = (e.target as HTMLDivElement).dataset["type"]
+        const replyingTo = e.currentTarget.dataset["name"]
+        console.log(actionType, replyingTo)
+        switch (actionType) {
+            case ActionTypes.REPLY: {
+                try {
+                    setPostReply(
+                        (currentPostReply) => replyingTo as string | null
+                    )
+                } catch (_) {
+                    console.error(
+                        "e.currentTarget.dataset['name'] IS UNDEFINED"
+                    )
+                }
+                break
+            }
+            case ActionTypes.EDIT: {
+                
+            }
+        }
+    }
 
     return (
         <div

@@ -6,7 +6,7 @@ import styles from "./Action.module.scss"
 const Action: FC<IAction> = ({ iconUrl, actionName, color }) => {
     return (
         <div
-            data-name={actionName}
+            data-type={actionName}
             className={styles["action"]}>
             <LazyLoadImage
                 src={iconUrl}

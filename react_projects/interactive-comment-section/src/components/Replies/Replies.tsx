@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 import styles from "./Replies.module.scss"
 import Reply, { ReplyProps } from "../Reply/Reply"
+import CommentContent from "../CommentContent/CommentContent"
 
 const Replies: FC<ReplyProps[]> = (replies) => {
     //TODO: сделать await реплаев тут а не в comments
@@ -19,7 +20,7 @@ const Replies: FC<ReplyProps[]> = (replies) => {
 
                     <div className={styles["replies"]}>
                         {Object.values(replies)?.map((reply) => (
-                            <Reply
+                            <CommentContent
                                 key={reply.id}
                                 {...reply}
                             />

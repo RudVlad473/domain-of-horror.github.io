@@ -1,23 +1,32 @@
-import React, { FC, LegacyRef, useEffect } from "react"
+import React, { forwardRef, useEffect } from "react"
 import styles from "./CommentInput.module.scss"
 
 interface CommentInputProps {
-    ref?: LegacyRef<HTMLTextAreaElement> | undefined
+    textAreaRef?: React.MutableRefObject<HTMLTextAreaElement>
     formId?: string
     name?: string
     children?: React.ReactNode
     isEditable?: boolean
 }
 
-const CommentInput: FC<CommentInputProps> = React.forwardRef(
-    ({ formId, name, isEditable = true, ref, ...props }) => {
+const CommentInput = forwardRef(
+    ({
+        formId,
+        name,
+        isEditable = true,
+        textAreaRef,
+        ...props
+    }: CommentInputProps) => {
         useEffect(() => {
-            ref?.current?.scrollIntoView()
+            textAreaRef?.current?.scrollIntoView({
+                block: "center",
+                inline: "center",
+            })
         }, [])
 
         return (
             <textarea
-                ref={ref}
+                ref={textAreaRef}
                 // disabled={!isEditable}
                 className={`${styles["comment-area"]} ${
                     !isEditable && styles["comment-area--disabled"]
