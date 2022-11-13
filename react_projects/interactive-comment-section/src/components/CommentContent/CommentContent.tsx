@@ -2,10 +2,14 @@ import React, {
     FC,
     MutableRefObject,
     useCallback,
+    useEffect,
     useRef,
     useState,
 } from "react"
 import { EditableContext } from "../../context/EditableContext"
+import validateCommentInput, {
+    MessageStates,
+} from "../../helpers/functions/validateCommentInput"
 import { ActionTypes } from "../../models/ActionTypes"
 import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
 const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
@@ -33,10 +37,18 @@ const CommentContent: FC<CommentContentProps> = ({
     setPostReply,
 }) => {
     const [isEditable, setIsEditable] = useState<boolean>(false)
+    const [article, setArticle] = useState<string | null>(null)
 
-    const updateButtonRef = useRef<HTMLButtonElement>(
+    const submitButtonRef = useRef<HTMLButtonElement>(
         null
     ) as MutableRefObject<HTMLButtonElement>
+    const editableTextAreaRef = useRef<HTMLTextAreaElement>(
+        null
+    ) as MutableRefObject<HTMLTextAreaElement>
+
+    useEffect(() => {
+        setArticle((_) => editableTextAreaRef?.current?.textContent)
+    }, [editableTextAreaRef])
 
     function handleActions(e: React.MouseEvent<HTMLFormElement>) {
         const actionType = (e.target as HTMLDivElement).dataset["type"]
@@ -58,6 +70,30 @@ const CommentContent: FC<CommentContentProps> = ({
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
+
+        const articleBeforeEdit = article
+        const articleAfterEdit = editableTextAreaRef?.current
+
+        if (!articleAfterEdit) {
+            return
+        }
+
+        const validatedInput = validateCommentInput(
+            articleAfterEdit.textContent!
+        )
+
+        switch (validatedInput) {
+            case MessageStates.Normal: {
+                break
+            }
+            default: {
+                alert(validatedInput)
+                articleAfterEdit.textContent = articleBeforeEdit
+
+                break
+            }
+        }
+        setIsEditable((_) => false)
     }
 
     return (
@@ -72,13 +108,16 @@ const CommentContent: FC<CommentContentProps> = ({
                     <LikeSection {...likesCount} />
                 </React.Suspense>
                 <EditableContext.Provider value={isEditable}>
-                    <CommentBody {...commentBodyInfo} />
+                    <CommentBody
+                        {...commentBodyInfo}
+                        articleRef={editableTextAreaRef}
+                    />
                 </EditableContext.Provider>
             </div>
 
             {isEditable && (
                 <Button
-                    buttonRef={updateButtonRef}
+                    buttonRef={submitButtonRef}
                     buttonValue="Update"
                     {...{ type: "submit" }}
                 />
