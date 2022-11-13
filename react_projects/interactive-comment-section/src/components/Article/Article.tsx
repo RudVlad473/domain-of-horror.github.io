@@ -1,14 +1,21 @@
 import React, { FC, useContext } from "react"
-import { CommentContext } from "../../context/CommentContext"
+import { EditableContext } from "../../context/EditableContext"
+import styles from "./Article.module.scss"
 
 export interface ArticleProps {
     article: React.ReactNode
 }
 
 const Article: FC<ArticleProps> = ({ article }) => {
-    const { isEditable } = useContext(CommentContext)
+    const isEditable = useContext(EditableContext)
 
-    return <article contentEditable={isEditable}>{article}</article>
+    return (
+        <article
+            spellCheck="false"
+            contentEditable={isEditable}>
+            {article}
+        </article>
+    )
 }
 
 export default Article

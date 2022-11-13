@@ -2,7 +2,6 @@ import React, { FC } from "react"
 import Article, { ArticleProps } from "../Article/Article"
 const Header = React.lazy(() => import("../Header/Header"))
 import { HeaderProps } from "../Header/Header"
-import styles from "./CommentBody.module.scss"
 
 export interface CommentBodyProps {
     headerInfo: HeaderProps
@@ -11,7 +10,7 @@ export interface CommentBodyProps {
 
 const CommentBody: FC<CommentBodyProps> = ({ headerInfo, article }) => {
     return (
-        <div className={styles["comment__body"]}>
+        <div className="comment__body">
             <React.Suspense>
                 <Header {...headerInfo} />
             </React.Suspense>

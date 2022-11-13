@@ -1,9 +1,0 @@
-@use "../../stylesheets/abstracts/" as *;
-
-.comment__body {
-    display: flex;
-    flex-direction: column;
-    gap: map-get($gutters, "g-1") * 0.5;
-
-    width: 100%;
-}

@@ -24,8 +24,9 @@ const PostComment: FC<PostCommentProps> = () => {
     const commentInputRef = useRef<HTMLTextAreaElement>(
         null
     ) as MutableRefObject<HTMLTextAreaElement>
-    const submitButtonRef =
-        useRef<HTMLButtonElement>() as MutableRefObject<HTMLButtonElement>
+    const submitButtonRef = useRef<HTMLButtonElement>(
+        null
+    ) as MutableRefObject<HTMLButtonElement>
 
     function addComment() {
         const text = commentInputRef?.current!.value
@@ -70,6 +71,7 @@ const PostComment: FC<PostCommentProps> = () => {
                 textAreaRef={commentInputRef}
                 onFormSubmit={addComment}
                 buttonValue="Send"
+                buttonRef={submitButtonRef}
             />
         </React.Suspense>
     )

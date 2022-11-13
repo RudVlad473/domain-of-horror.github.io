@@ -7,7 +7,10 @@
     border: 0;
     border-radius: $br;
 
-    padding-block: map-get($gutters, "g-1") * 0.75;
+    padding:  map-get($gutters, "g-1") * 0.75 map-get($gutters, "g-1") * 0.25;
+
+    min-width: 6.75rem;
+    max-width: 6.75rem;
 
     font-weight: $bold;
 

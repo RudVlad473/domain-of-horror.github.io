@@ -1,27 +1,19 @@
-@use "../../stylesheets/abstracts" as *;
+@use "../abstracts/" as *;
 
 .comment-area {
-
     width: 100%;
 
     padding: 0.5em 1.25em;
 
     outline: 1px solid $gray-200;
     border-radius: $br;
-    border: 1px solid transparent;
+    border: 1px solid $gray-200;
 
     background-color: white;
 
-    transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in;
 
     resize: none;
-
-    // &--disabled {
-    //     outline: 0;
-    //     border-radius: 0;
-    //     padding: 0;
-    //     overflow: auto;
-    // }
 
     &:focus {
         border-color: $blue-300;
