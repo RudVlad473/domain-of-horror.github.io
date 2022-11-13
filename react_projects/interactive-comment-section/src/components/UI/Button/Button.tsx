@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react"
 
-interface ButtonProps {
+export interface ButtonProps {
     buttonRef?: React.MutableRefObject<HTMLButtonElement>
     buttonValue: string
     props?: React.HTMLProps<HTMLButtonElement>

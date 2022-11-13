@@ -1,6 +1,5 @@
-import React, { FC, forwardRef, MutableRefObject, useContext } from "react"
+import React, { forwardRef, MutableRefObject, useContext } from "react"
 import { EditableContext } from "../../context/EditableContext"
-import styles from "./Article.module.scss"
 
 export interface ArticleProps {
     article: React.ReactNode

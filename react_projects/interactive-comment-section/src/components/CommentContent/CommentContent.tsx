@@ -15,6 +15,7 @@ import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
 const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 //import styles from "../Comment/Comment.module.scss"
 import { LikeSectionProps } from "../LikeSection/LikeSection"
+import { ModalProps } from "../Modal/Modal"
 import { PostReplyProps } from "../PostReply/PostReply"
 import { ReplyProps } from "../Reply/Reply"
 import Button from "../UI/Button/Button"
@@ -53,7 +54,7 @@ const CommentContent: FC<CommentContentProps> = ({
     function handleActions(e: React.MouseEvent<HTMLFormElement>) {
         const actionType = (e.target as HTMLDivElement).dataset["type"]
         const replyingTo = e.currentTarget.dataset["name"]
-        console.log(actionType, replyingTo)
+
         switch (actionType) {
             case ActionTypes.REPLY: {
                 setPostReply((currentPostReply) => replyingTo as string | null)
@@ -64,6 +65,16 @@ const CommentContent: FC<CommentContentProps> = ({
                 setIsEditable((isCurrentlyEditable) => !isCurrentlyEditable)
 
                 break
+            }
+            case ActionTypes.DELETE: {
+                // deleteModal ? setDeleteModal(null) : setDeleteModal({
+                //     onSubmit: Function
+                //     onSubmitButton: ButtonProps
+                //     onDecline: Function
+                //     onDeclineButton: ButtonProps
+                //     header: string
+                //     descr: string
+                // })
             }
         }
     }
@@ -119,7 +130,6 @@ const CommentContent: FC<CommentContentProps> = ({
                 <Button
                     buttonRef={submitButtonRef}
                     buttonValue="Update"
-                    {...{ type: "submit" }}
                 />
             )}
         </form>

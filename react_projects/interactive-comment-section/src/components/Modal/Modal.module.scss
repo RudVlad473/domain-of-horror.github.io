@@ -1,0 +1,22 @@
+@use "../../stylesheets/abstracts/" as *;
+
+.background {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    position: fixed;
+    z-index: 666;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $blue-200;
+    opacity: 0.5;
+
+    pointer-events: none;
+}
+
+.modal {
+    position: relative;
+}

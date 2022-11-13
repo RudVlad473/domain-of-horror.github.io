@@ -7,7 +7,7 @@
     border: 0;
     border-radius: $br;
 
-    padding:  map-get($gutters, "g-1") * 0.75 map-get($gutters, "g-1") * 0.25;
+    padding: map-get($gutters, "g-1") * 0.75 map-get($gutters, "g-1") * 0.25;
 
     min-width: 6.75rem;
     max-width: 6.75rem;
@@ -18,6 +18,19 @@
         background-color: $blue-300;
 
         color: white;
+    }
+
+    &--unfixed {
+        min-width: none;
+        max-width: none;
+    }
+
+    &--gray {
+        background-color: $blue-200;
+    }
+
+    &--red {
+        background-color: $red-200;
     }
 
     &:hover {
