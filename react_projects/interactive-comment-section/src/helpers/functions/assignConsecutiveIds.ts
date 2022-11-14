@@ -1,11 +1,11 @@
 import { CommentProps } from "./../../components/Comment/Comment"
 function assignConsecutiveIds(
-    lastId: number,
+    idGenerator: Generator<number, void, unknown>,
     comments: CommentProps[]
 ): CommentProps[] {
-    for (let i = 0, id = lastId + 1; i < comments?.length; i++, id++) {
-        comments[i]!.id = `${id}`
-    }
+    comments.forEach((comment) => {
+        comment.id = idGenerator.next().value!
+    })
 
     return comments
 }
