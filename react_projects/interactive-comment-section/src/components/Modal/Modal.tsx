@@ -3,10 +3,10 @@ import Button, { ButtonProps } from "../UI/Button/Button"
 import styles from "./Modal.module.scss"
 
 export interface ModalProps {
-    onSubmit: Function
+    onSubmit: () => void
     onSubmitButton: ButtonProps
 
-    onDecline: Function
+    onDecline: () => void
     onDeclineButton: ButtonProps
 
     header: string
@@ -21,32 +21,30 @@ const Modal: FC<ModalProps> = ({
     header,
     descr,
 }) => {
-    function handleSubmit(e: FormEvent) {
-        console.log(e.target)
-    }
-
-    function onFormSubmit() {}
-
-    function onFormDecline() {}
-
     return (
-        <div className={styles["background"]}>
-           <form
-            className={styles["modal"]}
-            onSubmit={handleSubmit}>
-            <header>{header}</header>
-            <article>{descr}</article>
-            <Button
-                {...onSubmitButton}
-                buttonValue={onSubmitButton.buttonValue}
-            />
-            <Button
-                {...onDeclineButton}
-                buttonValue={onDeclineButton.buttonValue}
-            />
-        </form> 
-        </div>
-        
+        <>
+            <div className={styles["background"]}></div>
+            <div className={styles["modal"]}>
+                <h1 className={styles["header"]}>{header}</h1>
+                <article className="article">{descr}</article>
+                <div className={styles["buttons"]}>
+                    <Button
+                        {...onDeclineButton}
+                        isFixedSize={false}
+                        buttonColor="gray"
+                        buttonValue={onDeclineButton.buttonValue}
+                        onClick={onDecline}
+                    />
+                    <Button
+                        {...onSubmitButton}
+                        isFixedSize={false}
+                        buttonColor="red"
+                        buttonValue={onSubmitButton.buttonValue}
+                        onClick={onSubmit}
+                    />
+                </div>
+            </div>
+        </>
     )
 }
 

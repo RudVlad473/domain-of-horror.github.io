@@ -14,12 +14,12 @@ import validateCommentInput, {
 import { CommentProps } from "../Comment/Comment"
 const PostForm = React.lazy(() => import("../PostForm/PostForm"))
 
-interface PostCommentProps {}
+interface PostCommentProps {
+    appendComments(comments: CommentProps[]): void
+}
 
-const PostComment: FC<PostCommentProps> = () => {
+const PostComment: FC<PostCommentProps> = ({appendComments}) => {
     const { avatarUrl, userName } = useContext(UserContext)
-
-    const { appendComments } = useContext(CommentsContext)
 
     const commentInputRef = useRef<HTMLTextAreaElement>(
         null
@@ -70,7 +70,7 @@ const PostComment: FC<PostCommentProps> = () => {
             <PostForm
                 textAreaRef={commentInputRef}
                 onFormSubmit={addComment}
-                buttonValue="Send"
+                buttonValue="SEND"
                 buttonRef={submitButtonRef}
             />
         </React.Suspense>

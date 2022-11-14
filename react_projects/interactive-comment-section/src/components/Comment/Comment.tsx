@@ -27,10 +27,11 @@ const Comment: FC<CommentProps> = ({
     const [postReply, setPostReply] = useState<string | null>(null)
 
     useEffect(() => {
-        replies?.then((data) => {
-            data?.length && setLocalReplies((_) => data)
-        })
-    }, [])
+        ;(async () => {
+            const awaitedReplies = await replies
+            setLocalReplies((_) => awaitedReplies)
+        })()
+    }, [replies])
 
     return (
         <CommentContext.Provider

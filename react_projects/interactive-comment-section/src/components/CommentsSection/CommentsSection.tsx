@@ -60,26 +60,7 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         setComments((_) => data)
     }
 
-    // function appendExistingComment(id: number, newComment: CommentProps): void {
-    //     const indexOfExistingComment = comments?.findIndex(
-    //         (comments) => +comments.id == id
-    //     )!
-
-    //     newComment.id = `${lastId + 1}`
-
-    //     setLastId((lastId) => lastId + 1)
-    //     setComments((currentComments) => {
-    //         const newComments = [...currentComments!]
-    //         newComments[indexOfExistingComment] = {
-    //             ...newComments[indexOfExistingComment],
-    //             ...newComment,
-    //         }
-
-    //         return [...newComments!]
-    //     })
-    // }
-
-    function appendComments(comments: CommentProps[]) {
+    async function appendComments(comments: CommentProps[]) {
         setComments((currentComments) => [
             ...(currentComments || []),
             ...assignConsecutiveIds(lastId, comments),
@@ -87,10 +68,21 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         setLastId((lastId) => lastId + comments.length)
     }
 
-    function removeComment(id: number): void {
-        setComments((currentComments) => [
-            ...(currentComments?.filter((comment) => comment.id !== id) || []),
-        ])
+    async function removeCommentOrReply(id: number): Promise<void> {
+        setComments((currentComments) => {
+            const filteredComments =
+                currentComments?.filter((comment) => comment.id !== id) || []
+
+            
+            for (let i = 0; i < filteredComments.length; i++) {
+                //filter comment replies and wrap in promise
+                filteredComments[i]!.replies = (async () =>
+                    (await filteredComments[i]?.replies)?.filter(
+                        (reply) => reply.id !== id
+                    ))()
+            }
+            return filteredComments
+        })
     }
 
     useEffect(() => {
@@ -104,13 +96,12 @@ const CommentsSection: FC<CommentSectionProps> = () => {
             style={{ marginBlock: "2rem" }}>
             <CommentsContext.Provider
                 value={{
-                    appendComments,
-                    removeComment,
-                    lastId: lastId,
+                    removeCommentOrReply,
+                    lastId,
                 }}>
                 <Comments comments={comments} />
                 <React.Suspense>
-                    <PostComment />
+                    <PostComment appendComments={appendComments} />
                 </React.Suspense>
             </CommentsContext.Provider>
         </section>

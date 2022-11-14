@@ -2,10 +2,12 @@ import React, {
     FC,
     MutableRefObject,
     useCallback,
+    useContext,
     useEffect,
     useRef,
     useState,
 } from "react"
+import { CommentsContext } from "../../context/CommentsContext"
 import { EditableContext } from "../../context/EditableContext"
 import validateCommentInput, {
     MessageStates,
@@ -15,7 +17,7 @@ import CommentBody, { CommentBodyProps } from "../CommentBody/CommentBody"
 const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 //import styles from "../Comment/Comment.module.scss"
 import { LikeSectionProps } from "../LikeSection/LikeSection"
-import { ModalProps } from "../Modal/Modal"
+import Modal, { ModalProps } from "../Modal/Modal"
 import { PostReplyProps } from "../PostReply/PostReply"
 import { ReplyProps } from "../Reply/Reply"
 import Button from "../UI/Button/Button"
@@ -39,6 +41,7 @@ const CommentContent: FC<CommentContentProps> = ({
 }) => {
     const [isEditable, setIsEditable] = useState<boolean>(false)
     const [article, setArticle] = useState<string | null>(null)
+    const [deleteModal, setDeleteModal] = useState<ModalProps | null>(null)
 
     const submitButtonRef = useRef<HTMLButtonElement>(
         null
@@ -46,6 +49,7 @@ const CommentContent: FC<CommentContentProps> = ({
     const editableTextAreaRef = useRef<HTMLTextAreaElement>(
         null
     ) as MutableRefObject<HTMLTextAreaElement>
+    const { removeCommentOrReply } = useContext(CommentsContext)
 
     useEffect(() => {
         setArticle((_) => editableTextAreaRef?.current?.textContent)
@@ -67,14 +71,22 @@ const CommentContent: FC<CommentContentProps> = ({
                 break
             }
             case ActionTypes.DELETE: {
-                // deleteModal ? setDeleteModal(null) : setDeleteModal({
-                //     onSubmit: Function
-                //     onSubmitButton: ButtonProps
-                //     onDecline: Function
-                //     onDeclineButton: ButtonProps
-                //     header: string
-                //     descr: string
-                // })
+                const currentCommentId = +e.currentTarget.id
+                deleteModal
+                    ? setDeleteModal(null)
+                    : setDeleteModal({
+                          onSubmit: () => {
+                              removeCommentOrReply(currentCommentId)
+                              setDeleteModal(null)
+                          },
+                          onSubmitButton: { buttonValue: "YES, DELETE" },
+                          onDecline: () => {
+                              setDeleteModal(null)
+                          },
+                          onDeclineButton: { buttonValue: "NO, CANCEL" },
+                          header: "Delete comment",
+                          descr: "Are you sure you want to delete this comment? This will remove the comment and can't be undone.",
+                      })
             }
         }
     }
@@ -132,6 +144,7 @@ const CommentContent: FC<CommentContentProps> = ({
                     buttonValue="Update"
                 />
             )}
+            {deleteModal && <Modal {...deleteModal} />}
         </form>
     )
 }
