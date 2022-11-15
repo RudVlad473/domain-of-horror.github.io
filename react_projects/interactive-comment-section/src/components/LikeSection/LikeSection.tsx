@@ -1,6 +1,8 @@
-import React, { FC, useCallback, useState } from "react"
+import React, { FC, useCallback, useContext, useState } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import ContainedImage from "../ContainedImage/ContainedImage"
+import { CommentContext } from "../../context/CommentContext"
+import { UserContext } from "../../context/UserContext"
+import decideReaction from "../../helpers/functions/decideReaction"
 import styles from "./LikeSection.module.scss"
 
 export interface LikeSectionProps {
@@ -8,20 +10,48 @@ export interface LikeSectionProps {
 }
 
 const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
+    const { id: currentCommentId } = useContext(CommentContext)
+    const { reactedCommentsIds } = useContext(UserContext)
+
     const [score, setScore] = useState<LikeSectionProps>({
         likesCount,
     })
     const maxLikesScore = 2
 
-    const likeComment = useCallback(
-        () => setScore((score) => ({ likesCount: score.likesCount + 1 })),
-        []
-    )
+    const likeComment = useCallback(() => {
+        const currentReaction = reactedCommentsIds.get(currentCommentId)
+        setScore((score) => {
+            const newReaction = currentReaction
+                ? currentReaction === "+"
+                    ? score.likesCount - 1
+                    : score.likesCount + 1
+                : score.likesCount + 1
 
-    const dislikeComment = useCallback(
-        () => setScore((score) => ({ likesCount: score.likesCount - 1 })),
-        []
-    )
+            reactedCommentsIds.set(
+                currentCommentId,
+                score.likesCount > newReaction ? "-" : "+"
+            )
+
+            return { likesCount: newReaction }
+        })
+    }, [reactedCommentsIds])
+    const dislikeComment = useCallback(() => {
+        const currentReaction = reactedCommentsIds.get(currentCommentId)
+        setScore((score) => {
+            const newReaction = currentReaction
+                ? currentReaction === "+"
+                    ? score.likesCount + 1
+                    : score.likesCount - 1
+                : score.likesCount - 1
+
+            reactedCommentsIds.set(
+                currentCommentId,
+                score.likesCount < newReaction ? "-" : "+"
+            )
+
+            return { likesCount: newReaction }
+        })
+    }, [reactedCommentsIds])
 
     return (
         <div className={styles["like-section"]}>

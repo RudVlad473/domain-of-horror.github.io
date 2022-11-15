@@ -30,9 +30,6 @@ const PostReply: FC<PostReplyProps> = ({
     ) as React.MutableRefObject<HTMLButtonElement>
 
     const addReply = useCallback(() => {
-        if (!commentInputRef) {
-            throw new Error(`${commentInputRef}`)
-        }
         const text = commentInputRef?.current!.value
         const validatedInput = validateCommentInput(text)
 

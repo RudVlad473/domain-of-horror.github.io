@@ -34,15 +34,7 @@ const Comment: FC<CommentProps> = ({
     }, [replies])
 
     return (
-        <CommentContext.Provider
-            value={{
-                id,
-                userName:
-                    commentBodyInfo.headerInfo.userDetails.userInfo.userName,
-                //setLocalReplies: (): void => {},
-                isEditable: false,
-                replyingTo: "",
-            }}>
+        <>
             <CommentContent
                 id={id}
                 likesCount={likesCount}
@@ -102,7 +94,7 @@ const Comment: FC<CommentProps> = ({
                     />
                 )}
             </React.Suspense>
-        </CommentContext.Provider>
+        </>
     )
 }
 

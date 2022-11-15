@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import CommentsSection from "./components/CommentsSection/CommentsSection"
-import { UserContext } from "./context/UserContext"
+import { IUserContext, UserContext } from "./context/UserContext"
 import commentsData from "./data/comments.json"
 import extractCurrentUser from "./helpers/functions/extractCurrentUser"
 
@@ -10,14 +10,18 @@ export interface UserInfo {
 }
 
 const App = () => {
-    const [currentUser, setCurrentUser] = useState<UserInfo>({
+    const [currentUser, setCurrentUser] = useState<IUserContext>({
         avatarUrl: "",
         userName: "",
+        reactedCommentsIds: new Map(),
     })
 
     async function fetchCurrentUserLocalJSON() {
         const data = await extractCurrentUser(commentsData)
-        setCurrentUser((currentUser) => data)
+        setCurrentUser((currentUser) => ({
+            ...data,
+            reactedCommentsIds: new Map(),
+        }))
     }
 
     useEffect(() => {

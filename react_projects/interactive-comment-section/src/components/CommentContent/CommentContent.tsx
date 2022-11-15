@@ -7,8 +7,10 @@ import React, {
     useRef,
     useState,
 } from "react"
+import { CommentContext } from "../../context/CommentContext"
 import { CommentsContext } from "../../context/CommentsContext"
 import { EditableContext } from "../../context/EditableContext"
+import { UserContext } from "../../context/UserContext"
 import validateCommentInput, {
     MessageStates,
 } from "../../helpers/functions/validateCommentInput"
@@ -49,6 +51,7 @@ const CommentContent: FC<CommentContentProps> = ({
     const editableTextAreaRef = useRef<HTMLTextAreaElement>(
         null
     ) as MutableRefObject<HTMLTextAreaElement>
+
     const { removeCommentOrReply } = useContext(CommentsContext)
 
     useEffect(() => {
@@ -120,32 +123,44 @@ const CommentContent: FC<CommentContentProps> = ({
     }
 
     return (
-        <form
-            id={`${id}`}
-            data-name={commentBodyInfo.headerInfo.userDetails.userInfo.userName}
-            className="comment"
-            onClick={handleActions}
-            onSubmit={handleSubmit}>
-            <div className="comment__content">
-                <React.Suspense>
-                    <LikeSection {...likesCount} />
-                </React.Suspense>
-                <EditableContext.Provider value={isEditable}>
-                    <CommentBody
-                        {...commentBodyInfo}
-                        articleRef={editableTextAreaRef}
-                    />
-                </EditableContext.Provider>
-            </div>
+        <CommentContext.Provider
+            value={{
+                id,
+                userName:
+                    commentBodyInfo.headerInfo.userDetails.userInfo.userName,
+                //setLocalReplies: (): void => {},
+                isEditable: false,
+                replyingTo: "",
+            }}>
+            <form
+                id={`${id}`}
+                data-name={
+                    commentBodyInfo.headerInfo.userDetails.userInfo.userName
+                }
+                className="comment"
+                onClick={handleActions}
+                onSubmit={handleSubmit}>
+                <div className="comment__content">
+                    <React.Suspense>
+                        <LikeSection {...likesCount} />
+                    </React.Suspense>
+                    <EditableContext.Provider value={isEditable}>
+                        <CommentBody
+                            {...commentBodyInfo}
+                            articleRef={editableTextAreaRef}
+                        />
+                    </EditableContext.Provider>
+                </div>
 
-            {isEditable && (
-                <Button
-                    buttonRef={submitButtonRef}
-                    buttonValue="Update"
-                />
-            )}
-            {deleteModal && <Modal {...deleteModal} />}
-        </form>
+                {isEditable && (
+                    <Button
+                        buttonRef={submitButtonRef}
+                        buttonValue="Update"
+                    />
+                )}
+                {deleteModal && <Modal {...deleteModal} />}
+            </form>
+        </CommentContext.Provider>
     )
 }
 
