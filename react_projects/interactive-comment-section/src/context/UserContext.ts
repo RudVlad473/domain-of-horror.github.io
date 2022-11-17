@@ -1,7 +1,9 @@
 import { createContext } from "react"
 import { UserInfo } from "../App"
 
-type Reaction = "+" | "-"
+//DO NOT CHANGE UNDEFINED
+export type Reaction = "+" | "-" | undefined
+
 export type CommentId = number
 export type ReactedCommentsIds = Map<CommentId, Reaction>
 export interface IUserContext extends UserInfo {

@@ -1,7 +1,6 @@
 import React, {
     FC,
     MutableRefObject,
-    useCallback,
     useContext,
     useEffect,
     useRef,
@@ -10,7 +9,6 @@ import React, {
 import { CommentContext } from "../../context/CommentContext"
 import { CommentsContext } from "../../context/CommentsContext"
 import { EditableContext } from "../../context/EditableContext"
-import { UserContext } from "../../context/UserContext"
 import validateCommentInput, {
     MessageStates,
 } from "../../helpers/functions/validateCommentInput"
@@ -20,7 +18,6 @@ const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 //import styles from "../Comment/Comment.module.scss"
 import { LikeSectionProps } from "../LikeSection/LikeSection"
 import Modal, { ModalProps } from "../Modal/Modal"
-import { PostReplyProps } from "../PostReply/PostReply"
 import { ReplyProps } from "../Reply/Reply"
 import Button from "../UI/Button/Button"
 

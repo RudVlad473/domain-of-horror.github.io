@@ -25,6 +25,14 @@
         &--featured {
             color: black;
         }
+
+        &--liked {
+            color: $red-200;
+        }
+
+        &--disliked {
+            color: $blue-400;
+        }
     }
 
     & > * {
