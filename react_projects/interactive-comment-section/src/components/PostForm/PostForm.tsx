@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useContext, useEffect } from "react"
+import React, { forwardRef, useContext, useEffect } from "react"
 
 import styles from "./PostForm.module.scss"
 import { LazyLoadImage } from "react-lazy-load-image-component"
@@ -30,11 +30,11 @@ const PostForm = forwardRef(
         textAreaValue,
         textAreaRef,
 
-        onFormSubmit,
+        onFormSubmit
     }: PostFormProps) => {
         useEffect(() => {
             textAreaRef?.current?.focus()
-        }, [])
+        }, [textAreaRef])
 
         const { avatarUrl } = useContext(UserContext)
 
@@ -68,5 +68,7 @@ const PostForm = forwardRef(
         )
     }
 )
+
+PostForm.displayName = "PostForm"
 
 export default PostForm

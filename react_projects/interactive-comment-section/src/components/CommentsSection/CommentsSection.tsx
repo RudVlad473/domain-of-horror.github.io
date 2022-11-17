@@ -51,9 +51,9 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         const data = await extractComments(commentsData.comments)
 
         await data?.forEach(async (comment) => {
-            comment.id = idGeneratorRef.current.next().value!
+            comment.id = idGeneratorRef.current.next().value as number
             ;(await comment.replies)?.forEach((reply) => {
-                reply.id = idGeneratorRef.current.next().value!
+                reply.id = idGeneratorRef.current.next().value as number
             })
         })
         setComments((_) => data)
@@ -62,7 +62,7 @@ const CommentsSection: FC<CommentSectionProps> = () => {
     async function appendComments(comments: CommentProps[]) {
         setComments((currentComments) => [
             ...(currentComments || []),
-            ...assignConsecutiveIds(idGeneratorRef.current, comments),
+            ...assignConsecutiveIds(idGeneratorRef.current, comments)
         ])
     }
 

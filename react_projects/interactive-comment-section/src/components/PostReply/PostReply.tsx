@@ -30,7 +30,7 @@ const PostReply: FC<PostReplyProps> = ({
     ) as React.MutableRefObject<HTMLButtonElement>
 
     const addReply = useCallback(() => {
-        const text = commentInputRef?.current!.value
+        const text = commentInputRef?.current.value
         const validatedInput = validateCommentInput(text)
 
         switch (validatedInput) {
@@ -45,12 +45,12 @@ const PostReply: FC<PostReplyProps> = ({
 
         const newReply: ReplyProps = {
             ...getNewComment({
-                id: "",
+                id: 0,
                 likesCount: 0,
                 avatarUrl,
                 userName,
                 createdAt: "today",
-                article: commentInputRef?.current?.value!,
+                article: commentInputRef?.current?.value,
                 replies: undefined,
             }),
             replyingTo,
@@ -61,7 +61,7 @@ const PostReply: FC<PostReplyProps> = ({
             newReply,
         ])
 
-        commentInputRef!.current!.value = ""
+        commentInputRef.current.value = ""
     }, [commentInputRef])
     // function addReply() {
     //     const text = commentInputRef?.current!.value

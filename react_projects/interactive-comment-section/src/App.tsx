@@ -18,7 +18,7 @@ const App = () => {
 
     async function fetchCurrentUserLocalJSON() {
         const data = await extractCurrentUser(commentsData)
-        setCurrentUser((currentUser) => ({
+        setCurrentUser(() => ({
             ...data,
             reactedCommentsIds: new Map(),
         }))

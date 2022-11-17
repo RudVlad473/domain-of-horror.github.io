@@ -4,7 +4,7 @@ function assignConsecutiveIds(
     comments: CommentProps[]
 ): CommentProps[] {
     comments.forEach((comment) => {
-        comment.id = idGenerator.next().value!
+        comment.id = idGenerator.next().value as number
     })
 
     return comments

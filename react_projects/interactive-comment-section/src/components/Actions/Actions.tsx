@@ -1,14 +1,9 @@
-import React, { FC, memo, useCallback, useContext } from "react"
-import { CommentContext } from "../../context/CommentContext"
-import { SetLocalRepliesContext } from "../../context/SetLocalRepliesContext"
-import { UserContext } from "../../context/UserContext"
+import React, { FC, memo } from "react"
 import {
     UserActions as userActions,
-    AuthorActions as authorActions,
+    AuthorActions as authorActions
 } from "../../models/ActionTypes"
 import Action from "../Action/Action"
-import { CommentContentProps } from "../CommentContent/CommentContent"
-import { ReplyFormProps } from "../PostReply/PostReply"
 
 import styles from "./Actions.module.scss"
 
@@ -37,13 +32,12 @@ const Actions: FC<ActionsProps> = memo(({ isCurrentUser }) => {
     return (
         <div className={styles["actions"]}>
             {(isCurrentUser ? authorActions : userActions).map((action) => (
-                <Action
-                    key={action.actionName}
-                    {...action}
-                />
+                <Action key={action.actionName} {...action} />
             ))}
         </div>
     )
 })
+
+Actions.displayName = "Actions"
 
 export default Actions

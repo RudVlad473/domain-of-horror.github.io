@@ -10,9 +10,9 @@ function getNewComment({
     userName,
     createdAt,
     article,
-    replies,
+    replies
 }: {
-    id: string
+    id: number
     likesCount: number
     avatarUrl: string
     userName: string
@@ -21,21 +21,21 @@ function getNewComment({
     replies: FetchedComment[] | undefined
 }): CommentProps {
     return {
-        id: `${id}`,
+        id,
         likesCount: { likesCount },
         commentBodyInfo: {
             headerInfo: {
                 userDetails: {
                     userInfo: {
                         avatarUrl: getAvatarImagePathByUsername(userName),
-                        userName,
+                        userName
                     },
-                    when: createdAt,
-                },
+                    when: createdAt
+                }
             },
-            article: { article },
+            article: { article }
         },
-        replies: replies ? extractComments(replies) : undefined,
+        replies: replies ? extractComments(replies) : undefined
     }
 }
 

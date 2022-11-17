@@ -11,7 +11,7 @@ const purgecss = require("@fullhuman/postcss-purgecss")
 //     ],
 // })
 
-module.exports = (env, _) => {
+module.exports = (env) => {
     return {
         plugins: [
             "postcss-preset-env",

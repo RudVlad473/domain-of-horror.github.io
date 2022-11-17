@@ -3,13 +3,12 @@ import React, {
     MutableRefObject,
     useContext,
     useEffect,
-    useRef,
+    useRef
 } from "react"
-import { CommentsContext } from "../../context/CommentsContext"
 import { UserContext } from "../../context/UserContext"
 import getNewComment from "../../helpers/functions/getNewComment"
 import validateCommentInput, {
-    MessageStates,
+    MessageStates
 } from "../../helpers/functions/validateCommentInput"
 import { CommentProps } from "../Comment/Comment"
 const PostForm = React.lazy(() => import("../PostForm/PostForm"))
@@ -18,7 +17,7 @@ interface PostCommentProps {
     appendComments(comments: CommentProps[]): void
 }
 
-const PostComment: FC<PostCommentProps> = ({appendComments}) => {
+const PostComment: FC<PostCommentProps> = ({ appendComments }) => {
     const { avatarUrl, userName } = useContext(UserContext)
 
     const commentInputRef = useRef<HTMLTextAreaElement>(
@@ -29,7 +28,7 @@ const PostComment: FC<PostCommentProps> = ({appendComments}) => {
     ) as MutableRefObject<HTMLButtonElement>
 
     function addComment() {
-        const text = commentInputRef?.current!.value
+        const text = commentInputRef.current.value
         const validatedInput = validateCommentInput(text)
 
         switch (validatedInput) {
@@ -43,24 +42,24 @@ const PostComment: FC<PostCommentProps> = ({appendComments}) => {
         }
 
         const newComment: CommentProps = getNewComment({
-            id: "",
+            id: 0,
             likesCount: 0,
             avatarUrl,
             userName,
             createdAt: "today",
-            article: commentInputRef!.current!.value,
-            replies: undefined,
+            article: commentInputRef.current.value,
+            replies: undefined
         })
         appendComments([newComment])
 
-        commentInputRef!.current!.value = ""
+        commentInputRef.current.value = ""
     }
 
     useEffect(() => {
         window.addEventListener("keypress", (e: KeyboardEvent) => {
             e.stopImmediatePropagation()
             if (e.key == "Enter") {
-                submitButtonRef!.current!.click()
+                submitButtonRef.current.click()
             }
         })
     }, [])

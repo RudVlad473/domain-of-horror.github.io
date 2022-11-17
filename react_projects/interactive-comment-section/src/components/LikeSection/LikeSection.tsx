@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useContext, useState } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { CommentContext } from "../../context/CommentContext"
-import {  UserContext } from "../../context/UserContext"
+import { UserContext } from "../../context/UserContext"
 import styles from "./LikeSection.module.scss"
 
 export interface LikeSectionProps {
@@ -14,7 +14,7 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
 
     //const initialLikesCount = useRef(likesCount)
     const [score, setScore] = useState<LikeSectionProps>({
-        likesCount,
+        likesCount
     })
     //const [reaction, setReaction] = useState<Reaction>(undefined)
 
@@ -38,10 +38,10 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
                         ? score.likesCount + 1
                         : currentReaction === "+"
                         ? score.likesCount - 1
-                        : score.likesCount + 1,
+                        : score.likesCount + 1
             }
         })
-    }, [reactedCommentsIds])
+    }, [reactedCommentsIds, currentCommentId])
     const dislikeComment = useCallback(() => {
         const currentReaction = reactedCommentsIds.get(currentCommentId)
         setScore((score) => {
@@ -60,7 +60,7 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
                         ? score.likesCount - 1
                         : currentReaction === "-"
                         ? score.likesCount + 1
-                        : score.likesCount - 1,
+                        : score.likesCount - 1
             }
         })
     }, [reactedCommentsIds])

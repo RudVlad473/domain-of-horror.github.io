@@ -4,8 +4,8 @@ const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const BundleAnalyzerPlugin =
-    require("webpack-bundle-analyzer").BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin =
+//     require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 module.exports = {
     mode: mode,
@@ -13,49 +13,49 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
         chunkFilename: "[name].chunk.js",
-        assetModuleFilename: "./images/[name][ext]",
+        assetModuleFilename: "./images/[name][ext]"
     },
     resolve: {
-        extensions: [".ts", ".js", ".tsx", ".jsx", ".scss", ".css"],
+        extensions: [".ts", ".js", ".tsx", ".jsx", ".scss", ".css"]
     },
     module: {
         rules: [
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: "asset/resource",
+                type: "asset/resource"
             },
             {
                 test: /\.(s[ac]|c)ss$/i,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
-                        options: { publicPath: "" },
+                        options: { publicPath: "" }
                     },
                     "css-loader",
                     "postcss-loader",
-                    "sass-loader",
-                ],
+                    "sass-loader"
+                ]
             },
             {
                 test: /\.(j|t)sx?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
-                },
+                    loader: "babel-loader"
+                }
             },
             {
                 test: /\.html$/i,
-                loader: "html-loader",
-            },
-        ],
+                loader: "html-loader"
+            }
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
 
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
-        }),
+            template: "./src/index.html"
+        })
         // new BundleAnalyzerPlugin(),
     ],
     devtool: "source-map",
@@ -64,13 +64,13 @@ module.exports = {
         hot: true,
         open: {
             app: {
-                name: "firefox",
+                name: "firefox"
                 //name: "chrome",
-            },
+            }
         },
-        historyApiFallback: true,
+        historyApiFallback: true
     },
-    target: "web",
+    target: "web"
 }
 
 // output: {
