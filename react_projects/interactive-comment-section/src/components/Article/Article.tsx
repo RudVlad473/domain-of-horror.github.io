@@ -1,4 +1,4 @@
-import React, { forwardRef, MutableRefObject, useContext } from "react"
+import React, { MutableRefObject, forwardRef, useContext } from "react"
 import { EditableContext } from "../../context/EditableContext"
 
 export interface ArticleProps {
@@ -18,5 +18,7 @@ const Article = forwardRef(({ article, articleRef }: ArticleProps) => {
         </article>
     )
 })
+
+Article.displayName = "Article"
 
 export default Article

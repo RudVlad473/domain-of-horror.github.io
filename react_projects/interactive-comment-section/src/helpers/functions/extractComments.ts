@@ -1,7 +1,7 @@
-import { FetchedComment } from "./../../components/CommentsSection/CommentsSection"
 import { CommentProps } from "../../components/Comment/Comment"
-import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
+import { FetchedComment } from "./../../components/CommentsSection/CommentsSection"
 import extractReplies from "./extractReplies"
+import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
 
 async function extractComments(
     comments: FetchedComment[]

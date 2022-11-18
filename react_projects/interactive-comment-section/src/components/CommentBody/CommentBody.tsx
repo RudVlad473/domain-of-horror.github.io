@@ -1,7 +1,9 @@
 import React, { FC, MutableRefObject } from "react"
+
 import Article, { ArticleProps } from "../Article/Article"
-const Header = React.lazy(() => import("../Header/Header"))
 import { HeaderProps } from "../Header/Header"
+
+const Header = React.lazy(() => import("../Header/Header"))
 
 export interface CommentBodyProps {
     headerInfo: HeaderProps
@@ -20,10 +22,7 @@ const CommentBody: FC<CommentBodyProps> = ({
                 <Header {...headerInfo} />
             </React.Suspense>
 
-            <Article
-                article={article.article}
-                articleRef={articleRef}
-            />
+            <Article article={article.article} articleRef={articleRef} />
         </div>
     )
 }

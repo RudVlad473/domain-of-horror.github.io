@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import IAction from "../../models/ActionTypes"
+import IAction from "../../models/Action/ActionTypes"
 import styles from "./Action.module.scss"
 
 const Action: FC<IAction> = ({ iconUrl, actionName, color }) => {

@@ -1,11 +1,9 @@
-import { UserInfo } from "../../App"
 import { FetchedData } from "../../components/CommentsSection/CommentsSection"
+import { IUser } from "../../models/User/IUser"
 import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
 
-async function extractCurrentUser(
-    commentsData: FetchedData
-): Promise<UserInfo> {
-    const currentUser: UserInfo = {
+async function extractCurrentUser(commentsData: FetchedData): Promise<IUser> {
+    const currentUser: IUser = {
         avatarUrl: getAvatarImagePathByUsername(
             commentsData.currentUser.username
         ),

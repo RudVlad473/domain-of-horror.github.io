@@ -1,13 +1,13 @@
 import React, { FC } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import { UserInfo } from "../../App"
+import { IUser } from "../../App"
 
 //import ContainedImage from "../ContainedImage/ContainedImage"
 import UserName from "../UserName/UserName"
 import styles from "./UserDetails.module.scss"
 
 export interface UserDetailsProps {
-    userInfo: UserInfo
+    userInfo: IUser
     when: string
 }
 
@@ -23,9 +23,7 @@ const UserDetails: FC<UserDetailsProps> = ({ userInfo, when }) => {
             </React.Suspense>
 
             <UserName userName={userInfo.userName} />
-            <span
-                className={styles["user-details__when"]}
-                title={when}>
+            <span className={styles["user-details__when"]} title={when}>
                 {when}
             </span>
         </div>

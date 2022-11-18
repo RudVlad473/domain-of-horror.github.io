@@ -56,7 +56,7 @@ const CommentsSection: FC<CommentSectionProps> = () => {
                 reply.id = idGeneratorRef.current.next().value as number
             })
         })
-        setComments((_) => data)
+        setComments(() => data)
     }
 
     async function appendComments(comments: CommentProps[]) {

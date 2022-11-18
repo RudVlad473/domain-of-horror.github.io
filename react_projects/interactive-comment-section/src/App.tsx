@@ -4,23 +4,19 @@ import { IUserContext, UserContext } from "./context/UserContext"
 import commentsData from "./data/comments.json"
 import extractCurrentUser from "./helpers/functions/extractCurrentUser"
 
-export interface UserInfo {
-    avatarUrl: string
-    userName: string
-}
 
 const App = () => {
     const [currentUser, setCurrentUser] = useState<IUserContext>({
         avatarUrl: "",
         userName: "",
-        reactedCommentsIds: new Map(),
+        reactedCommentsIds: new Map()
     })
 
     async function fetchCurrentUserLocalJSON() {
         const data = await extractCurrentUser(commentsData)
         setCurrentUser(() => ({
             ...data,
-            reactedCommentsIds: new Map(),
+            reactedCommentsIds: new Map()
         }))
     }
 

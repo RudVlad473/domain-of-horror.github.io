@@ -1,17 +1,16 @@
 import React, { FC, useEffect, useState } from "react"
-import { CommentContext } from "../../context/CommentContext"
-import CommentContent, {
-    CommentContentProps,
-} from "../CommentContent/CommentContent"
+
+import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
+import { ICommentContent } from "../../models/Comment/IComment"
+import CommentContent from "../CommentContent/CommentContent"
 import NoComments from "../NoComments/NoComments"
 import PostReply from "../PostReply/PostReply"
-import Reply, { ReplyProps } from "../Reply/Reply"
 import repliesStyles from "../Replies/Replies.module.scss"
-import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
+import { ReplyProps } from "../Reply/Reply"
 
 //const Replies = React.lazy(() => import("../Replies/Replies"))
 
-export interface CommentProps extends CommentContentProps {
+export interface CommentProps extends ICommentContent {
     replies: Promise<ReplyProps[] | undefined>
 }
 
@@ -29,7 +28,7 @@ const Comment: FC<CommentProps> = ({
     useEffect(() => {
         ;(async () => {
             const awaitedReplies = await replies
-            setLocalReplies((_) => awaitedReplies)
+            setLocalReplies(() => awaitedReplies)
         })()
     }, [replies])
 

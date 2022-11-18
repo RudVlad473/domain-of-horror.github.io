@@ -1,9 +1,9 @@
-import variables from "./../stylesheets/abstracts/colors/_colors.module.scss"
+import variables from "./../../stylesheets/abstracts/colors/_colors.module.scss"
 
 export enum ActionTypes {
     DELETE = "Delete",
     EDIT = "Edit",
-    REPLY = "Reply",
+    REPLY = "Reply"
 }
 export default interface IAction {
     iconUrl: string
@@ -13,21 +13,21 @@ export default interface IAction {
 
 export const AuthorActions: IAction[] = [
     {
-        iconUrl: require("./../images/icon-delete.svg"),
+        iconUrl: require("./../../images/icon-delete.svg"),
         actionName: ActionTypes.DELETE,
-        color: variables["red"],
+        color: variables["red"]
     },
     {
-        iconUrl: require("./../images/icon-edit.svg"),
+        iconUrl: require("./../../images/icon-edit.svg"),
         actionName: ActionTypes.EDIT,
-        color: variables["blue"],
-    },
+        color: variables["blue"]
+    }
 ]
 
 export const UserActions: IAction[] = [
     {
-        iconUrl: require("./../images/icon-reply.svg"),
+        iconUrl: require("./../../images/icon-reply.svg"),
         actionName: ActionTypes.REPLY,
-        color: variables["blue"],
-    },
+        color: variables["blue"]
+    }
 ]

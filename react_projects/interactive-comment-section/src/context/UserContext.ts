@@ -1,18 +1,11 @@
 import { createContext } from "react"
-import { UserInfo } from "../App"
+import { ICurrentUser } from "../models/User/IUser"
 
 //DO NOT CHANGE UNDEFINED
-export type Reaction = "+" | "-" | undefined
-
-export type CommentId = number
-export type ReactedCommentsIds = Map<CommentId, Reaction>
-export interface IUserContext extends UserInfo {
-    reactedCommentsIds: ReactedCommentsIds
-}
 
 // Create a context
-export const UserContext = createContext<IUserContext>({
+export const UserContext = createContext<ICurrentUser>({
     avatarUrl: "",
     userName: "",
-    reactedCommentsIds: new Map(),
+    reactedCommentsIds: new Map()
 })

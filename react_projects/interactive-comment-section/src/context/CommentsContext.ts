@@ -1,5 +1,4 @@
 import { createContext } from "react"
-import { CommentProps } from "../components/Comment/Comment"
 
 interface ICommentsContext {
     //appendComments(comments: CommentProps[]): void
