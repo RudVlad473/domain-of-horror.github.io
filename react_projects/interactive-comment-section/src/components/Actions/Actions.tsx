@@ -1,17 +1,17 @@
 import React, { FC, memo } from "react"
+
 import {
     AuthorActions as authorActions,
-    UserActions as userActions
+    UserActions as userActions,
 } from "../../models/Action/ActionTypes"
 import Action from "../Action/Action"
-
 import styles from "./Actions.module.scss"
 
 interface ActionsProps {
     isCurrentUser: boolean
 }
 
-const Actions: FC<ActionsProps> = memo(({ isCurrentUser }) => {
+const Actions = memo(({ isCurrentUser }: ActionsProps) => {
     // const { userName: localUserName } = useContext(CommentContext)
     // const { setLocalReplies } = useContext(CommentContext)
 

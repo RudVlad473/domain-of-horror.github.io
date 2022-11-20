@@ -1,23 +1,20 @@
 import React, { FC, useContext, useMemo } from "react"
-const Actions = React.lazy(() => import("../Actions/Actions"))
+
+import { UserContext } from "../../context/UserContext"
 import UserDetails, { UserDetailsProps } from "../UserDetails/UserDetails"
 import styles from "./Header.module.scss"
 
-import { UserContext } from "../../context/UserContext"
+const Actions = React.lazy(() => import("../Actions/Actions"))
 
-export interface HeaderProps {
-    userDetails: UserDetailsProps
-}
-
-const Header: FC<HeaderProps> = ({ userDetails }) => {
+const Header: FC<UserDetailsProps> = (props) => {
     const currentUser = useContext(UserContext)
     const isCurrentUser = useMemo(() => {
-        return currentUser.userName == userDetails.userInfo.userName
-    }, [currentUser, userDetails.userInfo.userName])
+        return currentUser.userName == props.user.userName
+    }, [currentUser, props.user.userName])
 
     return (
         <div className={styles["header"]}>
-            <UserDetails {...userDetails} />
+            <UserDetails {...props} />
 
             <React.Suspense>
                 <Actions isCurrentUser={isCurrentUser} />

@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+
 import Comment, { CommentProps } from "../Comment/Comment"
 import NoComments from "../NoComments/NoComments"
 
@@ -10,10 +11,7 @@ const Comments: FC<CommentsProps> = ({ comments }) => {
     return (
         <>
             {comments?.map((comment) => (
-                <Comment
-                    key={comment.id}
-                    {...comment}
-                />
+                <Comment key={comment.id} {...comment} />
             )) || <NoComments />}
         </>
     )

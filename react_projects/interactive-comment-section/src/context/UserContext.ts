@@ -1,4 +1,5 @@
 import { createContext } from "react"
+
 import { ICurrentUser } from "../models/User/IUser"
 
 //DO NOT CHANGE UNDEFINED
@@ -7,5 +8,5 @@ import { ICurrentUser } from "../models/User/IUser"
 export const UserContext = createContext<ICurrentUser>({
     avatarUrl: "",
     userName: "",
-    reactedCommentsIds: new Map()
+    reactedCommentsIds: new Map(),
 })

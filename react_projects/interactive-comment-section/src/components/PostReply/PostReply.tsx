@@ -1,10 +1,11 @@
 import React, { FC, useCallback, useContext, useEffect, useRef } from "react"
+
 import { UserContext } from "../../context/UserContext"
-import getNewComment from "../../helpers/functions/getNewComment"
 import validateCommentInput, {
     MessageStates,
 } from "../../helpers/functions/validateCommentInput"
 import { ReplyProps } from "../Reply/Reply"
+
 const PostForm = React.lazy(() => import("../PostForm/PostForm"))
 
 export interface PostReplyProps {
@@ -44,25 +45,18 @@ const PostReply: FC<PostReplyProps> = ({
         }
 
         const newReply: ReplyProps = {
-            ...getNewComment({
-                id: 0,
-                likesCount: 0,
-                avatarUrl,
-                userName,
-                createdAt: "today",
-                article: commentInputRef?.current?.value,
-                replies: undefined,
-            }),
             replyingTo,
+            id,
         }
-        setPostReply((_) => null)
+
+        setPostReply(() => null)
         setLocalReplies((currentReplies) => [
             ...(currentReplies || []),
             newReply,
         ])
 
         commentInputRef.current.value = ""
-    }, [commentInputRef])
+    }, [commentInputRef, replyingTo])
     // function addReply() {
     //     const text = commentInputRef?.current!.value
     //     const validatedInput = validateCommentInput(text)

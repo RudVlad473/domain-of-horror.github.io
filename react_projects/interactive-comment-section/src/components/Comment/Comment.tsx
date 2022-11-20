@@ -14,12 +14,7 @@ export interface CommentProps extends ICommentContent {
     replies: Promise<ReplyProps[] | undefined>
 }
 
-const Comment: FC<CommentProps> = ({
-    id,
-    likesCount,
-    commentBodyInfo,
-    replies,
-}) => {
+const Comment: FC<CommentProps> = (comment) => {
     const [localReplies, setLocalReplies] = useState<ReplyProps[] | undefined>(
         []
     )
@@ -27,17 +22,15 @@ const Comment: FC<CommentProps> = ({
 
     useEffect(() => {
         ;(async () => {
-            const awaitedReplies = await replies
+            const awaitedReplies = await comment.replies
             setLocalReplies(() => awaitedReplies)
         })()
-    }, [replies])
+    }, [comment.replies])
 
     return (
         <>
             <CommentContent
-                id={id}
-                likesCount={likesCount}
-                commentBodyInfo={commentBodyInfo}
+                comment={comment}
                 setLocalReplies={setLocalReplies}
                 setPostReply={setPostReply}
             />
@@ -62,26 +55,14 @@ const Comment: FC<CommentProps> = ({
                             }></div>
 
                         <div className={repliesStyles["replies"]}>
-                            {localReplies?.map(
-                                ({
-                                    id,
-                                    likesCount,
-                                    commentBodyInfo,
-                                    replyingTo,
-                                }) => (
-                                    <CommentContent
-                                        key={id}
-                                        id={id}
-                                        likesCount={likesCount}
-                                        commentBodyInfo={addReplyingToArticle(
-                                            replyingTo,
-                                            commentBodyInfo
-                                        )}
-                                        setLocalReplies={setLocalReplies}
-                                        setPostReply={setPostReply}
-                                    />
-                                )
-                            )}
+                            {localReplies?.map((reply) => (
+                                <CommentContent
+                                    key={reply.id}
+                                    comment={reply}
+                                    setLocalReplies={setLocalReplies}
+                                    setPostReply={setPostReply}
+                                />
+                            ))}
                         </div>
                     </section>
                 ) : undefined}

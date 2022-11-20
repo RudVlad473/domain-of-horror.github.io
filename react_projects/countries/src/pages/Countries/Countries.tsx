@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useMemo, useState } from "react"
+import React, { memo, Suspense, useEffect, useMemo, useState } from "react"
 
 const CountriesGrid = React.lazy(
     () => import("../../components/CountriesGrid/CountriesGrid")
@@ -22,15 +22,16 @@ const Countries = () => {
     })
     const [fieldToSortBy, setFieldToSortBy] = useState<string>("")
 
-    async function fetchCountries(): Promise<void> {
-        const { data } = await axios.get<ICountryCard[]>(allCountriesUrl)
-
-        setCountries((countries) => data)
-        // return data
-    }
+   
 
     useEffect(() => {
-        fetchCountries()
+        (async () => {
+            if(countries.length === 0) {
+                const {data} = await axios.get<ICountryCard[]>(allCountriesUrl)
+                setCountries((countries) => data)
+            }
+           
+        })()
     }, [])
 
     return (

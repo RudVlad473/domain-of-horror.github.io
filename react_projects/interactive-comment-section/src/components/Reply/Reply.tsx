@@ -1,10 +1,11 @@
 import React, { FC } from "react"
-import CommentBody from "../CommentBody/CommentBody"
-import { CommentContentProps } from "../CommentContent/CommentContent"
-import LikeSection from "../LikeSection/LikeSection"
-import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
 
-export interface ReplyProps extends CommentContentProps {
+import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
+import { ICommentContent } from "../../models/Comment/IComment"
+import CommentBody from "../CommentBody/CommentBody"
+import LikeSection from "../LikeSection/LikeSection"
+
+export interface ReplyProps extends ICommentContent {
     replyingTo: string
 }
 

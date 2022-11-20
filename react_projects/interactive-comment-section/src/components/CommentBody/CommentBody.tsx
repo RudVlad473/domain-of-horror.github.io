@@ -1,28 +1,30 @@
 import React, { FC, MutableRefObject } from "react"
 
-import Article, { ArticleProps } from "../Article/Article"
-import { HeaderProps } from "../Header/Header"
+import { IUser } from "../../models/User/IUser"
+import Article from "../Article/Article"
 
 const Header = React.lazy(() => import("../Header/Header"))
 
 export interface CommentBodyProps {
-    headerInfo: HeaderProps
-    article: ArticleProps
+    user: IUser
+    when: string
+    article: React.ReactNode
     articleRef: MutableRefObject<HTMLTextAreaElement>
 }
 
 const CommentBody: FC<CommentBodyProps> = ({
-    headerInfo,
+    user,
+    when,
     article,
     articleRef,
 }) => {
     return (
         <div className="comment__body">
             <React.Suspense>
-                <Header {...headerInfo} />
+                <Header user={user} when={when} />
             </React.Suspense>
 
-            <Article article={article.article} articleRef={articleRef} />
+            <Article article={article} articleRef={articleRef} />
         </div>
     )
 }

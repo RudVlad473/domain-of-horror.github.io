@@ -6,7 +6,6 @@ export default interface ICountryCard {
     flagUrl: string
 }
 
-export interface CountryCardProps {
-    countryCard: ICountryCard
+export interface CountryCardProps extends ICountryCard {
     cardObserver: IntersectionObserver
 }

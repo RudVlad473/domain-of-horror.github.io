@@ -1,12 +1,12 @@
-import React, { FC, memo, useEffect, useRef, useState } from "react"
-import ICountryCard, {
-    CountryCardProps as CountryCardProps,
-} from "./ICountryCard"
+import React, { FC, memo, useEffect, useRef } from "react"
 import { Card } from "react-bootstrap"
-import styles from "./CountryCard.module.scss"
-import CountryFeature from "./CountryFeature/CountryFeature"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import strToUrl from "../../helpers/functions/strToUrl"
+import styles from "./CountryCard.module.scss"
+import CountryFeature from "./CountryFeature/CountryFeature"
+import {
+    CountryCardProps
+} from "./ICountryCard"
 // import BackCard from "./BackCard/BackCard"
 import { useNavigate } from "react-router"
 

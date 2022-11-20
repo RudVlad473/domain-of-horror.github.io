@@ -3,21 +3,22 @@ import React, {
     MutableRefObject,
     useContext,
     useEffect,
-    useRef
+    useRef,
 } from "react"
+
+import { CommentsContext } from "../../context/CommentsContext"
 import { UserContext } from "../../context/UserContext"
-import getNewComment from "../../helpers/functions/getNewComment"
 import validateCommentInput, {
-    MessageStates
+    MessageStates,
 } from "../../helpers/functions/validateCommentInput"
+import Comment from "../../models/Comment/Comment"
 import { CommentProps } from "../Comment/Comment"
+
 const PostForm = React.lazy(() => import("../PostForm/PostForm"))
 
-interface PostCommentProps {
-    appendComments(comments: CommentProps[]): void
-}
+interface PostCommentProps {}
 
-const PostComment: FC<PostCommentProps> = ({ appendComments }) => {
+const PostComment: FC<PostCommentProps> = () => {
     const { avatarUrl, userName } = useContext(UserContext)
 
     const commentInputRef = useRef<HTMLTextAreaElement>(
@@ -26,6 +27,8 @@ const PostComment: FC<PostCommentProps> = ({ appendComments }) => {
     const submitButtonRef = useRef<HTMLButtonElement>(
         null
     ) as MutableRefObject<HTMLButtonElement>
+
+    const { dispatch } = useContext(CommentsContext)
 
     function addComment() {
         const text = commentInputRef.current.value
@@ -41,16 +44,15 @@ const PostComment: FC<PostCommentProps> = ({ appendComments }) => {
             }
         }
 
-        const newComment: CommentProps = getNewComment({
+        const newComment: CommentProps = new Comment({
             id: 0,
             likesCount: 0,
-            avatarUrl,
-            userName,
-            createdAt: "today",
+            user: { userName, avatarUrl },
+            when: "today",
             article: commentInputRef.current.value,
-            replies: undefined
+            replies: (async () => undefined)(),
         })
-        appendComments([newComment])
+        dispatch({ type: "CREATE", payload: [newComment] })
 
         commentInputRef.current.value = ""
     }

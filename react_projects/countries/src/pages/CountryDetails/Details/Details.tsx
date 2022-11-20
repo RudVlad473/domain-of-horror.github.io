@@ -1,19 +1,19 @@
+import axios from "axios"
 import React, { FC, Suspense, useEffect, useMemo, useState } from "react"
+import { useNavigate } from "react-router"
 import CountryFeature from "../../../components/CountryCard/CountryFeature/CountryFeature"
-import styles from "../CountryDetails.module.scss"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import ICookedDetails from "../CookCountries/ICookedCountries"
+import Loading from "../../../components/UI/Loading/Loading"
 import camelCaseToNormal from "../../../helpers/functions/camelCaseToNormal"
-// import BorderCountry from "./BorderCountry"
-const BorderCountry = React.lazy(() => import("./BorderCountry"))
 import constructCountryDetailsUrl from "../../../helpers/functions/constructCountryDetailsUrl"
 import getNthWord from "../../../helpers/functions/getNthWord"
-import axios from "axios"
-import ICountryDetails, { ICountryParams } from "../ICountryDetails"
+import strToUrl from "../../../helpers/functions/strToUrl"
 import cookCountryDetails from "../CookCountries/cookCountryDetails"
-import Loading from "../../../components/UI/Loading/Loading"
+import ICookedDetails from "../CookCountries/ICookedCountries"
+import styles from "../CountryDetails.module.scss"
+import ICountryDetails from "../ICountryDetails"
 import LoadingBorder from "./LoadingBorder"
-import { Params } from "react-router"
+// import BorderCountry from "./BorderCountry"
+const BorderCountry = React.lazy(() => import("./BorderCountry"))
 
 const Details: FC = ({ params }) => {
     const { name } = params
@@ -25,25 +25,40 @@ const Details: FC = ({ params }) => {
         return cookedCountryDetails === undefined
     }, [cookedCountryDetails])
 
+    const navigate = useNavigate()
+
     useEffect(() => {
+        
         fetchDetails()
+        // return () => {
+        //     console.log(1)
+        //     clearTimeout(timeout.current)
+        // }
     }, [params])
 
-    async function fetchDetails(): Promise<void> {
-        const url = constructCountryDetailsUrl(getNthWord(name as string))
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            if(!cookedCountryDetails) {
+                alert("Oops! It seems like there aren't any details for that country")
+                navigate("/")
+                
+            }
+        }, 3000)
+        
+        return () => clearTimeout(timeout)
+    })
 
-        const { data: details } = await axios.get<ICountryDetails[]>(url)
+    async function fetchDetails(): Promise<void> {
+        
+        const url = constructCountryDetailsUrl(getNthWord(name as string))
+        
+        const { data: details } = await axios.get<ICountryDetails[]>(url)       
 
         let currentDetails: ICountryDetails | undefined
 
-        // if (details.length > 1) {
-
-        // } else {
-        //     currentDetails = details[0]
-        // }
-        //TODO: Реализовать случай, когда приходит несколько стран
-
-        currentDetails = details[0]
+        currentDetails = details.length > 1 ? details.find(detail => 
+            strToUrl(detail.name.toLowerCase()) === name
+       ): details[0]
         setCookedCountryDetails(cookCountryDetails(currentDetails!))
     }
 

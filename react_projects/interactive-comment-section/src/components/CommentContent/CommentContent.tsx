@@ -4,24 +4,27 @@ import React, {
     useContext,
     useEffect,
     useRef,
-    useState
+    useState,
 } from "react"
+
 import { CommentContext } from "../../context/CommentContext"
 import { CommentsContext } from "../../context/CommentsContext"
 import { EditableContext } from "../../context/EditableContext"
 import validateCommentInput, {
-    MessageStates
+    MessageStates,
 } from "../../helpers/functions/validateCommentInput"
 import { ActionTypes } from "../../models/Action/ActionTypes"
 import { ICommentContent } from "../../models/Comment/IComment"
 import CommentBody from "../CommentBody/CommentBody"
-const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 //import styles from "../Comment/Comment.module.scss"
 import Modal, { ModalProps } from "../Modal/Modal"
 import { ReplyProps } from "../Reply/Reply"
 import Button from "../UI/Button/Button"
 
-export interface CommentContentProps extends ICommentContent {
+const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
+
+export interface CommentContentProps {
+    comment: ICommentContent
     setLocalReplies: React.Dispatch<
         React.SetStateAction<ReplyProps[] | undefined>
     >
@@ -29,11 +32,9 @@ export interface CommentContentProps extends ICommentContent {
 }
 
 const CommentContent: FC<CommentContentProps> = ({
-    id,
-    likesCount,
-    commentBodyInfo,
+    comment,
     setLocalReplies,
-    setPostReply
+    setPostReply,
 }) => {
     const [isEditable, setIsEditable] = useState<boolean>(false)
     const [article, setArticle] = useState<string | null>(null)
@@ -82,12 +83,11 @@ const CommentContent: FC<CommentContentProps> = ({
                           },
                           onDeclineButton: { buttonValue: "NO, CANCEL" },
                           header: "Delete comment",
-                          descr: "Are you sure you want to delete this comment? This will remove the comment and can't be undone."
+                          descr: "Are you sure you want to delete this comment? This will remove the comment and can't be undone.",
                       })
             }
         }
     }
-
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
 
@@ -119,28 +119,23 @@ const CommentContent: FC<CommentContentProps> = ({
     return (
         <CommentContext.Provider
             value={{
-                id,
-                userName:
-                    commentBodyInfo.headerInfo.userDetails.userInfo.userName,
-                //setLocalReplies: (): void => {},
-                isEditable: false,
-                replyingTo: ""
+                id: comment.id,
+                userName: comment.user.userName,
+                isEditable,
             }}>
             <form
-                id={`${id}`}
-                data-name={
-                    commentBodyInfo.headerInfo.userDetails.userInfo.userName
-                }
+                id={`${comment.id}`}
+                data-name={comment.user.userName}
                 className="comment"
                 onClick={handleActions}
                 onSubmit={handleSubmit}>
                 <div className="comment__content">
-                    <React.Suspense>
+                    {/* <React.Suspense>
                         <LikeSection {...likesCount} />
-                    </React.Suspense>
+                    </React.Suspense> */}
                     <EditableContext.Provider value={isEditable}>
                         <CommentBody
-                            {...commentBodyInfo}
+                            {...comment}
                             articleRef={editableTextAreaRef}
                         />
                     </EditableContext.Provider>

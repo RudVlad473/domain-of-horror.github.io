@@ -1,12 +1,13 @@
-import { createContext } from "react"
+import React, { createContext } from "react"
+
+import { CommentAction } from "../components/CommentsSection/CommentsSection"
 
 interface ICommentsContext {
-    //appendComments(comments: CommentProps[]): void
-    removeCommentOrReply(id: number): void
+    dispatch: React.Dispatch<CommentAction>
 }
 
 // Create a context
 export const CommentsContext = createContext<ICommentsContext>({
     //appendComments: (): void => {},
-    removeCommentOrReply: (): void => {},
+    dispatch: () => {},
 })

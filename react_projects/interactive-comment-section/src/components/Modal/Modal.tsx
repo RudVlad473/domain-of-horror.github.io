@@ -1,4 +1,5 @@
 import React, { FC, FormEvent } from "react"
+
 import Button, { ButtonProps } from "../UI/Button/Button"
 import styles from "./Modal.module.scss"
 

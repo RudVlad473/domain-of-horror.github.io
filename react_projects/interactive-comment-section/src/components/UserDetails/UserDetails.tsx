@@ -1,28 +1,28 @@
 import React, { FC } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import { IUser } from "../../App"
 
+import { IUser } from "../../models/User/IUser"
 //import ContainedImage from "../ContainedImage/ContainedImage"
 import UserName from "../UserName/UserName"
 import styles from "./UserDetails.module.scss"
 
 export interface UserDetailsProps {
-    userInfo: IUser
+    user: IUser
     when: string
 }
 
-const UserDetails: FC<UserDetailsProps> = ({ userInfo, when }) => {
+const UserDetails: FC<UserDetailsProps> = ({ user, when }) => {
     return (
         <div className={styles["user-details"]}>
             <React.Suspense>
                 <LazyLoadImage
-                    src={userInfo.avatarUrl}
-                    alt={userInfo.userName}
+                    src={user.avatarUrl}
+                    alt={user.userName}
                     style={{ maxWidth: "2rem" }}
                 />
             </React.Suspense>
 
-            <UserName userName={userInfo.userName} />
+            <UserName userName={user.userName} />
             <span className={styles["user-details__when"]} title={when}>
                 {when}
             </span>

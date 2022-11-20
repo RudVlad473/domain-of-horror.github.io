@@ -1,5 +1,5 @@
-import { FetchedReply } from "../../components/CommentsSection/CommentsSection"
 import { ReplyProps } from "../../components/Reply/Reply"
+import { FetchedReply } from "../../models/FetchedComment/IFetchedComment"
 import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
 
 async function extractReplies(
@@ -15,21 +15,13 @@ async function extractReplies(
             replyingTo,
         }: FetchedReply): ReplyProps => ({
             id,
-            likesCount: { likesCount: score },
-            commentBodyInfo: {
-                headerInfo: {
-                    userDetails: {
-                        userInfo: {
-                            avatarUrl: getAvatarImagePathByUsername(
-                                user["username"]
-                            ),
-                            userName: user["username"],
-                        },
-                        when: createdAt,
-                    },
-                },
-                article: { article: content },
+            likesCount: score,
+            user: {
+                avatarUrl: getAvatarImagePathByUsername(user["username"]),
+                userName: user["username"],
             },
+            when: createdAt,
+            article: content,
             replyingTo: replyingTo,
         })
     )

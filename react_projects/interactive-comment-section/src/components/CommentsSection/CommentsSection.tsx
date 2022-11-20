@@ -1,51 +1,70 @@
-import React, { FC, useEffect, useRef, useState } from "react"
-import { CommentProps } from "../Comment/Comment"
+import React, { FC, useEffect, useReducer, useRef } from "react"
 
-import styles from "./CommentsSection.module.scss"
-import extractComments from "../../helpers/functions/extractComments"
-import Comments from "../Comments/Comments"
-import commentsData from "../../data/comments.json"
 import { CommentsContext } from "../../context/CommentsContext"
-import assignConsecutiveIds from "../../helpers/functions/assignConsecutiveIds"
+import commentsData from "../../data/comments.json"
+import extractComments from "../../helpers/functions/extractComments"
 import idGenerator from "../../helpers/functions/idGenerator"
+import { CommentProps } from "../Comment/Comment"
+import Comments from "../Comments/Comments"
+import styles from "./CommentsSection.module.scss"
+
 const PostComment = React.lazy(() => import("../PostComment/PostComment"))
 
 interface CommentSectionProps {}
 
-export interface FetchedImage {
-    png: string
-    webp: string
-}
-
-export interface FetchedUser {
-    image: FetchedImage
-    username: string
-}
-export interface FetchedComment {
-    id: number
-    content: string
-    createdAt: string
-    score: number
-    user: FetchedUser
-    replies?: FetchedReply[]
-}
-
-export interface FetchedReply extends FetchedComment {
-    replyingTo: string
-}
-
-export interface FetchedData {
-    currentUser: FetchedUser
-    comments: FetchedComment[]
+export type CommentActions = "CREATE" | "DELETE"
+export interface CommentAction {
+    type: CommentActions
+    payload: CommentProps[]
 }
 
 const CommentsSection: FC<CommentSectionProps> = () => {
-    const [comments, setComments] = useState<CommentProps[] | undefined>([])
-
-    //const [lastId, setLastId] = useState<number>(0)
+    //const [comments, setComments] = useState<>([])
     const idGeneratorRef = useRef<Generator<number, void, unknown>>(
         idGenerator(0)
     )
+    const [comments, dispatch] = useReducer(commentsReducer, [])
+
+    function commentsReducer(
+        state: CommentProps[],
+        action: CommentAction
+    ): CommentProps[] {
+        switch (action.type) {
+            case "CREATE": {
+                action.payload.forEach(
+                    (newComment) =>
+                        (newComment.id = idGeneratorRef.current.next()
+                            .value as number)
+                )
+
+                return comments.concat(action.payload)
+                break
+            }
+            case "DELETE": {
+                const idToDelete = action.payload[0]?.id
+
+                const filteredComments = state.filter(
+                    (comment) => comment.id !== idToDelete
+                )
+
+                for (let i = 0; i < filteredComments.length; i++) {
+                    //filter comment replies and wrap in promise
+                    ;(filteredComments[i] as CommentProps).replies =
+                        (async () =>
+                            (await filteredComments[i]?.replies)?.filter(
+                                (reply) => reply.id !== idToDelete
+                            ))()
+                }
+                return filteredComments || []
+                break
+            }
+            default: {
+                throw new Error("Such action does not exist")
+            }
+        }
+    }
+
+    //const [lastId, setLastId] = useState<number>(0)
 
     async function fetchCommentsFromLocalJSON() {
         const data = await extractComments(commentsData.comments)
@@ -56,30 +75,7 @@ const CommentsSection: FC<CommentSectionProps> = () => {
                 reply.id = idGeneratorRef.current.next().value as number
             })
         })
-        setComments(() => data)
-    }
-
-    async function appendComments(comments: CommentProps[]) {
-        setComments((currentComments) => [
-            ...(currentComments || []),
-            ...assignConsecutiveIds(idGeneratorRef.current, comments)
-        ])
-    }
-
-    async function removeCommentOrReply(id: number): Promise<void> {
-        setComments((currentComments) => {
-            const filteredComments =
-                currentComments?.filter((comment) => comment.id !== id) || []
-
-            for (let i = 0; i < filteredComments.length; i++) {
-                //filter comment replies and wrap in promise
-                filteredComments[i]!.replies = (async () =>
-                    (await filteredComments[i]?.replies)?.filter(
-                        (reply) => reply.id !== id
-                    ))()
-            }
-            return filteredComments
-        })
+        dispatch({ type: "CREATE", payload: data || [] })
     }
 
     useEffect(() => {
@@ -91,10 +87,10 @@ const CommentsSection: FC<CommentSectionProps> = () => {
             aria-label="comments"
             className={styles["comments-section"]}
             style={{ marginBlock: "2rem" }}>
-            <CommentsContext.Provider value={{ removeCommentOrReply }}>
+            <CommentsContext.Provider value={{ dispatch }}>
                 <Comments comments={comments} />
                 <React.Suspense>
-                    <PostComment appendComments={appendComments} />
+                    <PostComment />
                 </React.Suspense>
             </CommentsContext.Provider>
         </section>

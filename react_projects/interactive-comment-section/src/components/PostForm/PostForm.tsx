@@ -1,10 +1,10 @@
 import React, { forwardRef, useContext, useEffect } from "react"
-
-import styles from "./PostForm.module.scss"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+
 import { UserContext } from "../../context/UserContext"
 import CommentInput from "../CommentInput/CommentInput"
 import Button from "../UI/Button/Button"
+import styles from "./PostForm.module.scss"
 
 export interface PostFormProps {
     id?: number
@@ -16,7 +16,7 @@ export interface PostFormProps {
     textAreaValue?: string
     textAreaRef?: React.MutableRefObject<HTMLTextAreaElement>
 
-    onFormSubmit: Function
+    onFormSubmit(): void
 }
 
 const PostForm = forwardRef(
@@ -30,7 +30,7 @@ const PostForm = forwardRef(
         textAreaValue,
         textAreaRef,
 
-        onFormSubmit
+        onFormSubmit,
     }: PostFormProps) => {
         useEffect(() => {
             textAreaRef?.current?.focus()

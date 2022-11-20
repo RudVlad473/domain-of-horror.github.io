@@ -1,11 +1,9 @@
 import React from "react"
+
 import styles from "./LoadingComments.module.scss"
 
-
-
 const LoadingComments = () => {
-
-    const iconSize = 150;
+    const iconSize = 150
 
     return (
         <svg
@@ -25,23 +23,9 @@ const LoadingComments = () => {
                 <g>
                     <path d="M0,35h35v-6.717H0V35z M2.121,30.404h30.758v2.475H2.121V30.404z" />
                     <path d="M0,0v6.717h35V0H0z M32.879,4.596H2.121V2.121h30.758V4.596z" />
-                    <rect
-                        y="9.016"
-                        width="9.426"
-                        height="16.968"
-                    />
-                    <rect
-                        x="12.787"
-                        y="9.016"
-                        width="9.426"
-                        height="16.968"
-                    />
-                    <rect
-                        x="25.574"
-                        y="9.016"
-                        width="9.426"
-                        height="16.968"
-                    />
+                    <rect y="9.016" width="9.426" height="16.968" />
+                    <rect x="12.787" y="9.016" width="9.426" height="16.968" />
+                    <rect x="25.574" y="9.016" width="9.426" height="16.968" />
                 </g>
             </g>
             <g></g>

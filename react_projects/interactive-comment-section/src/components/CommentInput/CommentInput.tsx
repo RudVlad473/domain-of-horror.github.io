@@ -1,6 +1,5 @@
 import React, { forwardRef, useEffect } from "react"
 
-
 interface CommentInputProps {
     textAreaRef?: React.MutableRefObject<HTMLTextAreaElement>
     formId?: string
@@ -31,5 +30,7 @@ const CommentInput = forwardRef(
         )
     }
 )
+
+CommentInput.displayName = "CommentInput"
 
 export default CommentInput
