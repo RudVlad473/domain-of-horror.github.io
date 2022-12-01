@@ -4,6 +4,8 @@ export default interface ICountryCard {
     region: string
     capital: string
     flagUrl: string
+
+    [index: string]: string | number 
 }
 
 export interface CountryCardProps extends ICountryCard {

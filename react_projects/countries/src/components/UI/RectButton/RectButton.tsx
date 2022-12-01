@@ -29,4 +29,6 @@ const RectButton: FC<IRectButton> = memo((props) => {
     )
 })
 
+RectButton.displayName = "RectButton"
+
 export default RectButton

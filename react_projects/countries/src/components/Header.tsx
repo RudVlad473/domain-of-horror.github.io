@@ -1,6 +1,7 @@
 import React, { memo } from "react"
 import { Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
+
 //import MoonSvg from "./UI/MoonSvg/MoonSvg"
 
 const Header = memo(() => {
@@ -11,8 +12,7 @@ const Header = memo(() => {
             <Link
                 to={"/"}
                 className="fw-bold h4 my-0 ms-1 ms-md-5"
-                style={{transition: "all 0.25s ease-in-out"}}
-                >
+                style={{ transition: "all 0.25s ease-in-out" }}>
                 Where in the world?
             </Link>
             {/* <span className="d-flex align-items-center gap-2">
@@ -23,5 +23,7 @@ const Header = memo(() => {
         </Container>
     )
 })
+
+Header.displayName = "Header"
 
 export default Header

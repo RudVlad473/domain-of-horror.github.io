@@ -14,7 +14,7 @@ const CommentInput = forwardRef(
                 block: "center",
                 inline: "center",
             })
-        }, [])
+        }, [textAreaRef])
 
         return (
             <textarea

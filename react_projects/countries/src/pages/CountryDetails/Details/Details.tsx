@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { FC, Suspense, useEffect, useMemo, useState } from "react"
-import { useNavigate } from "react-router"
+import { Params, useNavigate } from "react-router"
+
 import CountryFeature from "../../../components/CountryCard/CountryFeature/CountryFeature"
 import Loading from "../../../components/UI/Loading/Loading"
 import camelCaseToNormal from "../../../helpers/functions/camelCaseToNormal"
@@ -12,10 +13,11 @@ import ICookedDetails from "../CookCountries/ICookedCountries"
 import styles from "../CountryDetails.module.scss"
 import ICountryDetails from "../ICountryDetails"
 import LoadingBorder from "./LoadingBorder"
+
 // import BorderCountry from "./BorderCountry"
 const BorderCountry = React.lazy(() => import("./BorderCountry"))
 
-const Details: FC = ({ params }) => {
+const Details: FC<Readonly<Params<string>>> = ({ params }) => {
     const { name } = params
 
     const [cookedCountryDetails, setCookedCountryDetails] =
@@ -28,7 +30,6 @@ const Details: FC = ({ params }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        
         fetchDetails()
         // return () => {
         //     console.log(1)
@@ -38,27 +39,30 @@ const Details: FC = ({ params }) => {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            if(!cookedCountryDetails) {
-                alert("Oops! It seems like there aren't any details for that country")
+            if (!cookedCountryDetails) {
+                alert(
+                    "Oops! It seems like there aren't any details for that country"
+                )
                 navigate("/")
-                
             }
         }, 3000)
-        
+
         return () => clearTimeout(timeout)
     })
 
     async function fetchDetails(): Promise<void> {
-        
         const url = constructCountryDetailsUrl(getNthWord(name as string))
-        
-        const { data: details } = await axios.get<ICountryDetails[]>(url)       
+
+        const { data: details } = await axios.get<ICountryDetails[]>(url)
 
         let currentDetails: ICountryDetails | undefined
 
-        currentDetails = details.length > 1 ? details.find(detail => 
-            strToUrl(detail.name.toLowerCase()) === name
-       ): details[0]
+        currentDetails =
+            details.length > 1
+                ? details.find(
+                      (detail) => strToUrl(detail.name.toLowerCase()) === name
+                  )
+                : details[0]
         setCookedCountryDetails(cookCountryDetails(currentDetails!))
     }
 
@@ -104,10 +108,7 @@ const Details: FC = ({ params }) => {
                     </span>
                     {cookedCountryDetails.borders?.map((border) => (
                         <Suspense fallback={<LoadingBorder />}>
-                            <BorderCountry
-                                key={border}
-                                countryCode={border}
-                            />
+                            <BorderCountry key={border} countryCode={border} />
                         </Suspense>
                     )) || "None"}
                 </footer>

@@ -1,12 +1,13 @@
-import React, { memo, useContext, useMemo } from "react"
-import SearchBar from "../SearchBar/SearchBar"
+import React, { useContext, useMemo } from "react"
 import { Container } from "react-bootstrap"
-import RegionsSelect from "../RegionsDropDown"
-import SortSelect from "../SortDropDown"
-import uniquify from "../../helpers/functions/uniquify"
-import capitalizeFirstLetter from "../../helpers/functions/capitalizeFirstLetter"
-import ICountryCard from "../CountryCard/ICountryCard"
+
 import { CountriesContext } from "../../context"
+import capitalizeFirstLetter from "../../helpers/functions/capitalizeFirstLetter"
+import uniquify from "../../helpers/functions/uniquify"
+import ICountryCard from "../CountryCard/ICountryCard"
+import RegionsSelect from "../RegionsDropDown"
+import SearchBar from "../SearchBar/SearchBar"
+import SortSelect from "../SortDropDown"
 
 const Filters = ({
     setFilter,
@@ -36,14 +37,8 @@ const Filters = ({
             justify-content-md-between  
             align-items-center gap-4 flex-wrap flex-sm-nowrap">
             <SearchBar setFilter={setFilter} />
-            <SortSelect
-                setFieldToSortBy={setFieldToSortBy}
-                fields={fields}
-            />
-            <RegionsSelect
-                setFilter={setFilter}
-                regions={regions}
-            />
+            <SortSelect setFieldToSortBy={setFieldToSortBy} fields={fields} />
+            <RegionsSelect setFilter={setFilter} regions={regions} />
         </Container>
     )
 }

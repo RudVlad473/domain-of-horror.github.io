@@ -7,7 +7,7 @@ import Button from "../UI/Button/Button"
 import styles from "./PostForm.module.scss"
 
 export interface PostFormProps {
-    id?: number
+    
     formId?: string
 
     buttonValue: string
@@ -21,7 +21,7 @@ export interface PostFormProps {
 
 const PostForm = forwardRef(
     ({
-        id,
+        
         formId,
 
         buttonValue,

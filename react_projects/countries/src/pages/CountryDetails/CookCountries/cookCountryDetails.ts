@@ -1,7 +1,7 @@
-import ICountryDetails from "../ICountryDetails"
 import objectToString from "../../../helpers/functions/objectToString"
-import ICookedDetails from "./ICookedCountries"
 import separateNumber from "../../../helpers/functions/separateNumber"
+import ICountryDetails from "../ICountryDetails"
+import ICookedDetails from "./ICookedCountries"
 
 function cookCountryDetails({
     name,

@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+
 import separateNumber from "../../../helpers/functions/separateNumber"
 import CountryCard from "../../CountryCard/CountryCard"
 import CookedCountriesProps from "./CookedCountriesProps"

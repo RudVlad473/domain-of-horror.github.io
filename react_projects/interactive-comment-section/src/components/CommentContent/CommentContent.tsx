@@ -14,6 +14,7 @@ import validateCommentInput, {
     MessageStates,
 } from "../../helpers/functions/validateCommentInput"
 import { ActionTypes } from "../../models/Action/ActionTypes"
+import Comment from "../../models/Comment/Comment"
 import { ICommentContent } from "../../models/Comment/IComment"
 import CommentBody from "../CommentBody/CommentBody"
 //import styles from "../Comment/Comment.module.scss"
@@ -47,7 +48,7 @@ const CommentContent: FC<CommentContentProps> = ({
         null
     ) as MutableRefObject<HTMLTextAreaElement>
 
-    const { removeCommentOrReply } = useContext(CommentsContext)
+    const { dispatch: dispatchComments } = useContext(CommentsContext)
 
     useEffect(() => {
         setArticle(() => editableTextAreaRef?.current?.textContent)
@@ -70,11 +71,17 @@ const CommentContent: FC<CommentContentProps> = ({
             }
             case ActionTypes.DELETE: {
                 const currentCommentId = +e.currentTarget.id
+                const commentToDelete = Comment.getNullComment()
+                commentToDelete.id = currentCommentId
+
                 deleteModal
                     ? setDeleteModal(null)
                     : setDeleteModal({
                           onSubmit: () => {
-                              removeCommentOrReply(currentCommentId)
+                              dispatchComments({
+                                  type: "DELETE",
+                                  comments: [commentToDelete],
+                              })
                               setDeleteModal(null)
                           },
                           onSubmitButton: { buttonValue: "YES, DELETE" },
@@ -130,9 +137,9 @@ const CommentContent: FC<CommentContentProps> = ({
                 onClick={handleActions}
                 onSubmit={handleSubmit}>
                 <div className="comment__content">
-                    {/* <React.Suspense>
-                        <LikeSection {...likesCount} />
-                    </React.Suspense> */}
+                    <React.Suspense>
+                        <LikeSection likesCount={comment.likesCount} />
+                    </React.Suspense>
                     <EditableContext.Provider value={isEditable}>
                         <CommentBody
                             {...comment}

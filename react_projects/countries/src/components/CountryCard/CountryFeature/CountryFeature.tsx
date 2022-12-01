@@ -1,6 +1,7 @@
 import React, { FC } from "react"
-import styles from "../CountryCard.module.scss"
+
 import capitalizeFirstLetter from "../../../helpers/functions/capitalizeFirstLetter"
+import styles from "../CountryCard.module.scss"
 import ICountryFeature from "./ICountryFeature"
 
 const CountryFeature: FC<ICountryFeature> = ({ feature, ...props }) => {

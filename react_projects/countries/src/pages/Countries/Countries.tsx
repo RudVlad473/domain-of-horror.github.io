@@ -1,4 +1,11 @@
-import React, { memo, Suspense, useEffect, useMemo, useState } from "react"
+import axios from "axios"
+import React, { Suspense, useEffect, useState } from "react"
+
+import ICountryCard from "../../components/CountryCard/ICountryCard"
+import IFilter from "../../components/Filter/IFilter"
+import Header from "../../components/Header"
+import { CountriesContext } from "../../context"
+import { allCountriesUrl } from "../../helpers/constants/links"
 
 const CountriesGrid = React.lazy(
     () => import("../../components/CountriesGrid/CountriesGrid")
@@ -6,12 +13,6 @@ const CountriesGrid = React.lazy(
 // import CountriesGrid from "./components/CountriesGrid/CountriesGrid"
 // import Filters from "./components/Filters"
 const Filters = React.lazy(() => import("../../components/Filter/Filters"))
-import axios from "axios"
-import ICountryCard from "../../components/CountryCard/ICountryCard"
-import { allCountriesUrl } from "../../helpers/constants/links"
-import { CountriesContext } from "../../context"
-import Header from "../../components/Header"
-import IFilter from "../../components/Filter/IFilter"
 
 const Countries = () => {
     const [countries, setCountries] = useState<ICountryCard[]>([])
@@ -22,15 +23,14 @@ const Countries = () => {
     })
     const [fieldToSortBy, setFieldToSortBy] = useState<string>("")
 
-   
-
     useEffect(() => {
-        (async () => {
-            if(countries.length === 0) {
-                const {data} = await axios.get<ICountryCard[]>(allCountriesUrl)
-                setCountries((countries) => data)
+        ;(async () => {
+            if (countries.length === 0) {
+                const { data } = await axios.get<ICountryCard[]>(
+                    allCountriesUrl
+                )
+                setCountries(() => data)
             }
-           
         })()
     }, [])
 

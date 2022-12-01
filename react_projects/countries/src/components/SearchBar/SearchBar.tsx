@@ -1,10 +1,12 @@
-import React, { memo, Suspense } from "react"
+import React, { Suspense, memo } from "react"
+
 import styles from "./SearchBar.module.scss"
+
 // import { DebounceInput } from "react-debounce-input"
 const DebounceInput = React.lazy(() => import("react-debounce-input"))
 // import { DebounceInput } from "react-debounce-input"
 
-const SearchBar = memo(({  setFilter }: { setFilter: Function }) => {
+const SearchBar = memo(({ setFilter }: { setFilter: Function }) => {
     return (
         <div
             className={`input-group 

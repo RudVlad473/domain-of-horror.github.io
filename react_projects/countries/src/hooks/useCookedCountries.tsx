@@ -1,10 +1,11 @@
 import { useMemo } from "react"
-import ICountryCard from "../components/CountryCard/ICountryCard"
+import ICountryCard, { CountryCardProps } from "../components/CountryCard/ICountryCard"
+
 import isObjectEmpty from "../helpers/functions/isObjectEmpty"
 import useSortedCountries from "./useSortedCountries"
 
 const useCookedCountries = (
-    countries: any[],
+    countries: ICountryCard[],
     filter: Object,
     fieldName: string
 ) => {

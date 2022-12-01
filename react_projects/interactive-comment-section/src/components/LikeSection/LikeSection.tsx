@@ -5,17 +5,12 @@ import { CommentContext } from "../../context/CommentContext"
 import { UserContext } from "../../context/UserContext"
 import styles from "./LikeSection.module.scss"
 
-// export interface LikeSectionProps {
-//     likesCount: number
-// }
-export type LikeSectionProps = number
-
-const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
+const LikeSection: FC<{ likesCount: number }> = ({ likesCount }) => {
     const { id: currentCommentId } = useContext(CommentContext)
     const { reactedCommentsIds } = useContext(UserContext)
 
     //const initialLikesCount = useRef(likesCount)
-    const [score, setScore] = useState<LikeSectionProps>(likesCount)
+    const [score, setScore] = useState(likesCount)
     //const [reaction, setReaction] = useState<Reaction>(undefined)
 
     const maxLikesScore = 2
@@ -32,14 +27,20 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
                     : undefined
             )
 
-            return {
-                likesCount:
-                    currentReaction === undefined
-                        ? score.likesCount + 1
-                        : currentReaction === "+"
-                        ? score.likesCount - 1
-                        : score.likesCount + 1,
-            }
+            return currentReaction === undefined
+                ? score + 1
+                : currentReaction === "+"
+                ? score - 1
+                : score + 1
+
+            // return {
+            //     likesCount:
+            //         currentReaction === undefined
+            //             ? score.likesCount + 1
+            //             : currentReaction === "+"
+            //             ? score.likesCount - 1
+            //             : score.likesCount + 1,
+            // }
         })
     }, [reactedCommentsIds, currentCommentId])
     const dislikeComment = useCallback(() => {
@@ -55,12 +56,17 @@ const LikeSection: FC<LikeSectionProps> = ({ likesCount }) => {
             )
 
             return currentReaction === undefined
-                ? score.likesCount - 1
+                ? score - 1
                 : currentReaction === "-"
-                ? score.likesCount + 1
-                : score.likesCount - 1
+                ? score + 1
+                : score - 1
+            // return currentReaction === undefined
+            //     ? score.likesCount - 1
+            //     : currentReaction === "-"
+            //     ? score.likesCount + 1
+            //     : score.likesCount - 1
         })
-    }, [reactedCommentsIds])
+    }, [reactedCommentsIds, currentCommentId])
 
     return (
         <div className={styles["like-section"]}>

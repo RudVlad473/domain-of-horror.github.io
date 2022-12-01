@@ -7,12 +7,9 @@ module.exports = (env) => {
             "postcss-preset-env",
             env.mode !== "development" &&
                 purgecss({
-                    content: ["./dist/*.js"],
                     css: ["./dist/*.css"],
+                    content: ["./dist/*.js"],
                 }),
         ],
     }
 }
-
-
-

@@ -1,4 +1,5 @@
 import React, { memo } from "react"
+
 import Select from "./UI/Select/Select"
 
 const SortSelect = memo(
@@ -16,9 +17,7 @@ const SortSelect = memo(
                     setFieldToSortBy(e.target.value)
                 }}>
                 {fields.map((field: string) => (
-                    <option
-                        key={field}
-                        value={field}>
+                    <option key={field} value={field}>
                         {field}
                     </option>
                 ))}
@@ -26,5 +25,7 @@ const SortSelect = memo(
         )
     }
 )
+
+
 
 export default SortSelect

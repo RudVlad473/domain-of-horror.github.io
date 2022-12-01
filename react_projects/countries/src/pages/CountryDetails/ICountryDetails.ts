@@ -23,7 +23,7 @@ export interface ILanguage {
     nativeName: string
 }
 
-export type ICountryParams {
+export type ICountryParams = {
     name: string
 }
 

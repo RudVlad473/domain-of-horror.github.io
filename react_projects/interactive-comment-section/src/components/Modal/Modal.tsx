@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from "react"
+import React, { FC } from "react"
 
 import Button, { ButtonProps } from "../UI/Button/Button"
 import styles from "./Modal.module.scss"

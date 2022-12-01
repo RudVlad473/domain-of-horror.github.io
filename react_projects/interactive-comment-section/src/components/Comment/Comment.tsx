@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from "react"
 
-import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
 import { ICommentContent } from "../../models/Comment/IComment"
 import CommentContent from "../CommentContent/CommentContent"
 import NoComments from "../NoComments/NoComments"
@@ -35,16 +34,6 @@ const Comment: FC<CommentProps> = (comment) => {
                 setPostReply={setPostReply}
             />
             <React.Suspense fallback={<NoComments />}>
-                {/* {localReplies?.length ? (
-                    <Replies {...localReplies} />
-                ) : undefined}
-                {postReply && (
-                    <PostReply
-                        replyingTo={postReply}
-                        setLocalReplies={setLocalReplies}
-                        setPostReply={setPostReply}
-                    />
-                )} */}
                 {localReplies?.length ? (
                     <section
                         className={repliesStyles["replies-section"]}

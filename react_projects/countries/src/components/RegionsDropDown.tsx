@@ -1,4 +1,5 @@
 import React, { memo } from "react"
+
 import Select from "./UI/Select/Select"
 
 const RegionsSelect = memo(
@@ -13,9 +14,7 @@ const RegionsSelect = memo(
                     })
                 }}>
                 {regions.map((region: string) => (
-                    <option
-                        key={region}
-                        value={region}>
+                    <option key={region} value={region}>
                         {region}
                     </option>
                 ))}
@@ -23,5 +22,7 @@ const RegionsSelect = memo(
         )
     }
 )
+
+RegionsSelect.displayName = "RegionsSelect"
 
 export default RegionsSelect

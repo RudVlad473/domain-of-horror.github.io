@@ -45,14 +45,14 @@ const PostComment: FC<PostCommentProps> = () => {
         }
 
         const newComment: CommentProps = new Comment({
-            id: 0,
+            id: -1,
             likesCount: 0,
             user: { userName, avatarUrl },
             when: "today",
             article: commentInputRef.current.value,
             replies: (async () => undefined)(),
         })
-        dispatch({ type: "CREATE", payload: [newComment] })
+        dispatch({ type: "CREATE", comments: [newComment] })
 
         commentInputRef.current.value = ""
     }

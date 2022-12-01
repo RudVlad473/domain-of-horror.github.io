@@ -1,7 +1,8 @@
 import { useMemo } from "react"
 import ICountryCard from "../components/CountryCard/ICountryCard"
 
-const useSortedCountries = (countries: any[], fieldName: string) => {
+
+const useSortedCountries = (countries: ICountryCard[], fieldName: string) => {
     const sortedCountries = useMemo(() => {
         if (!fieldName) {
             return countries

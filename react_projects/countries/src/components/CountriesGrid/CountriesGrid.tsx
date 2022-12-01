@@ -7,23 +7,21 @@ import React, {
     useState,
 } from "react"
 import { Container } from "react-bootstrap"
-import CountryCard from "../CountryCard/CountryCard"
-import separateNumber from "../../helpers/functions/separateNumber"
-import useCookedCountries from "../../hooks/useCookedCountries"
-import Loading from "../UI/Loading/Loading"
+
 import { CountriesContext } from "../../context"
+import useCookedCountries from "../../hooks/useCookedCountries"
+import ICountryCard, { CountryCardProps } from "../CountryCard/ICountryCard"
+import Loading from "../UI/Loading/Loading"
+import ICountriesGridProps from "./ICountriesGrid"
 //import LoadCountriesObserver from "./loadCountriesObserver"
 import { cardAnimationObserver } from "./IntersectionObservers/cardAnimationObserver"
-import ICountriesGridProps from "./ICountriesGrid"
-import ICountryCard from "../CountryCard/ICountryCard"
 
 const CookedCountries = React.lazy(
     () => import("./CookedCountries/CookedCountries")
 )
 
 const CountriesGrid: FC<ICountriesGridProps> = ({ filter, fieldToSortBy }) => {
-    const { countries }: { countries: ICountryCard[] } =
-        useContext(CountriesContext)!
+    const { countries } = useContext(CountriesContext)!
     const cookedCountries = useCookedCountries(countries, filter, fieldToSortBy)
 
     const cardObserver = useRef<IntersectionObserver>()
@@ -32,7 +30,7 @@ const CountriesGrid: FC<ICountriesGridProps> = ({ filter, fieldToSortBy }) => {
 
     // const defaultLoadCount: number =
     //     (countries.length / 10) | 0 || countries.length
-    const defaultLoadCount: number = 25
+    const defaultLoadCount = 25
 
     const [loadCount, setLoadCount] = useState(defaultLoadCount)
 
@@ -56,17 +54,13 @@ const CountriesGrid: FC<ICountriesGridProps> = ({ filter, fieldToSortBy }) => {
         <>
             {isDataLoading && <Loading />}
 
-            <Container
-                fluid
-                className="px-3 px-md-5 py-3 countries-grid">
+            <Container fluid className="px-3 px-md-5 py-3 countries-grid">
                 <CookedCountries
                     cookedCountries={cookedCountries?.slice(0, loadCount)}
                     cardObserver={cardObserver}
                 />
 
-                <div
-                    ref={lastElemRef!}
-                    className="load-trigger"></div>
+                <div ref={lastElemRef!} className="load-trigger"></div>
             </Container>
         </>
     )

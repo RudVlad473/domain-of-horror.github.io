@@ -1,10 +1,10 @@
 import React from "react"
 import { Route, Routes } from "react-router"
+
 // import Countries from "../pages/Countries/Countries"
 // import CountryDetails from "../pages/CountryDetails/CountryDetails"
 // import HeroPage from "../pages/HeroPage"
 import { routes } from "../router"
-
 
 const AppRouter = () => {
     return (

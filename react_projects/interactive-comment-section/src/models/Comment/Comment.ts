@@ -14,13 +14,17 @@ class Comment implements IComment {
     when: string
     user: IUser
 
-    constructor(comment: IComment) {
-        this.id = comment.id
-        this.likesCount = comment.likesCount
-        this.article = comment.article
-        this.when = comment.when
-        this.user = comment.user
-        this.replies = comment.replies
+    constructor({ id, likesCount, article, when, user, replies }: IComment) {
+        this.id = id
+        this.likesCount = likesCount
+        this.article = article
+        this.when = when
+        this.user = user
+        this.replies = replies
+    }
+
+    static getNullComment(): IComment {
+        return new Comment(0, 0, null, 0, null, null)
     }
 
     static extractCommentFromFetchedComment(fetchedComment: FetchedComment) {

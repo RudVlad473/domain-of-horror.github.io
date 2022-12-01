@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useReducer, useRef } from "react"
+import React, {
+    FC,
+    useEffect,
+    useLayoutEffect,
+    useReducer,
+    useRef,
+} from "react"
 
 import { CommentsContext } from "../../context/CommentsContext"
 import commentsData from "../../data/comments.json"
@@ -15,15 +21,15 @@ interface CommentSectionProps {}
 export type CommentActions = "CREATE" | "DELETE"
 export interface CommentAction {
     type: CommentActions
-    payload: CommentProps[]
+    comments: CommentProps[]
 }
 
 const CommentsSection: FC<CommentSectionProps> = () => {
-    //const [comments, setComments] = useState<>([])
     const idGeneratorRef = useRef<Generator<number, void, unknown>>(
         idGenerator(0)
     )
     const [comments, dispatch] = useReducer(commentsReducer, [])
+    const isFetchedRef = useRef(false)
 
     function commentsReducer(
         state: CommentProps[],
@@ -31,17 +37,17 @@ const CommentsSection: FC<CommentSectionProps> = () => {
     ): CommentProps[] {
         switch (action.type) {
             case "CREATE": {
-                action.payload.forEach(
+                action.comments.forEach(
                     (newComment) =>
                         (newComment.id = idGeneratorRef.current.next()
                             .value as number)
                 )
-
-                return comments.concat(action.payload)
+                return state.concat(action.comments)
                 break
             }
             case "DELETE": {
-                const idToDelete = action.payload[0]?.id
+                //TODO: переделать чтобы можно было удалять несколько коментов
+                const idToDelete = action.comments[0]?.id
 
                 const filteredComments = state.filter(
                     (comment) => comment.id !== idToDelete
@@ -64,22 +70,19 @@ const CommentsSection: FC<CommentSectionProps> = () => {
         }
     }
 
-    //const [lastId, setLastId] = useState<number>(0)
+    // async function fetchCommentsFromLocalJSON() {
+    //     const data = await extractComments(commentsData.comments)
 
-    async function fetchCommentsFromLocalJSON() {
-        const data = await extractComments(commentsData.comments)
-
-        await data?.forEach(async (comment) => {
-            comment.id = idGeneratorRef.current.next().value as number
-            ;(await comment.replies)?.forEach((reply) => {
-                reply.id = idGeneratorRef.current.next().value as number
-            })
-        })
-        dispatch({ type: "CREATE", payload: data || [] })
-    }
+    //     dispatch({ type: "CREATE", comments: data || [] })
+    // }
 
     useEffect(() => {
-        fetchCommentsFromLocalJSON()
+        //fetchCommentsFromLocalJSON()
+        !isFetchedRef.current &&
+            extractComments(commentsData.comments).then((data) => {
+                dispatch({ type: "CREATE", comments: data || [] })
+            })
+        isFetchedRef.current = true
     }, [])
 
     return (

@@ -1,12 +1,11 @@
 @import "./stylesheets/main.scss";
 
 a:focus,
-a:hover, 
+a:hover,
 .btn:focus,
 .btn:hover {
     text-decoration: none !important;
 }
-
 
 input:active,
 input:focus,

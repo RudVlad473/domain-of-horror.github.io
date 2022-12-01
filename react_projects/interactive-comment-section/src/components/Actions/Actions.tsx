@@ -1,8 +1,8 @@
-import React, { FC, memo } from "react"
+import React, { memo } from "react"
 
 import {
     AuthorActions as authorActions,
-    UserActions as userActions,
+    UserActions as userActions
 } from "../../models/Action/ActionTypes"
 import Action from "../Action/Action"
 import styles from "./Actions.module.scss"
