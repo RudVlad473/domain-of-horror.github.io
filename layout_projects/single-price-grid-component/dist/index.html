@@ -5,20 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../bootstrap-5.2.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap-5.2.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Single Price Grid Component</title>
 </head>
 
-<body class="justify-content-center">
-    <div class="flex-wrapper overflow-auto mb-2 mt-2 my-md-0">
-        <div class="container mh-100 col-xxl-7 col-xl-6 col-12">
+<body class="d-flex align-items-center">
+    <div class="flex-wrapper overflow-auto mb-2 mt-2 my-md-0 mx-auto">
+        <div class="container mh-100 col-xl-7 col-12">
             <div class="container rounded overflow-auto shadow">
-                <div class="row top-section p-4 rounded-top ">
-                    <header id="first-header" class="pb-2" id="azure-text">Join our community</header>
+                
+                <div class="row top-section p-3 rounded-top ">
+                    <h3 id="first-header" class="pb-2 m-0" id="azure-text">Join our community</h3>
                     <section class="bold-text pt-1 pb-1" id="green-text">30-day, hassie-free money back guarantee
                     </section>
-                    <article class="bold-text pt-1">
+                    <article class="pt-1">
                         <p class="m-0">
                             Gain access to our full library of tutorials along with expert code reviews. <br />Perfect
                             for
@@ -27,38 +28,39 @@
                     </article>
                 </div>
 
-                <div class="row bold-text rounded-bottom">
-                    <div class="col-md-6 p-4 bottom-left-section ">
-                        <form class="w-100 h-100 p-3 d-flex flex-column justify-content-between">
-                            <header id="second-header" class="pb-2">Monthly Subscription</header>
-                            <div>
-                                <section class="d-inline-flex">
-                                    <span class="big-chars">$<span id="subscription">29</span></span> <span
-                                        class="muted align-self-center ps-2">per month</span>
-                                </section>
-                                <section>Full access for less than $1 a day</section>
+                <div class="row bold-text">
+                    <div class="col-md-6 p-3 bottom-left-section ">
+                        <form class="w-100 h-100 p-3 d-flex flex-column">
+                            <h5 id="second-header" class="pb-3 m-0">Monthly Subscription</h5>
+                            <div class="d-flex flex-column justify-content-between h-100">
+                                <article>
+                                    <section class="d-inline-flex">
+                                        <span class="big-chars">$
+                                            <span id="subscription">29</span>
+                                        </span>
+                                        <span class="align-self-center ps-2 muted-text">per month
+                                        </span>
+                                    </section>
+                                    <section>Full access for less than $1 a day</section>
+                                </article>
+                                <button class="btn btn-lg w-100 align-self-center shadow" type="submit">Sign Up</button>
                             </div>
-                            <div style="height: 10px"></div>
-                            <div></div>
-                            <button class="btn btn-lg w-100 align-self-center" type="submit">Sign Up</button>
                         </form>
 
 
                     </div>
-                    <div class="col-md-6 p-4 bottom-right-section">
+                    <div class="col-md-6 p-3 bottom-right-section">
                         <div class="p-3">
-                            <header id="third-header" class="pb-2">Why Us</header>
-                            <article>
-                                <ul class="smaller-text" id="reasons-list">
-                                    <li>Tutorials by industry experts</li>
-                                    <li>Peer & expert code review</li>
-                                    <li>Coding exercises</li>
-                                    <li>Access to our GitHub repos</li>
-                                    <li>Community forum</li>
-                                    <li>Flashcard decks</li>
-                                    <li>New videos every week</li>
-                                </ul>
-                            </article>
+                            <h5 id="third-header" class="m-0 pb-3">Why Us</h5>
+                            <ul>
+                                <li>Tutorials by industry experts</li>
+                                <li>Peer & expert code review</li>
+                                <li>Coding exercises</li>
+                                <li>Access to our GitHub repos</li>
+                                <li>Community forum</li>
+                                <li>Flashcard decks</li>
+                                <li>New videos every week</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

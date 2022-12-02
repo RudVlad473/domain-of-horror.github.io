@@ -1,16 +1,25 @@
-function swapPrices() {
-    const checkbox = document.getElementById('checkbox');
+const firstPrice = document.getElementById("first-price")
+const secondPrice = document.getElementById("second-price")
+const thirdPrice = document.getElementById("third-price")
 
-    let prices = [
-            document.getElementById('first-price'),
-            document.getElementById('second-price'),
-            document.getElementById('third-price'),
-        ];
-    // const firstPrice = document.getElementById('first-price');
-    // const secondPrice = document.getElementById('second-price');
-    // const thirdPrice = document.getElementById('third-price');
-    const annualSubscriptionDiscount = checkbox.checked ? -10.0 : 10.0;
-    prices.forEach(price => {
-        price.innerHTML = Math.round(price.innerHTML) + annualSubscriptionDiscount - 0.01;
-    });
+const priceSwitch = document.getElementById("switch")
+priceSwitch.addEventListener("pointerup", (e) => {
+    swapPrices()
+})
+
+
+
+function swapPrices() {
+    const annualSubscriptionDiscountCheckBox =
+        document.getElementById("checkbox")
+
+    let prices = [firstPrice, secondPrice, thirdPrice]
+
+    const priceChange = annualSubscriptionDiscountCheckBox.checked
+        ? 10.0
+        : 0.1
+
+    prices.forEach((price) => {
+        price.innerText = Math.round(price.innerHTML) * priceChange - 0.01
+    })
 }
