@@ -18,7 +18,7 @@ const Reply: FC<ReplyProps> = ({
     return (
         <div id={`${id}`} className="comment">
             <React.Suspense>
-                <LikeSection {...likesCount} />
+                <LikeSection likesCount={likesCount} />
             </React.Suspense>
 
             <CommentBody

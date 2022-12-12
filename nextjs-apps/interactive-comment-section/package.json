@@ -4,6 +4,7 @@
         "start": "webpack serve",
         "watch": "webpack --watch",
         "build": "set NODE_ENV=production&&webpack",
+        "postbuild": "purgecss --css dist/*.css --content dist/index.html dist/*.js --output dist",
         "build-dev": "webpack",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix"

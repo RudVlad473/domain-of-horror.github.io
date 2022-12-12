@@ -18,7 +18,7 @@ const PostComment = React.lazy(() => import("../PostComment/PostComment"))
 
 interface CommentSectionProps {}
 
-export type CommentActions = "CREATE" | "DELETE"
+export type CommentActions = "CREATE" | "DELETE" | "REPLY"
 export interface CommentAction {
     type: CommentActions
     comments: CommentProps[]
@@ -64,10 +64,14 @@ const CommentsSection: FC<CommentSectionProps> = () => {
                 return filteredComments || []
                 break
             }
+            case "REPLY": {
+                break
+            }
             default: {
                 throw new Error("Such action does not exist")
             }
         }
+        return state
     }
 
     // async function fetchCommentsFromLocalJSON() {
