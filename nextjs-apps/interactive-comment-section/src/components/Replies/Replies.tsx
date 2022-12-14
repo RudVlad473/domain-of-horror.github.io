@@ -10,7 +10,7 @@ const Replies: FC<ReplyProps[]> = (replies) => {
 
     return (
         <>
-            {Object.values(replies)?.length ? (
+            {/* {Object.values(replies)?.length ? (
                 <section
                     className={styles["replies-section"]}
                     aria-label="replies">
@@ -25,7 +25,7 @@ const Replies: FC<ReplyProps[]> = (replies) => {
                         ))}
                     </div>
                 </section>
-            ) : undefined}
+            ) : undefined} */}
         </>
     )
 }

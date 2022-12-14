@@ -1,16 +1,8 @@
 import { ReplyProps } from "../../components/Reply/Reply"
-import { IUser } from "../User/IUser"
-
-export interface ICommentContent {
-    id: CommentId
-    likesCount: number
-    article: React.ReactNode
-    when: string
-    user: IUser
-}
+import { ICommentContent } from "../CommentContent/ICommentContent"
 
 export interface IComment extends ICommentContent {
-    replies: Promise<ReplyProps[] | undefined>
+  replies: Promise<ReplyProps[] | undefined>
 }
 
 export type CommentId = number

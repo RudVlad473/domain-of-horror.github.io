@@ -1,31 +1,26 @@
 import React, { FC } from "react"
 
 import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
-import { ICommentContent } from "../../models/Comment/IComment"
+import { IReply } from "../../models/Reply/IReply"
 import CommentBody from "../CommentBody/CommentBody"
 import LikeSection from "../LikeSection/LikeSection"
 
-export interface ReplyProps extends ICommentContent {
-    replyingTo: string
-}
+export interface ReplyProps extends IReply {}
 
-const Reply: FC<ReplyProps> = ({
-    id,
-    likesCount,
-    commentBodyInfo,
-    replyingTo,
-}) => {
-    return (
-        <div id={`${id}`} className="comment">
-            <React.Suspense>
-                <LikeSection likesCount={likesCount} />
-            </React.Suspense>
+const Reply: FC<ReplyProps> = (reply) => {
+  return (
+    <div id={`${reply.id}`} className="comment">
+      <React.Suspense>
+        <LikeSection likesCount={reply.likesCount} />
+      </React.Suspense>
 
-            <CommentBody
-                {...addReplyingToArticle(replyingTo, commentBodyInfo)}
-            />
-        </div>
-    )
+      <CommentBody
+        user={reply.user}
+        article={addReplyingToArticle(reply.replyingTo, reply.article)}
+        when={reply.when}
+      />
+    </div>
+  )
 }
 
 export default Reply
