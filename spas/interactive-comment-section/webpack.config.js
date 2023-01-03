@@ -10,7 +10,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = {
     mode: mode,
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "public"),
         filename: "[name].bundle.js",
         chunkFilename: "[name].chunk.js",
         assetModuleFilename: "./images/[name][ext]"
@@ -60,7 +60,7 @@ module.exports = {
     ],
     devtool: "source-map",
     devServer: {
-        static: "dist",
+        static: "public",
         hot: true,
         open: {
             app: {
