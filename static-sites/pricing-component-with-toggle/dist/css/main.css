@@ -17,7 +17,6 @@ body {
 p {
   text-align: center;
   margin: 0.5em;
-  font-weight: 700;
 }
 
 hr {
@@ -33,7 +32,7 @@ hr {
 }
 
 .btn-gradient {
-  background: linear-gradient(90deg, #87ceeb 0%, #6495ed 60%, mediumslateblue);
+  background: linear-gradient(135deg, hsl(236deg, 72%, 79%), hsl(237deg, 63%, 64%));
 }
 
 .card-wrapper {
@@ -48,21 +47,12 @@ hr {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.button {
-  font: bold 11px Arial;
-  text-decoration: none;
-  background-color: #eeeeee;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #cccccc;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #cccccc;
+.text-blue {
+  color: hsl(232deg, 13%, 33%);
 }
 
 #bigger-section {
-  background-color: mediumslateblue;
-  background: linear-gradient(135deg, rgb(2, 169, 224) 30%, mediumslateblue);
+  background: linear-gradient(hsl(236deg, 72%, 79%), hsl(237deg, 63%, 64%));
   color: white;
 }
 
@@ -90,7 +80,7 @@ hr {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: 0.25s;
+  transition: 0s;
 }
 
 .slider:before {
@@ -101,7 +91,7 @@ hr {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: 0.5s;
+  transition: 0s;
 }
 
 input:checked + .slider {

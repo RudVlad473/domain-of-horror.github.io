@@ -1,25 +1,32 @@
-const firstPrice = document.getElementById("first-price")
-const secondPrice = document.getElementById("second-price")
-const thirdPrice = document.getElementById("third-price")
+const yearlySubscriptionDiscountMultiplier = 10.0
 
+const firstPrice = {
+  elem: document.getElementById("first-price"),
+  initialPrice: 19.99,
+}
+const secondPrice = {
+  elem: document.getElementById("second-price"),
+  initialPrice: 24.99,
+}
+const thirdPrice = {
+  elem: document.getElementById("third-price"),
+  initialPrice: 39.99,
+}
+
+const isMonthlySubscriptionCheckbox = document.getElementById("checkbox")
 const priceSwitch = document.getElementById("switch")
-priceSwitch.addEventListener("pointerup", (e) => {
-    swapPrices()
-})
 
-
+priceSwitch.addEventListener("pointerup", () => swapPrices())
 
 function swapPrices() {
-    const annualSubscriptionDiscountCheckBox =
-        document.getElementById("checkbox")
+  let prices = [firstPrice, secondPrice, thirdPrice]
 
-    let prices = [firstPrice, secondPrice, thirdPrice]
-
-    const priceChange = annualSubscriptionDiscountCheckBox.checked
-        ? 10.0
-        : 0.1
-
-    prices.forEach((price) => {
-        price.innerText = Math.round(price.innerHTML) * priceChange - 0.01
-    })
+  prices.forEach((price) => {
+    price.elem.innerText =
+      Math.round(
+        price.elem.innerText == price.initialPrice
+          ? price.initialPrice * yearlySubscriptionDiscountMultiplier
+          : price.initialPrice
+      ) - 0.01
+  })
 }

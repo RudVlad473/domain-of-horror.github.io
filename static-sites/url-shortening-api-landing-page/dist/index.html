@@ -1,110 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="js/utilityFunctions.js"></script>
-        <script defer src="js/variables.js"></script>
-        <script defer src="js/navbarCollapseMenu.js"></script>
-        <script defer src="js/apiScript.js"></script>
-        <script
-            defer
-            src="https://kit.fontawesome.com/5e14922891.js"
-            crossorigin="anonymous"
-        ></script>
 
-        <link rel="stylesheet" href="css/main.css" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Karla:200,300,regular,500,600,700,800,200italic,300italic,italic,500italic,600italic,700italic,800italic"
-            rel="stylesheet"
-        />
-        <title>URL shortening API landing page</title>
-    </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="js/utilityFunctions.js"></script>
+  <script defer src="js/variables.js"></script>
+  <script defer src="js/navbarCollapseMenu.js"></script>
+  <script defer src="js/apiScript.js"></script>
+  <script defer src="https://kit.fontawesome.com/5e14922891.js" crossorigin="anonymous"></script>
 
-    <body>
-        <nav>
-            <div class="container navigation">
-                <div>
-                    <div class="logo">
-                        <img src="img/logo.svg" alt="logo" />
-                    </div>
-                    <span class="to-collapse">
-                        <ul class="row-list">
-                            <li><a href="#" target="_blank">Features</a></li>
-                            <li><a href="#" target="_blank">Pricing</a></li>
-                            <li><a href="#" target="_blank">Resourses</a></li>
-                        </ul>
-                    </span>
-                </div>
+  <link rel="stylesheet" href="css/main.css" />
+  <title>URL shortening API landing page</title>
+</head>
 
-                <div class="to-collapse">
-                    <a href="#">Login</a>
-                    <a href="#" class="blue-btn">Sign Up</a>
-                </div>
-                <a href="#" class="toggle-button">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </a>
-            </div>
-        </nav>
-        <header>
-            <div class="container">
-                <section
-                    id="header-content"
-                    aria-labelledby="more-than-just-shorter-links"
-                    class=""
-                >
-                    <div>
-                        <h1 id="more-than-just-shorter-links">
-                            More than just shorter links
-                        </h1>
-                        <article>
-                            Build your brand's recognition and get detailed
-                            insights on how your links are performing.
-                        </article>
-                    </div>
+<body>
+  <nav>
+    <div class="container navigation">
+      <div>
+        <div class="logo">
+          <img src="./img/logo.svg" alt="logo" />
+        </div>
+        <span class="to-collapse">
+          <ul class="row-list">
+            <li><a href="#" target="_blank">Features</a></li>
+            <li><a href="#" target="_blank">Pricing</a></li>
+            <li><a href="#" target="_blank">Resourses</a></li>
+          </ul>
+        </span>
+      </div>
 
-                    <div>
-                        <button class="blue-btn">Get Started</button>
-                    </div>
-                </section>
-                <section id="image-wrapper" aria-label="image">
-                    <img
-                        src="img/illustration-working.svg"
-                        alt="illustration working"
-                    />
-                </section>
-            </div>
-        </header>
-        <main>
-            <section class="api-links">
-                <div class="container">
-                    <div class="url-input medium-container">
-                        <div class="url-input__wrapper">
-                            <input
-                                type="text"
-                                name="url-input"
-                                id="url-input"
-                                placeholder="Shorten a link here..."
-                            />
-                            <button
-                                id="api-button"
-                                name="api-button"
-                                onclick="apiCall()"
-                            >
-                                Shorten it!
-                            </button>
-                            <span
-                                id="link-validation"
-                                class="link-validation"
-                            ></span>
-                        </div>
-                    </div>
-                    <div class="url-result small-container">
-                        <ul class="url-result__links">
-                            <!-- <li class="url-result__links__link">
+      <div class="to-collapse">
+        <a href="#">Login</a>
+        <a href="#" class="blue-btn">Sign&nbsp;Up</a>
+      </div>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+    </div>
+  </nav>
+  <header>
+    <div class="container">
+      <section id="header-content" aria-labelledby="more-than-just-shorter-links" class="">
+        <div>
+          <h1 id="more-than-just-shorter-links">
+            More than just shorter links
+          </h1>
+          <article>
+            Build your brand's recognition and get detailed
+            insights on how your links are performing.
+          </article>
+        </div>
+
+        <div>
+          <button class="blue-btn">Get&nbsp;Started</button>
+        </div>
+      </section>
+      <section id="image-wrapper" aria-label="image">
+        <img src="./img/illustration-working.svg" alt="illustration working" />
+      </section>
+    </div>
+  </header>
+  <main>
+    <section class="api-links">
+      <div class="container">
+        <div class="url-input medium-container">
+          <div class="url-input__wrapper">
+            <input type="text" name="url-input" id="url-input" placeholder="Shorten a link here..." />
+            <button id="api-button" name="api-button" onclick="apiCall()">
+              Shorten it!
+            </button>
+            <span id="link-validation" class="link-validation"></span>
+          </div>
+        </div>
+        <div class="url-result small-container">
+          <ul class="url-result__links">
+            <!-- <li class="url-result__links__link">
                             <div class="small-container">
                                 <span class="input-link">https://www.frontendmentor.io</span>
                                 <div class="result-wrapper">
@@ -128,159 +102,133 @@
                                 </div>
                             </div>
                         </li> -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <section id="advanced-statistics" aria-label="advanced statistics">
-                <div class="container column">
-                    <div class="text-center">
-                        <h1>Advanced Statistics</h1>
-                        <article id="advanced-statistics-article">
-                            Track how your links are performing across the web
-                            with our advanced statistics dashboard.
-                        </article>
-                    </div>
-                    <div id="features" class="">
-                        <div class="card">
-                            <div class="card__icon-wrapper">
-                                <img
-                                    src="img/icon-brand-recognition.svg"
-                                    alt="brand recognition"
-                                    class="card__icon"
-                                />
-                            </div>
-                            <p class="card__header">Brand Recognition</p>
-                            <article class="card__article">
-                                Boost your brand recognition with each click.
-                                Generic links don't mean a thing. Branded links
-                                help instil confidence in your content.
-                            </article>
-                        </div>
-                        <div class="card">
-                            <div class="card__icon-wrapper">
-                                <img
-                                    src="img/icon-detailed-records.svg"
-                                    alt="brand recognition"
-                                    class="card__icon"
-                                />
-                            </div>
-                            <p class="card__header">Detailed Records</p>
-                            <article class="card__article">
-                                Boost your brand recognition with each click.
-                                Generic links don't mean a thing. Branded links
-                                help instil confidence in your content.
-                            </article>
-                        </div>
-                        <div class="card">
-                            <div class="card__icon-wrapper">
-                                <img
-                                    src="img/icon-fully-customizable.svg"
-                                    alt="brand recognition"
-                                    class="card__icon"
-                                />
-                            </div>
-                            <p class="card__header">Fully Customizable</p>
-                            <article class="card__article">
-                                Boost your brand recognition with each click.
-                                Generic links don't mean a thing. Branded links
-                                help instil confidence in your content.
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <section
-                aria-labelled="boost-your-links-today"
-                id="boost-your-links-today"
-            >
-                <div class="container">
-                    <h1>Boost your links today</h1>
-                    <div>
-                        <button class="blue-btn">Get Started</button>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="container">
-                    <div class="logo">Shortly</div>
-                    <div class="links">
-                        <div>
-                            <p>Features</p>
-                            <ul class="column-list">
-                                <li>
-                                    <a href="#" target="_blank"
-                                        >Link Shortening</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank"
-                                        >Branded Links</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">Analytics</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p>Resourses</p>
-                            <ul class="column-list">
-                                <li><a href="#" target="_blank">Blog</a></li>
-                                <li>
-                                    <a href="#" target="_blank">Developers</a>
-                                </li>
-                                <li><a href="#" target="_blank">Support</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p>Company</p>
-                            <ul class="column-list">
-                                <li><a href="#" target="_blank">About</a></li>
-                                <li>
-                                    <a href="#" target="_blank">Our Team</a>
-                                </li>
-                                <li><a href="#" target="_blank">Careers</a></li>
-                                <li><a href="#" target="_blank">Contact</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul id="socials-icons" class="row-list">
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i
-                                            class="fa-brands fa-square-facebook icon"
-                                        ></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i
-                                            class="fa-brands fa-twitter icon"
-                                        ></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i
-                                            class="fa-brands fa-pinterest icon"
-                                        ></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i
-                                            class="fa-brands fa-instagram icon"
-                                        ></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </footer>
-    </body>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="advanced-statistics" aria-label="advanced statistics">
+      <div class="container column">
+        <div class="text-center">
+          <h1>Advanced Statistics</h1>
+          <article id="advanced-statistics-article">
+            Track how your links are performing across the web
+            with our advanced statistics dashboard.
+          </article>
+        </div>
+        <div id="features" class="">
+          <div class="card">
+            <div class="card__icon-wrapper">
+              <img src="./img/icon-brand-recognition.svg" alt="brand recognition" class="card__icon" />
+            </div>
+            <p class="card__header">Brand Recognition</p>
+            <article class="card__article">
+              Boost your brand recognition with each click.
+              Generic links don't mean a thing. Branded links
+              help instil confidence in your content.
+            </article>
+          </div>
+          <div class="card">
+            <div class="card__icon-wrapper">
+              <img src="./img/icon-detailed-records.svg" alt="brand recognition" class="card__icon" />
+            </div>
+            <p class="card__header">Detailed Records</p>
+            <article class="card__article">
+              Boost your brand recognition with each click.
+              Generic links don't mean a thing. Branded links
+              help instil confidence in your content.
+            </article>
+          </div>
+          <div class="card">
+            <div class="card__icon-wrapper">
+              <img src="./img/icon-fully-customizable.svg" alt="brand recognition" class="card__icon" />
+            </div>
+            <p class="card__header">Fully Customizable</p>
+            <article class="card__article">
+              Boost your brand recognition with each click.
+              Generic links don't mean a thing. Branded links
+              help instil confidence in your content.
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <section aria-labelled="boost-your-links-today" id="boost-your-links-today">
+      <div class="container">
+        <h1>Boost your links today</h1>
+        <div>
+          <button class="blue-btn">Get&nbsp;Started</button>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="logo">Shortly</div>
+        <div class="links">
+          <div>
+            <p>Features</p>
+            <ul class="column-list">
+              <li>
+                <a href="#" target="_blank">Link Shortening</a>
+              </li>
+              <li>
+                <a href="#" target="_blank">Branded Links</a>
+              </li>
+              <li>
+                <a href="#" target="_blank">Analytics</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p>Resourses</p>
+            <ul class="column-list">
+              <li><a href="#" target="_blank">Blog</a></li>
+              <li>
+                <a href="#" target="_blank">Developers</a>
+              </li>
+              <li><a href="#" target="_blank">Support</a></li>
+            </ul>
+          </div>
+          <div>
+            <p>Company</p>
+            <ul class="column-list">
+              <li><a href="#" target="_blank">About</a></li>
+              <li>
+                <a href="#" target="_blank">Our Team</a>
+              </li>
+              <li><a href="#" target="_blank">Careers</a></li>
+              <li><a href="#" target="_blank">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <ul id="socials-icons" class="row-list">
+              <li>
+                <a href="#" target="_blank">
+                  <i class="fa-brands fa-square-facebook icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  <i class="fa-brands fa-twitter icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  <i class="fa-brands fa-pinterest icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  <i class="fa-brands fa-instagram icon"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+</body>
+
 </html>

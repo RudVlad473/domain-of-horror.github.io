@@ -1,5 +1,5 @@
-import { IComment } from "../../models/Comment/IComment"
-import { CommentId } from "./../../models/Comment/IComment"
+import { CommentId , IComment } from "../../models/Comment/IComment"
+
 
 interface ICommentsRepository {
   get(): Promise<IComment[] | undefined>

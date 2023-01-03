@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:500,700);
 *,
 *::before,
 *::after {
@@ -28,10 +29,10 @@ a {
 }
 
 body {
-  font-size: clamp(0.8rem, 1.5vw, 2rem);
+  font-size: 18px;
   background-color: whitesmoke;
-  font-family: "Karla";
-  color: #35323a;
+  font-family: "Poppins";
+  color: hsl(260deg, 8%, 14%);
 }
 
 img {
@@ -76,7 +77,7 @@ footer .icon {
   transition: all 0.5s ease;
 }
 footer .icon:hover:enabled {
-  color: #25d3d1;
+  color: hsl(180deg, 66%, 49%);
 }
 footer section:first-child .container {
   flex-direction: column;
@@ -111,7 +112,7 @@ footer section:nth-of-type(2) .container .links p {
 }
 footer #boost-your-links-today .container {
   background-image: url("/dist/img/bg-shorten-desktop.png");
-  background-color: #35323a;
+  background-color: hsl(260deg, 8%, 14%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -150,18 +151,18 @@ button {
 }
 
 a {
-  color: #343251;
+  color: hsl(255deg, 11%, 22%);
   font-weight: 500;
 }
 a:hover:enabled {
-  color: #25d3d1 !important;
+  color: hsl(180deg, 66%, 49%) !important;
 }
 
 .container {
   display: flex;
   flex-direction: row;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 .column {
@@ -216,6 +217,7 @@ a:hover:enabled {
 #features .card__header {
   font-weight: 800;
   font-size: 1.7rem;
+  overflow: hidden;
 }
 #features .card__icon-wrapper {
   width: max(60px, 3.5rem) !important;
@@ -227,7 +229,7 @@ a:hover:enabled {
   align-items: center;
   padding: 2em;
   border-radius: 50%;
-  background-color: #343251;
+  background-color: hsl(255deg, 11%, 22%);
   bottom: 3.4em;
   margin-bottom: -3.4em;
 }
@@ -252,16 +254,17 @@ a:hover:enabled {
 
 .blue-btn {
   color: white;
-  background-color: #25d3d1;
+  background-color: hsl(180deg, 66%, 49%);
   border: 0;
   border-radius: 50rem;
   padding: 1em;
   font-size: inherit;
   font-family: inherit;
   font-weight: 700;
+  max-width: 25rem;
 }
 .blue-btn:hover:enabled {
-  background-color: #89d3d3;
+  background-color: hsl(180deg, 66%, 49%);
   color: white !important;
   transform: scale(1.05);
 }
@@ -274,8 +277,10 @@ a:hover:enabled {
 }
 
 .small-container {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  gap: 1em;
+  justify-content: space-between;
 }
 
 .api-links {
@@ -288,18 +293,18 @@ a:hover:enabled {
   font-weight: bold;
 }
 .api-links .container button {
-  background-color: #25d3d1;
+  background-color: hsl(180deg, 66%, 49%);
   border: 0;
   color: white;
   font-weight: inherit;
   padding: 10px;
 }
 .api-links .container button:hover:enabled {
-  background-color: #89d3d3 !important;
+  background-color: hsl(180deg, 66%, 49%) !important;
 }
 .api-links .container .url-input {
   background-image: url("/dist/img/bg-shorten-desktop.png");
-  background-color: #35323a;
+  background-color: hsl(260deg, 8%, 14%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -309,10 +314,12 @@ a:hover:enabled {
 .api-links .container .url-input__wrapper {
   display: flex;
   flex-direction: row;
+  position: relative;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1em;
+  justify-content: space-between;
   width: 100%;
+  gap: 1em;
 }
 .api-links .container .url-input__wrapper input {
   flex: 8;
@@ -331,7 +338,7 @@ a:hover:enabled {
 }
 .api-links .container .url-input__wrapper .link-validation {
   position: absolute;
-  top: 65%;
+  top: 100%;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -363,10 +370,14 @@ a:hover:enabled {
   justify-content: space-between;
   align-items: center;
 }
+.api-links .container .url-result__links__link div:first-child > span {
+  flex: 6 !important;
+}
 .api-links .container .url-result__links__link div:first-child > div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex: 4 !important;
   gap: 2em;
 }
 .api-links .container .url-result__links__link .copy-btn {
@@ -375,7 +386,7 @@ a:hover:enabled {
   border-radius: 0.25em;
 }
 .api-links .container .url-result__links__link .result {
-  color: #25d3d1;
+  color: hsl(180deg, 66%, 49%);
   -webkit-user-select: all;
      -moz-user-select: all;
           user-select: all;
@@ -385,8 +396,17 @@ a:hover:enabled {
   padding-bottom: 2em;
 }
 
+#url-input:focus {
+  outline: 2px solid hsl(180deg, 66%, 49%);
+}
+
 button {
   width: 12em;
+}
+
+#api-button:hover {
+  background-color: hsl(180deg, 66%, 49%);
+  color: white !important;
 }
 
 #socials-icons {
@@ -425,11 +445,12 @@ h1 {
 #advanced-statistics #advanced-statistics-article {
   width: 50%;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .toggle-button {
   position: absolute;
-  top: 6%;
+  top: 0;
   right: 10%;
   display: none;
   flex-direction: column;
@@ -486,7 +507,7 @@ h1 {
     flex-wrap: wrap;
   }
   .toggle-button {
-    top: 5% !important;
+    top: 45px !important;
     display: flex !important;
   }
   .to-collapse {
@@ -517,7 +538,7 @@ h1 {
     height: auto !important;
   }
   header .container {
-    padding-right: 10% !important;
+    padding-right: 10vw !important;
   }
   footer section:nth-of-type(2) .container {
     gap: 1.5em;
