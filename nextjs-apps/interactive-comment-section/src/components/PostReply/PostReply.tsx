@@ -1,11 +1,13 @@
 import React, { FC, useCallback, useContext, useEffect, useRef } from "react"
 
-import { UserContext } from "../../context/UserContext"
+import { CommentContext } from "../../context/CommentContext"
 import validateCommentInput, {
-  MessageStates
+  MessageStates,
 } from "../../helpers/functions/validateCommentInput"
-import { Reply } from "../../models/Reply/Reply"
-import { ReplyAction } from "../Comment/Comment"
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
+import { IReply } from "../../models/Reply/IReply"
+import { reply } from "../CommentsSection/commentsSlice"
+import { selectCurrentUserMemo } from "../CommentsSection/currentUserSlice"
 
 //import Reply, { ReplyProps } from "../Reply/Reply"
 
@@ -13,16 +15,11 @@ const PostForm = React.lazy(() => import("../PostForm/PostForm"))
 
 export interface PostReplyProps {
   replyingTo: string
-  dispatchReplies: React.Dispatch<ReplyAction>
   setPostReply: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-const PostReply: FC<PostReplyProps> = ({
-  replyingTo,
-  dispatchReplies,
-  setPostReply,
-}) => {
-  const { avatarUrl, userName } = useContext(UserContext)
+const PostReply: FC<PostReplyProps> = ({ replyingTo, setPostReply }) => {
+  const { avatarUrl, userName } = useAppSelector(selectCurrentUserMemo)
 
   const commentInputRef = useRef<HTMLTextAreaElement>(
     null
@@ -31,6 +28,10 @@ const PostReply: FC<PostReplyProps> = ({
   const submitButtonRef = useRef<HTMLButtonElement>(
     null
   ) as React.MutableRefObject<HTMLButtonElement>
+
+  const { id: commentId } = useContext(CommentContext)
+
+  const dispatch = useAppDispatch()
 
   const addReply = useCallback(() => {
     const text = commentInputRef?.current.value
@@ -46,21 +47,21 @@ const PostReply: FC<PostReplyProps> = ({
       }
     }
 
-    const newReply = new Reply({
+    const newReply = {
       id: 0,
       user: { avatarUrl, userName },
       when: "today",
       article: text,
       likesCount: 0,
       replyingTo,
-    })
+    } as IReply
 
     setPostReply(() => null)
-    //setLocalReplies((currentReplies) => [...(currentReplies || []), newReply])
-    dispatchReplies({ type: "REPLY", payload: [newReply] })
+
+    dispatch(reply({ reply: newReply, commentId }))
 
     commentInputRef.current.value = ""
-  }, [avatarUrl, dispatchReplies, replyingTo, setPostReply, userName])
+  }, [avatarUrl, commentId, dispatch, replyingTo, setPostReply, userName])
 
   function clickSubmitOnButtonPush(e: KeyboardEvent) {
     e.stopImmediatePropagation()

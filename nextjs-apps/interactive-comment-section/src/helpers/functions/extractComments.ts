@@ -1,8 +1,7 @@
-import { CommentProps } from "../../components/Comment/Comment"
 import { FetchedComment } from "../../models/FetchedComment/IFetchedComment"
 import { IComment } from "./../../models/Comment/IComment"
 import extractReplies from "./extractReplies"
-import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
+import getUserAvatar from "./getUserAvatar"
 
 async function extractComments(
   comments: FetchedComment[]
@@ -13,12 +12,12 @@ async function extractComments(
 
   //const currentUser = await extractCurrentUser(commentsData)
 
-  const extractedComments: CommentProps[] = comments.map(
-    (comment: FetchedComment): CommentProps => ({
+  const extractedComments: IComment[] = comments.map(
+    (comment: FetchedComment): IComment => ({
       id: comment["id"],
       likesCount: comment["score"],
       user: {
-        avatarUrl: getAvatarImagePathByUsername(comment["user"]["username"]),
+        avatarUrl: getUserAvatar(comment.user.username),
         userName: comment["user"]["username"],
       },
       when: comment["createdAt"],

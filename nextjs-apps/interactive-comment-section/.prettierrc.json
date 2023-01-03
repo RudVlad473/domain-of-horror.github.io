@@ -7,6 +7,6 @@
   "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "importOrderCaseInsensitive": true,
+  "importOrderCaseInsensitive": false,
   "organizeImportsSkipDestructiveCodeActions": true
 }

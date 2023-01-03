@@ -1,26 +1,26 @@
-import React, { FC, useContext, useMemo } from "react"
+import React, { FC } from "react"
 
-import { UserContext } from "../../context/UserContext"
+import { useAppSelector } from "../../hooks/hooks"
+import Actions from "../Actions/Actions"
+import {
+  selectIsCurrentUser
+} from "../CommentsSection/currentUserSlice"
 import UserDetails, { UserDetailsProps } from "../UserDetails/UserDetails"
 import styles from "./Header.module.scss"
 
-const Actions = React.lazy(() => import("../Actions/Actions"))
-
 const Header: FC<UserDetailsProps> = (props) => {
-    const currentUser = useContext(UserContext)
-    const isCurrentUser = useMemo(() => {
-        return currentUser.userName == props.user.userName
-    }, [currentUser, props.user.userName])
+  const isCurrentUser = useAppSelector((state) =>
+    selectIsCurrentUser(state, props.user.userName)
+  )
 
-    return (
-        <div className={styles["header"]}>
-            <UserDetails {...props} />
-
-            <React.Suspense>
-                <Actions isCurrentUser={isCurrentUser} />
-            </React.Suspense>
-        </div>
-    )
+  return (
+    <>
+      <div className={styles["header"]}>
+        <UserDetails {...props} />
+      </div>
+      <Actions isCurrentUser={isCurrentUser} />
+    </>
+  )
 }
 
 export default Header

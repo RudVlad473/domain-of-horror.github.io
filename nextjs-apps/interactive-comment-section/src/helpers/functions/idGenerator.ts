@@ -24,4 +24,10 @@ class IdGenerator {
 
 const SequentialIdGenerator = new IdGenerator(1)
 
+export function assignSequentialIds<T extends { id: number }>(iterable: Iterable<T>) {
+  for (const value of iterable) {
+    value.id = SequentialIdGenerator.getId()
+  }
+}
+
 export default SequentialIdGenerator

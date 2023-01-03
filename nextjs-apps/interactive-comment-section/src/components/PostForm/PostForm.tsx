@@ -1,72 +1,65 @@
-import React, { forwardRef, useContext, useEffect } from "react"
+import React, { forwardRef, useEffect } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
-import { UserContext } from "../../context/UserContext"
+import { useAppSelector } from "../../hooks/hooks"
 import CommentInput from "../CommentInput/CommentInput"
+import { selectCurrentUserMemo } from "../CommentsSection/currentUserSlice"
 import Button from "../UI/Button/Button"
 import styles from "./PostForm.module.scss"
 
 export interface PostFormProps {
-    
-    formId?: string
+  formId?: string
 
-    buttonValue: string
-    buttonRef?: React.MutableRefObject<HTMLButtonElement>
+  buttonValue: string
+  buttonRef?: React.MutableRefObject<HTMLButtonElement>
 
-    textAreaValue?: string
-    textAreaRef?: React.MutableRefObject<HTMLTextAreaElement>
+  textAreaValue?: string
+  textAreaRef?: React.MutableRefObject<HTMLTextAreaElement>
 
-    onFormSubmit(): void
+  onFormSubmit(): void
 }
 
 const PostForm = forwardRef(
-    ({
-        
-        formId,
+  ({
+    formId,
 
-        buttonValue,
-        buttonRef,
+    buttonValue,
+    buttonRef,
 
-        textAreaValue,
-        textAreaRef,
+    textAreaValue,
+    textAreaRef,
 
-        onFormSubmit,
-    }: PostFormProps) => {
-        useEffect(() => {
-            textAreaRef?.current?.focus()
-        }, [textAreaRef])
+    onFormSubmit,
+  }: PostFormProps) => {
+    useEffect(() => {
+      textAreaRef?.current?.focus()
+    }, [textAreaRef])
 
-        const { avatarUrl } = useContext(UserContext)
+    const { avatarUrl } = useAppSelector(selectCurrentUserMemo)
 
-        return (
-            <form
-                id={formId}
-                className={styles["post-form"]}
-                onSubmit={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    onFormSubmit()
-                }}>
-                <LazyLoadImage
-                    src={avatarUrl}
-                    alt="You"
-                    style={{ maxWidth: "3rem" }}
-                />
-                <CommentInput
-                    textAreaRef={
-                        textAreaRef as React.MutableRefObject<HTMLTextAreaElement>
-                    }>
-                    {textAreaValue || ""}
-                </CommentInput>
-                <Button
-                    buttonRef={
-                        buttonRef as React.MutableRefObject<HTMLButtonElement>
-                    }
-                    buttonValue={buttonValue}
-                />
-            </form>
-        )
-    }
+    return (
+      <form
+        id={formId}
+        className={styles["post-form"]}
+        onSubmit={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onFormSubmit()
+        }}>
+        <LazyLoadImage src={avatarUrl} alt="You" style={{ minWidth: "2rem" }} />
+        <CommentInput
+          textAreaRef={
+            textAreaRef as React.MutableRefObject<HTMLTextAreaElement>
+          }>
+          {textAreaValue || ""}
+        </CommentInput>
+        <Button
+          buttonRef={buttonRef as React.MutableRefObject<HTMLButtonElement>}
+          buttonValue={buttonValue}
+        />
+      </form>
+    )
+  }
 )
 
 PostForm.displayName = "PostForm"

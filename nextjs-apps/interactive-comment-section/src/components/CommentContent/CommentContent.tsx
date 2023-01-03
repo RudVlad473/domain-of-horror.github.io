@@ -1,34 +1,33 @@
 import React, {
   FC,
   MutableRefObject,
-  useContext,
   useEffect,
   useReducer,
   useRef,
-  useState
+  useState,
 } from "react"
+import { useDispatch } from "react-redux"
 
 import { CommentContext } from "../../context/CommentContext"
-import { CommentsContext } from "../../context/CommentsContext"
 import { EditableContext } from "../../context/EditableContext"
+import addReplyingToArticle from "../../helpers/functions/addReplyingToArticle"
 import validateCommentInput, {
-  MessageStates
+  MessageStates,
 } from "../../helpers/functions/validateCommentInput"
 import { ActionTypes } from "../../models/Action/ActionTypes"
-import Comment from "../../models/Comment/Comment"
-import { CommentId, IComment } from "../../models/Comment/IComment"
+import { CommentId } from "../../models/Comment/IComment"
 import { ICommentContent } from "../../models/CommentContent/ICommentContent"
 import { ReplyingTo } from "../../models/Reply/IReply"
+import { UserName } from "../../models/User/IUser"
 import CommentBody from "../CommentBody/CommentBody"
+import { edit, remove } from "../CommentsSection/commentsSlice"
+import LikeSection from "../LikeSection/LikeSection"
 import Modal, { ModalProps } from "../Modal/Modal"
+import PostReply from "../PostReply/PostReply"
 import Button from "../UI/Button/Button"
-
-const LikeSection = React.lazy(() => import("../LikeSection/LikeSection"))
 
 export interface CommentContentProps {
   comment: ICommentContent
-  //dispatchReplies: React.Dispatch<ReplyAction>
-  setPostReply: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 interface ActionType {
@@ -41,14 +40,12 @@ interface Action {
   payload: ActionType | undefined
 }
 
-const CommentContent: FC<CommentContentProps> = ({
-  comment,
+const CommentContent: FC<CommentContentProps> = ({ comment }) => {
 
-  setPostReply,
-}) => {
   const [isEditable, setIsEditable] = useState<boolean>(false)
   const [article, setArticle] = useState<string | null>(null)
   const [deleteModal, setDeleteModal] = useState<ModalProps | null>(null)
+  const [postReply, setPostReply] = useState<UserName | null>(null)
 
   const submitButtonRef = useRef<HTMLButtonElement>(
     null
@@ -57,13 +54,14 @@ const CommentContent: FC<CommentContentProps> = ({
     null
   ) as MutableRefObject<HTMLTextAreaElement>
 
-  const { dispatch: dispatchComments } = useContext(CommentsContext)
+  const dispatch = useDispatch()
 
   useEffect(() => {
+
     setArticle(() => editableTextAreaRef?.current?.textContent)
   }, [editableTextAreaRef])
 
-  const [state, dispatchActions] = useReducer(actionsReducer, {
+  const [, dispatchActions] = useReducer(actionsReducer, {
     commentId: 0,
     replyingTo: "",
   })
@@ -72,7 +70,7 @@ const CommentContent: FC<CommentContentProps> = ({
     try {
       switch (action.type) {
         case ActionTypes.REPLY: {
-          setPostReply(() => state.replyingTo)
+          setPostReply(() => action.payload?.replyingTo || null)
 
           break
         }
@@ -82,18 +80,13 @@ const CommentContent: FC<CommentContentProps> = ({
           break
         }
         case ActionTypes.DELETE: {
-          const { commentId } = state
-          const commentToDelete = new Comment({} as IComment)
-          commentToDelete.id = commentId
+          const commentId = action.payload?.commentId as number
 
           deleteModal
             ? setDeleteModal(null)
             : setDeleteModal({
                 onSubmit: () => {
-                  dispatchComments({
-                    type: "DELETE",
-                    payload: [commentToDelete],
-                  })
+                  dispatch(remove([commentId]))
                   setDeleteModal(null)
                 },
                 onSubmitButton: { buttonValue: "YES, DELETE" },
@@ -116,7 +109,8 @@ const CommentContent: FC<CommentContentProps> = ({
     }
     return state
   }
-  function handleSubmit(e: React.FormEvent) {
+
+  function handleCommentUpdate(e: React.FormEvent) {
     e.preventDefault()
 
     const articleBeforeEdit = article
@@ -132,6 +126,7 @@ const CommentContent: FC<CommentContentProps> = ({
 
     switch (validatedInput) {
       case MessageStates.Normal: {
+        dispatch(edit({ ...comment, article: articleAfterEdit.textContent }))
         break
       }
       default: {
@@ -159,25 +154,31 @@ const CommentContent: FC<CommentContentProps> = ({
           const actionType = (e.target as HTMLDivElement).dataset["type"] as
             | ActionTypes
             | undefined
-          const replyingTo = e.currentTarget.dataset["name"]
-          const commentId = parseInt(e.currentTarget.id)
 
-          if (!actionType || !replyingTo || !commentId) {
+          if (!actionType) {
+            return
+          }
+
+          const replyingTo = e.currentTarget.dataset["name"]
+          //const commentId = parseInt(e.currentTarget.id)
+          const commentId = comment.id
+
+          if (!replyingTo || !commentId) {
             throw new Error(
               "It seems like comment doesn't have required information. Try to reload the page."
             )
           }
-
-          dispatchActions({
+          const toDispatch = {
             type: actionType,
             payload: { commentId, replyingTo },
-          })
+          }
+          //console.log(toDispatch)
+          dispatchActions(toDispatch)
         }}
-        onSubmit={handleSubmit}>
+        onSubmit={handleCommentUpdate}>
         <div className="comment__content">
-          <React.Suspense>
-            <LikeSection likesCount={comment.likesCount} />
-          </React.Suspense>
+          <LikeSection likesCount={comment.likesCount} />
+
           <EditableContext.Provider value={isEditable}>
             <CommentBody {...comment} articleRef={editableTextAreaRef} />
           </EditableContext.Provider>
@@ -188,6 +189,9 @@ const CommentContent: FC<CommentContentProps> = ({
         )}
         {deleteModal && <Modal {...deleteModal} />}
       </form>
+      {postReply && (
+        <PostReply replyingTo={postReply} setPostReply={setPostReply} />
+      )}
     </CommentContext.Provider>
   )
 }

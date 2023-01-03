@@ -3,7 +3,7 @@
 .comment-area {
     width: 100%;
 
-    padding: 0.5em 1.25em;
+    padding: map-get($gutters, "g-1") * 0.5 map-get($gutters, "g-2");
 
     outline: 1px solid $gray-200;
     border-radius: $br;

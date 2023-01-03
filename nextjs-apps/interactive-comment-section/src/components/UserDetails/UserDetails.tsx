@@ -14,13 +14,7 @@ export interface UserDetailsProps {
 const UserDetails: FC<UserDetailsProps> = ({ user, when }) => {
   return (
     <div className={styles["user-details"]}>
-      <React.Suspense>
-        <LazyLoadImage
-          src={user.avatarUrl}
-          alt={user.userName}
-          style={{ maxWidth: "2rem" }}
-        />
-      </React.Suspense>
+      <LazyLoadImage src={user.avatarUrl} style={{ maxWidth: "2rem" }} />
 
       <UserName userName={user.userName} />
       <span className={styles["user-details__when"]} title={when}>

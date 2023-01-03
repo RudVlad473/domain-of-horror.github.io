@@ -1,37 +1,27 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
+import { FetchStatus } from "./api/commentsApi"
 import CommentsSection from "./components/CommentsSection/CommentsSection"
-import { UserContext } from "./context/UserContext"
-import commentsData from "./data/comments.json"
-import extractCurrentUser from "./helpers/functions/extractCurrentUser"
-import { ICurrentUser } from "./models/User/IUser"
+import {
+  fetchCurrentUser,
+  getCurrentUserError,
+  getCurrentUserStatus,
+} from "./components/CommentsSection/currentUserSlice"
+import { useAppDispatch, useAppSelector } from "./hooks/hooks"
 
 const App = () => {
-    const [currentUser, setCurrentUser] = useState<ICurrentUser>({
-        avatarUrl: "",
-        userName: "",
-        reactedCommentsIds: new Map(),
-    })
+  const dispatch = useAppDispatch()
 
-    async function fetchCurrentUserLocalJSON() {
-        const data = await extractCurrentUser(commentsData)
-        setCurrentUser(() => ({
-            ...data,
-            reactedCommentsIds: new Map(),
-        }))
+  const currentUserStatus = useAppSelector(getCurrentUserStatus)
+  const currentUserError = useAppSelector(getCurrentUserError)
+
+  useEffect(() => {
+    if (currentUserStatus === FetchStatus.IDLE) {
+      dispatch(fetchCurrentUser())
     }
+  }, [currentUserStatus, dispatch])
 
-    useEffect(() => {
-        fetchCurrentUserLocalJSON()
-    }, [])
-
-    return (
-        <React.StrictMode>
-            <UserContext.Provider value={currentUser}>
-                <CommentsSection />
-            </UserContext.Provider>
-        </React.StrictMode>
-    )
+  return <CommentsSection />
 }
 
 export default App

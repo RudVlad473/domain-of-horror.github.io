@@ -1,4 +1,4 @@
-import { ICommentContent } from "../CommentContent/ICommentContent";
+import { ICommentContent } from "../CommentContent/ICommentContent"
 
 export type ReplyingTo = string
 

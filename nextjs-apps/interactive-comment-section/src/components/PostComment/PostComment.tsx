@@ -1,81 +1,82 @@
 import React, {
-    FC,
-    MutableRefObject,
-    useContext,
-    useEffect,
-    useRef,
+  FC,
+  MutableRefObject, useEffect,
+  useRef
 } from "react"
+import { useDispatch } from "react-redux"
 
-import { CommentsContext } from "../../context/CommentsContext"
-import { UserContext } from "../../context/UserContext"
 import validateCommentInput, {
-    MessageStates,
+  MessageStates
 } from "../../helpers/functions/validateCommentInput"
-import Comment from "../../models/Comment/Comment"
-import { CommentProps } from "../Comment/Comment"
-
-const PostForm = React.lazy(() => import("../PostForm/PostForm"))
+import { useAppSelector } from "../../hooks/hooks"
+import { IComment } from "../../models/Comment/IComment"
+import { append } from "../CommentsSection/commentsSlice"
+import { selectCurrentUserMemo } from "../CommentsSection/currentUserSlice"
+import PostForm from "../PostForm/PostForm"
 
 interface PostCommentProps {}
 
 const PostComment: FC<PostCommentProps> = () => {
-    const { avatarUrl, userName } = useContext(UserContext)
+  const { avatarUrl, userName } = useAppSelector(selectCurrentUserMemo)
 
-    const commentInputRef = useRef<HTMLTextAreaElement>(
-        null
-    ) as MutableRefObject<HTMLTextAreaElement>
-    const submitButtonRef = useRef<HTMLButtonElement>(
-        null
-    ) as MutableRefObject<HTMLButtonElement>
+  const commentInputRef = useRef<HTMLTextAreaElement>(
+    null
+  ) as MutableRefObject<HTMLTextAreaElement>
+  const submitButtonRef = useRef<HTMLButtonElement>(
+    null
+  ) as MutableRefObject<HTMLButtonElement>
 
-    const { dispatch } = useContext(CommentsContext)
+  const dispatch = useDispatch()
 
-    function addComment() {
-        const text = commentInputRef.current.value
-        const validatedInput = validateCommentInput(text)
+  function addComment() {
+    const text = commentInputRef.current.value
+    const validatedInput = validateCommentInput(text)
 
-        switch (validatedInput) {
-            case MessageStates.Normal: {
-                break
-            }
-            default: {
-                alert(validatedInput)
-                return
-            }
-        }
-
-        const newComment: CommentProps = new Comment({
-            id: -1,
-            likesCount: 0,
-            user: { userName, avatarUrl },
-            when: "today",
-            article: commentInputRef.current.value,
-            replies: (async () => undefined)(),
-        })
-        dispatch({ type: "CREATE", comments: [newComment] })
-
-        commentInputRef.current.value = ""
+    switch (validatedInput) {
+      case MessageStates.Normal: {
+        break
+      }
+      default: {
+        alert(validatedInput)
+        return
+      }
     }
 
-    useEffect(() => {
-        window.addEventListener("keypress", (e: KeyboardEvent) => {
-            e.stopImmediatePropagation()
-            if (e.key == "Enter") {
-                submitButtonRef.current.click()
-            }
-        })
-    }, [])
-
-    return (
-        <React.Suspense>
-            <PostForm
-                textAreaRef={commentInputRef}
-                onFormSubmit={addComment}
-                buttonValue="SEND"
-                buttonRef={submitButtonRef}
-            />
-        </React.Suspense>
+    dispatch(
+      append([
+        {
+          id: 0,
+          likesCount: 0,
+          user: { userName, avatarUrl },
+          when: "today",
+          article: commentInputRef.current.value,
+          replies: [],
+        } as IComment,
+      ])
     )
+
+    commentInputRef.current.value = ""
+  }
+
+  useEffect(() => {
+    window.addEventListener("keypress", (e: KeyboardEvent) => {
+      e.stopImmediatePropagation()
+      if (e.key == "Enter") {
+        submitButtonRef.current.click()
+      }
+    })
+  }, [])
+
+  return (
+    <React.Suspense>
+      <PostForm
+        textAreaRef={commentInputRef}
+        onFormSubmit={addComment}
+        buttonValue="SEND"
+        buttonRef={submitButtonRef}
+      />
+    </React.Suspense>
+  )
 }
 
 export default PostComment

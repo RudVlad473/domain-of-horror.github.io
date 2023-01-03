@@ -1,18 +1,17 @@
 import { CommentContent } from "../CommentContent/CommentContent"
-import { IReply } from "./IReply"
+import { IReply, ReplyingTo } from "./IReply"
 
 export class Reply extends CommentContent implements IReply {
-  replyingTo: string
+  replyingTo: ReplyingTo
 
   constructor({
-    id = 0,
     likesCount = 0,
-    article = undefined,
+    article = "",
     when = "",
     user = { avatarUrl: "", userName: "" },
     replyingTo = "",
   }: IReply) {
-    super({ id, likesCount, article, when, user })
+    super({ likesCount, article, when, user })
     this.replyingTo = replyingTo
   }
 }

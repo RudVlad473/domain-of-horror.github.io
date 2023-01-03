@@ -1,9 +1,10 @@
 .header {
-    justify-content: space-between;
+  grid-area: user-details;
+  justify-content: space-between;
 
-    &,
-    & > * {
-        display: flex;
-        align-items: center;
-    }
+  &,
+  & > * {
+    display: flex;
+    align-items: center;
+  }
 }

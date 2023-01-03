@@ -1,16 +1,17 @@
-import { FetchedData } from "../../components/CommentsSection/CommentsSection"
-import { IUser } from "../../models/User/IUser"
-import getAvatarImagePathByUsername from "./getAvatarImagePathByUsername"
+import { FetchedCurrentUser } from "./../../models/FetchedComment/IFetchedComment"
+import { ICurrentUser } from "./../../models/User/IUser"
+import getUserAvatar from "./getUserAvatar"
 
-async function extractCurrentUser(commentsData: FetchedData): Promise<IUser> {
-    const currentUser: IUser = {
-        avatarUrl: getAvatarImagePathByUsername(
-            commentsData.currentUser.username
-        ),
-        userName: commentsData.currentUser.username,
-    }
+async function extractCurrentUser(
+  currentUserData: FetchedCurrentUser
+): Promise<ICurrentUser> {
+  const currentUser: ICurrentUser = {
+    avatarUrl: getUserAvatar(currentUserData.username),
+    userName: currentUserData.username,
+    reactedComments: currentUserData.reactedComments,
+  }
 
-    return currentUser
+  return currentUser
 }
 
 export default extractCurrentUser

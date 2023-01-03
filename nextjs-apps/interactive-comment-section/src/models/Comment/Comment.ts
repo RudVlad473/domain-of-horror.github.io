@@ -1,39 +1,30 @@
-import { ReplyProps } from "../../components/Reply/Reply"
 import extractReplies from "../../helpers/functions/extractReplies"
 import { CommentContent } from "../CommentContent/CommentContent"
 import { FetchedComment } from "./../FetchedComment/IFetchedComment"
+import { IReply } from "./../Reply/IReply"
 import { IComment } from "./IComment"
 
 class Comment extends CommentContent implements IComment {
-  replies: Promise<ReplyProps[] | undefined>
+  replies: IReply[] | undefined
 
-  constructor({
-    id = 0,
-    likesCount = 0,
-    article = undefined,
-    when = "",
-    user = { avatarUrl: "", userName: "" },
-    replies = Promise.resolve<ReplyProps[] | undefined>(undefined),
-  }: IComment) {
-    super({ id, likesCount, article, when, user })
+  constructor({ likesCount, article, when, user, replies }: IComment) {
+    super({ likesCount, article, when, user })
     this.replies = replies
   }
 
   static getNullComment(): IComment {
     return new Comment({
-      id: 0,
       likesCount: 0,
       article: undefined,
       when: "",
       user: { avatarUrl: "", userName: "" },
-      replies: Promise.resolve<ReplyProps[] | undefined>(undefined),
-    })
+      replies: undefined,
+    } as IComment)
   }
 
   //TODO: Apply adapter pattern fetched comment => comment
   static extractCommentFromFetchedComment(fetchedComment: FetchedComment) {
     return new Comment({
-      id: fetchedComment.id,
       likesCount: fetchedComment.score,
       article: fetchedComment.content,
       when: fetchedComment.createdAt,
@@ -42,7 +33,7 @@ class Comment extends CommentContent implements IComment {
         avatarUrl: fetchedComment.user.image.png,
       },
       replies: extractReplies(fetchedComment.replies),
-    })
+    } as IComment)
   }
 }
 

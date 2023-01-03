@@ -7,7 +7,7 @@ class CommentLocalJsonRepository implements ICommentsRepository {
   async get(): Promise<IComment[] | undefined> {
     const comments = await getCommentsFromLocalJson()
 
-    return extractComments(comments)
+    return await extractComments(comments)
   }
   create(comments: Promise<IComment[]>): void {
     throw new Error("Method not implemented.")

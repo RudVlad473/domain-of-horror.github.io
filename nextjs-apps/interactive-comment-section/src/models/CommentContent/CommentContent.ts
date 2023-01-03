@@ -1,26 +1,32 @@
-import { ReactNode } from "react"
-
+import SequentialIdGenerator from "../../helpers/functions/idGenerator"
 import { IUser } from "../User/IUser"
+import { CommentId } from "./../Comment/IComment"
 import { ICommentContent } from "./ICommentContent"
 
 export class CommentContent implements ICommentContent {
-  id: number
+  id: CommentId
   likesCount: number
-  article: ReactNode
+  article: React.ReactNode
   when: string
   user: IUser
 
   constructor({
-    id = 0,
     likesCount = 0,
-    article = undefined,
+    article = "",
     when = "",
     user = { avatarUrl: "", userName: "" },
-  }: ICommentContent) {
-    this.id = id
+  }) {
+    this.id = SequentialIdGenerator.getId()
     this.likesCount = likesCount
     this.article = article
     this.when = when
     this.user = user
+  }
+
+  static assignSequentialIds<T extends ICommentContent>(arr: T[]) {
+    for (const obj of arr) {
+      obj.id = SequentialIdGenerator.getId()
+    }
+    return arr
   }
 }

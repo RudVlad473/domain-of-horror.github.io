@@ -1,7 +1,7 @@
 @use "../abstracts/" as *;
 
 html {
-    font-family: $mainFontSize;
+    font-family: $mainFontSize, "Calibri";
     scroll-behavior: smooth;
 }
 
@@ -9,4 +9,6 @@ body {
     color: $blue-200;
     background-color: $gray-100;
     font-weight: $normal;
+
+    padding-inline: map-get($gutters, "g-1");
 }

@@ -17,6 +17,5 @@ root.render(
 
 /*TODO: Redux
 1. Переделать запросы к api через redux
-2. Сделать dependency injection на запросы к api (repositories)
-3. Сделать comments глобальным state (как и реплаи)
+
 */
